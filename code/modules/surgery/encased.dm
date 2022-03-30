@@ -15,10 +15,9 @@
 	)
 	can_infect = 1
 	blood_level = 1
-	min_duration = 50
-	max_duration = 70
+	min_duration = 20
+	max_duration = 25
 	shock_level = 60
-	delicate = 1
 	surgery_candidate_flags = SURGERY_NO_ROBOTIC | SURGERY_NO_CRYSTAL | SURGERY_NO_STUMP | SURGERY_NEEDS_RETRACTED
 	strict_access_requirement = TRUE
 
