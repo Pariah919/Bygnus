@@ -2,7 +2,7 @@
 
 /obj/item/weapon/card/id/torch
 	name = "identification card"
-	desc = "An identification card issued to personnel aboard the NTSS Dagon."
+	desc = "An identification card issued to personnel aboard the SGV Dagon."
 	job_access_type = /datum/job/assistant
 
 /obj/item/weapon/card/id/torch/silver
@@ -21,14 +21,14 @@
 
 // SolGov Crew and Contractors
 /obj/item/weapon/card/id/torch/crew
-	desc = "An identification card issued to crewmembers aboard the NTSS Dagon."
+	desc = "An identification card issued to crewmembers aboard the SGV Dagon."
 	color = "#d3e3e1"
 	job_access_type = /datum/job/crew
 	color = "#ccecff"
 
 
 /obj/item/weapon/card/id/torch/contractor
-	desc = "An identification card issued to private contractors aboard the NTSS Dagon."
+	desc = "An identification card issued to private contractors aboard the SGV Dagon."
 	job_access_type = /datum/job/assistant
 	color = COLOR_GRAY80
 
@@ -40,6 +40,9 @@
 /obj/item/weapon/card/id/torch/crew/medical
 	job_access_type = /datum/job/doctor
 	detail_color = COLOR_PALE_BLUE_GRAY
+
+/obj/item/weapon/card/id/torch/crew/medical/virology
+	job_access_type = /datum/job/doctor/virologist
 
 /obj/item/weapon/card/id/torch/crew/medical/senior
 	job_access_type = /datum/job/senior_doctor
@@ -128,8 +131,13 @@
 	job_access_type = /datum/job/bartender
 
 
-/obj/item/weapon/card/id/torch/crew/adjudicator
-	job_access_type = /datum/job/adjudicator
+/obj/item/weapon/card/id/torch/crew/representative
+	job_access_type = /datum/job/solrep
+	detail_color = COLOR_COMMAND_BLUE
+	extra_details = list("goldstripe")
+
+/obj/item/weapon/card/id/torch/crew/solguard
+	job_access_type = /datum/job/solguard
 	detail_color = COLOR_COMMAND_BLUE
 
 /obj/item/weapon/card/id/torch/crew/sea
@@ -161,7 +169,7 @@
 	color = COLOR_WHITE
 
 /obj/item/weapon/card/id/torch/crew/research
-	desc = "A card issued to science personnel aboard the NTSS Dagon."
+	desc = "A card issued to science personnel aboard the SGV Dagon."
 	job_access_type = /datum/job/scientist_assistant
 	detail_color = COLOR_RESEARCH
 
@@ -175,12 +183,12 @@
 //NanoTrasen and Passengers
 
 /obj/item/weapon/card/id/torch/passenger
-	desc = "A card issued to passengers aboard the NTSS Dagon."
+	desc = "A card issued to passengers aboard the SGV Dagon."
 	job_access_type = /datum/job/assistant
 	detail_color = COLOR_PAKISTAN_GREEN
 
 /obj/item/weapon/card/id/torch/passenger/research
-	desc = "A card issued to corporate personnel aboard the NTSS Dagon."
+	desc = "A card issued to corporate personnel aboard the SGV Dagon."
 	job_access_type = /datum/job/scientist_assistant
 	detail_color = COLOR_BOTTLE_GREEN
 
@@ -225,6 +233,10 @@
 /obj/item/weapon/card/id/torch/crew/infantry/inftech
 	job_access_type = /datum/job/combat_tech
 	detail_color = COLOR_SUN
+
+/obj/item/weapon/card/id/torch/crew/infantry/infmed
+	job_access_type = /datum/job/combat_medic
+	detail_color = COLOR_NAVY_BLUE
 
 /obj/item/weapon/card/id/torch/crew/psiadvisor
 	job_access_type = /datum/job/psiadvisor

@@ -3,7 +3,7 @@
 //EXO
 /obj/item/clothing/under/rank/guard
 	name = "green security guard uniform"
-	desc = "A durable uniform worn by Expeditionary Corps Organisation security."
+	desc = "A durable uniform worn by SolGov Fleet security."
 	icon_state = "guard"
 	item_state = "w_suit"
 	worn_state = "guard"
@@ -35,8 +35,8 @@
 	starting_accessories = list(/obj/item/clothing/accessory/tunic)
 
 /obj/item/clothing/under/rank/scientist/executive
-	name = "\improper EXO polo and pants"
-	desc = "A fashionable polo and pair of trousers made from expensive biohazard-resistant fabrics. The colors denote the wearer as a Expeditionary Corps Organisation higher-up."
+	name = "\improper Science polo and pants"
+	desc = "A fashionable polo and pair of trousers made from expensive biohazard-resistant fabrics. The colors denote the wearer as a SolGov Fleet science team higher-up."
 	icon_state = "smockexec"
 	worn_state = "smockexec"
 	starting_accessories = list(/obj/item/clothing/accessory/tunic/exec)
@@ -48,7 +48,7 @@
 	item_state = "lb_suit"
 	worn_state = "work"
 	armor = list(
-		melee = ARMOR_MELEE_MINOR, 
+		melee = ARMOR_MELEE_MINOR,
 		bio = ARMOR_BIO_MINOR
 		)
 	item_icons = list(slot_w_uniform_str = 'icons/mob/onmob/onmob_under_corporate.dmi')
@@ -59,7 +59,7 @@
 
 /obj/item/clothing/under/rank/ntpilot
 	name = "green flight suit"
-	desc = "A sleek green Expeditionary Corps Organisation flight suit. It proudly sports three different patches with corporate logos on them, as well as several unnecessary looking flaps and pockets for effect."
+	desc = "A sleek green SolGov Fleet flight suit. It proudly sports three different patches with corporate logos on them, as well as several unnecessary looking flaps and pockets for effect."
 	icon_state = "pilot"
 	item_state = "g_suit"
 	worn_state = "pilot"
@@ -70,8 +70,8 @@
 		)
 
 /obj/item/clothing/under/suit_jacket/corp
-	name = "\improper EXO executive suit"
-	desc = "A set of Expeditionary Corps Organisation-issued suit pants and shirt that particularly enthusiastic company executives tend to wear."
+	name = "\improper executive suit"
+	desc = "A set of executive-issued suit pants and shirt that particularly enthusiastic company executives tend to wear."
 	icon_state = "suit"
 	item_state = "bl_suit"
 	worn_state = "suit"
@@ -195,3 +195,14 @@
 	icon_state = "suit_zeng"
 	worn_state = "suit_zeng"
 	starting_accessories = list(/obj/item/clothing/accessory/toggleable/corpjacket/zeng, /obj/item/clothing/accessory/corptie/zeng)
+
+/obj/item/clothing/under/rank/ntpilot/dohruk
+	name = "brown flight suit"
+	desc = "A dull unmarked flight suit. It has some patches on it, but all of them are just a mess of brown, like someone tried to clean a coffee stain with more coffee."
+	icon_state = "pilot_unathi"
+	gender_icons = 0
+	worn_state = "pilot_unat"
+	item_icons = list(slot_w_uniform_str = 'icons/mob/onmob/onmob_under_corporate.dmi')
+	sprite_sheets = list(
+		SPECIES_UNATHI = 'icons/mob/species/unathi/generated/onmob_under_corporate_unathi.dmi',
+		)

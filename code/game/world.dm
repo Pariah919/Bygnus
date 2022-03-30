@@ -224,11 +224,9 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if(copytext(T,1,5) == "laws")
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 5 SECONDS)
+				world_topic_spam_protect_time = world.time + 5 SECONDS
+				return "Bad Key (Throttled)"
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -279,11 +277,9 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if(copytext(T,1,5) == "info")
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 5 SECONDS)
+				world_topic_spam_protect_time = world.time + 5 SECONDS
+				return "Bad Key (Throttled)"
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -347,11 +343,9 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 5 SECONDS)
+				world_topic_spam_protect_time = world.time + 5 SECONDS
+				return "Bad Key (Throttled)"
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -397,11 +391,9 @@ var/world_topic_spam_protect_time = world.timeofday
 		*/
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 5 SECONDS)
+				world_topic_spam_protect_time = world.time + 5 SECONDS
+				return "Bad Key (Throttled)"
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -412,10 +404,9 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if(copytext(T,1,4) == "age")
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 5 SECONDS)
+				world_topic_spam_protect_time = world.time + 5 SECONDS
+				return "Bad Key (Throttled)"
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -435,10 +426,9 @@ var/world_topic_spam_protect_time = world.timeofday
 		if(!config.ban_comms_password)
 			return "Not enabled"
 		if(input["bankey"] != config.ban_comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 5 SECONDS)
+				world_topic_spam_protect_time = world.time + 5 SECONDS
+				return "Bad Key (Throttled)"
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -465,10 +455,9 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if(copytext(T,1,19) == "prometheus_metrics")
 		var/input[] = params2list(T)
 		if(input["key"] != config.comms_password)
-			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-				spawn(50)
-					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 5 SECONDS)
+				world_topic_spam_protect_time = world.time + 5 SECONDS
+				return "Bad Key (Throttled)"
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -502,11 +491,18 @@ var/world_topic_spam_protect_time = world.timeofday
 	else if (!world.TgsAvailable() && hard_reset)
 		hard_reset = FALSE
 
+
 	Master.Shutdown()
 
+	var/chatOutput/co
+	for(var/client/C in GLOB.clients)
+		co = C.chatOutput
+		if(co)
+			co.ehjax_send(data = "roundrestart")
 	if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 		for(var/client/C in GLOB.clients)
-			to_chat(C, link("byond://[config.server]"))
+			send_link(C, "byond://[config.server]")
+
 
 	if(config.wait_for_sigusr1_reboot && reason != 3)
 		text2file("foo", "reboot_called")
@@ -522,6 +518,11 @@ var/world_topic_spam_protect_time = world.timeofday
 	..(reason)
 
 /world/Del()
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if (debug_server)
+		call(debug_server, "auxtools_shutdown")()
+	. = ..()
+
 	callHook("shutdown")
 	return ..()
 
@@ -592,7 +593,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
-	s += "<a href=\"https://discord.gg/MHmVtSUawP/\">" //Change this to wherever you want the hub to link to.
+	s += "<a href=\"https://discord.gg/MHmVtSUawP\">" //Change this to wherever you want the hub to link to.
 //	s += "[game_version]"
 	s += "Discord"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
 	s += "</a>"
@@ -738,6 +739,16 @@ proc/establish_old_db_connection()
 #undef FAILED_DB_CONNECTION_CUTOFF
 
 /world/proc/enable_debugger()
-	var/dll = world.GetConfig("env", "EXTOOLS_DLL")
-	if (dll)
-		call(dll, "debug_initialize")()
+	var/debug_server = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
+	if (debug_server)
+		call(debug_server, "auxtools_init")()
+		enable_debugging()
+
+/proc/auxtools_stack_trace(msg)
+	CRASH(msg)
+
+/proc/auxtools_expr_stub()
+	CRASH("auxtools not loaded")
+
+/proc/enable_debugging(mode, port)
+	CRASH("auxtools not loaded")

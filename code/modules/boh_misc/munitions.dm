@@ -4,28 +4,30 @@
 
 //casing
 /obj/item/ammo_casing/shotgun/birdshot
-	name = "rubbershot shell"
-	desc = "A rubbershot shell."
+	name = "birdshot shell"
+	desc = "A birdshot shell."
 	icon = 'icons/boh/ammo.dmi'
 	icon_state = "bdshell"
 	spent_icon = "bdshell-spent"
 	projectile_type = /obj/item/projectile/bullet/pellet/birdshot
+	ammo_stack = /obj/item/ammo_magazine/handful/shotgun/shotgun_handful/birdshot/two
 	matter = list(MATERIAL_STEEL = 80)
 
 //projectile
 /obj/item/projectile/bullet/pellet/birdshot
-	name = "rubbershot"
+	name = "birdshot"
 	fire_sound = 'sound/weapons/gunshot/gunshot_4mm.ogg'
 	damage = 2
 	pellets = 10
 	range_step = 2
 	spread_step = 10
-	agony = 8.5
-	embed = 0
+	agony = 15//up from 8.5
+	shrapnel_chance_multiplier = 99 //Guarantees shrapnel. Needed for the gimmick.
+	embed = 1//shouldn't HAVE to be noted, but, y'know, seems like it's a problem.
 
 //holder
 /obj/item/ammo_magazine/shotholder/birdshot
-	name = "rubbershot shell holder"
+	name = "birdshot shell holder"
 	ammo_type = /obj/item/ammo_casing/shotgun/birdshot
 	matter = list(MATERIAL_STEEL = 620)
 	marking_color = COLOR_PALE_YELLOW
@@ -72,6 +74,7 @@
 	It does mention something about being an incredibly localized explosive, however, and only to be used against non-organic targets. Whatever that means."
 	icon = 'icons/boh/ammo.dmi'
 	icon_state = "rcrshell"
+	spent_icon = "rcrshell-spent"//for some reason needed because wacky
 	matter = list(MATERIAL_STEEL = 50000) //Same as the RCD, retardedly high, for good reason.
 	projectile_type = /obj/item/projectile/bullet/rcr
 
@@ -80,21 +83,20 @@
 	name ="incendiary shell"
 	icon_state= "rod"
 	damage_type = BURN
-	damage = 95
+	damage = 165//It's a rocket and there's so few of them. We'll down this if it's too powerful. Up from 90, which was a tickle cannon.
 	armor_penetration = 65 //not 100, because recoilless rifles don't have that high of a velocity
 	damage_flags = DAM_EDGE | DAM_DISPERSED | DAM_EXPLODE
 
 	on_hit(var/atom/target, var/blocked = 0)
-		explosion(target, 1, 6, 12)
+		explosion(target, 0, 1, 6, 12)
 		return 1
 
 /////////
 // EPP Projectile
 /////////
 /obj/item/projectile/beam/pulse/epp
-	damage = 12
-	damage_type = ELECTROCUTE
-	agony = 35
+	damage = 15
+	agony = 20 //reduced for lethality bonus.
 
 /////////
 // .454
@@ -104,6 +106,7 @@
 	desc = "A high-power bullet casing."
 	caliber = CALIBER_PISTOL_MAGNUM_LARGE
 	projectile_type = /obj/item/projectile/bullet/pistol/large
+	ammo_stack = /obj/item/ammo_magazine/handful/magnum_handful/two
 
 //projectile
 /obj/item/projectile/bullet/pistol/large
@@ -160,6 +163,7 @@
 	spent_icon = "sabshell-spent"
 	caliber = CALIBER_SABOT
 	projectile_type = /obj/item/projectile/bullet/sabot
+	ammo_stack = /obj/item/ammo_magazine/handful/shotgun/shotgun_handful/sabot/two
 	matter = list(MATERIAL_STEEL = 420)
 
 //projectile
@@ -181,3 +185,65 @@
 	ammo_type = /obj/item/ammo_casing/sabot
 	matter = list(MATERIAL_STEEL = 1240)
 	marking_color = COLOR_GUNMETAL
+
+/////////
+//Skrell QX2
+/////////
+
+//magazine
+/obj/item/ammo_magazine/skrell_shotgun
+	name = "skrellian flechette magazine"
+	desc = "A magazine with pointy, alien flechettes inside"
+	icon = 'icons/boh/obj/ammo.dmi'
+	icon_state = "skrellflechettemag"
+	mag_type = MAGAZINE
+	caliber = CALIBER_SKRELL_SHOTGUN
+	ammo_type = /obj/item/ammo_casing/skrell_shotgun
+	matter = list(MATERIAL_STEEL = 1240)
+	max_ammo = 8
+	multiple_sprites = 1
+
+//projectile
+/obj/item/projectile/bullet/magnetic/skrell_flechette
+	name = "flechette"
+	icon_state = "flechette"
+	damage = 25
+	armor_penetration = 100
+	fire_sound = 'sound/weapons/rapidslice.ogg'
+	distance_falloff = 0.5
+
+//casing
+/obj/item/ammo_casing/skrell_shotgun
+	name = "skrellian flechette"
+	desc = "A pointy flechette of alien design"
+	icon = 'icons/boh/obj/ammo.dmi'
+	icon_state = "skrellflechette"
+	spent_icon = "skrellflechette-spent"
+	caliber = CALIBER_SKRELL_SHOTGUN
+	projectile_type = /obj/item/projectile/bullet/magnetic/skrell_flechette
+
+/////////
+// smg frangibles
+/////////
+
+//casing
+/obj/item/ammo_casing/pistol/small/frangible
+	desc = "A small pistol bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/frangible
+	caliber = CALIBER_PISTOL_FRANGIBLE
+	icon_state = "smallcasing"
+	spent_icon = "smallcasing-spent"
+
+//projectile
+/obj/item/projectile/bullet/pistol/frangible
+	name = "frangible bullet"
+	damage = 15
+	armor_penetration = 35 //Lets try this. Up from 5.
+	shrapnel_chance_multiplier = 2 //Smaller, tumbling projectile.
+	arterial_bleed_chance_multiplier = 1.2 //Less post-pen compared to rifles.
+
+//Magazine
+/obj/item/ammo_magazine/smg_top/frangible
+	labels = list("frangible")
+	caliber = CALIBER_PISTOL_FRANGIBLE
+	ammo_type = /obj/item/ammo_casing/pistol/small/frangible

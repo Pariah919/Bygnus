@@ -6,10 +6,10 @@
  * BASE TYPE
  */
 /obj/item/weapon/rig/command
-	name = "command HCM"
+	name = "command hardsuit control module"
 	suit_type = "command hardsuit"
 	icon = 'maps/torch/icons/obj/uniques.dmi'
-	desc = "A specialized hardsuit rig control module issued to command staff of the Expeditionary Corps and their peers."
+	desc = "A specialized hardsuit control module issued to command staff of the SolGov Fleet and their peers."
 	icon_state = "command_rig"
 	armor = list(
 		melee = ARMOR_MELEE_KNIVES,
@@ -44,22 +44,22 @@
 	icon = 'maps/torch/icons/obj/obj_head_solgov.dmi'
 	item_icons = list(slot_head_str = 'maps/torch/icons/mob/onmob_head_solgov.dmi')
 	camera = /obj/machinery/camera/network/command
-	species_restricted = list(SPECIES_HUMAN,SPECIES_IPC) //no available icons for aliens
+	species_restricted = list(SPECIES_HUMAN,SPECIES_PLASMASANS,SPECIES_IPC) //no available icons for aliens
 
 /obj/item/clothing/suit/space/rig/command
 	icon = 'maps/torch/icons/obj/obj_suit_solgov.dmi'
 	item_icons = list(slot_wear_suit_str = 'maps/torch/icons/mob/onmob_suit_solgov.dmi')
-	species_restricted = list(SPECIES_HUMAN,SPECIES_IPC)
+	species_restricted = list(SPECIES_HUMAN,SPECIES_PLASMASANS,SPECIES_IPC)
 
 /obj/item/clothing/shoes/magboots/rig/command
 	icon = 'maps/torch/icons/obj/obj_feet_solgov.dmi'
 	item_icons = list(slot_shoes_str = 'maps/torch/icons/mob/onmob_feet_solgov.dmi')
-	species_restricted = list(SPECIES_HUMAN,SPECIES_IPC)
+	species_restricted = list(SPECIES_HUMAN,SPECIES_PLASMASANS,SPECIES_IPC)
 
 /obj/item/clothing/gloves/rig/command
 	icon = 'maps/torch/icons/obj/obj_hands_solgov.dmi'
 	item_icons = list(slot_gloves_str = 'maps/torch/icons/mob/onmob_hands_solgov.dmi')
-	species_restricted = list(SPECIES_HUMAN,SPECIES_IPC)
+	species_restricted = list(SPECIES_HUMAN,SPECIES_PLASMASANS,SPECIES_IPC)
 
 
 /obj/item/weapon/rig/command/equipped
@@ -70,12 +70,79 @@
 		)
 
 /*
+* SEA
+*/
+/obj/item/weapon/rig/command/sea
+	name = "Senior NCO hardsuit control module"
+	suit_type = "command hardsuit"
+	icon = 'maps/torch/icons/obj/uniques.dmi'
+	desc = "A specialized hardsuit control module issued to senior NCOs of the SolGov Fleet and their peers."
+	icon_state = "sea_rig"
+	armor = list(
+		melee = ARMOR_MELEE_KNIVES,
+		bullet = ARMOR_BALLISTIC_SMALL,
+		laser = ARMOR_LASER_MINOR,
+		energy = ARMOR_ENERGY_SMALL,
+		bomb = ARMOR_BOMB_PADDED,
+		bio = ARMOR_BIO_SHIELDED,
+		rad = ARMOR_RAD_SMALL
+		)
+	online_slowdown = 0.50
+	offline_slowdown = 2
+	offline_vision_restriction = TINT_HEAVY
+
+	chest_type = /obj/item/clothing/suit/space/rig/command/sea
+	helm_type = /obj/item/clothing/head/helmet/space/rig/command/sea
+	boot_type = /obj/item/clothing/shoes/magboots/rig/command/sea
+	glove_type = /obj/item/clothing/gloves/rig/command/sea
+
+	allowed = list(/obj/item/weapon/gun,
+				   /obj/item/ammo_magazine,
+				   /obj/item/device/flashlight,
+				   /obj/item/weapon/tank,
+				   /obj/item/device/suit_cooling_unit,
+				   /obj/item/weapon/storage/secure/briefcase,
+				   /obj/item/weapon/storage/)
+
+	req_access = list(access_bridge)
+
+/obj/item/clothing/head/helmet/space/rig/command/sea
+	light_overlay = "helmet_light_dual"
+	icon = 'icons/obj/clothing/obj_head.dmi'
+	item_icons = list(slot_head_str = 'icons/mob/onmob/onmob_head.dmi')
+	camera = /obj/machinery/camera/network/command
+	species_restricted = list(SPECIES_HUMAN,SPECIES_PLASMASANS,SPECIES_IPC) //no available icons for aliens
+
+/obj/item/clothing/suit/space/rig/command/sea
+	icon = 'icons/obj/clothing/obj_suit.dmi'
+	item_icons = list(slot_wear_suit_str = 'icons/mob/onmob/onmob_suit.dmi')
+	species_restricted = list(SPECIES_HUMAN,SPECIES_PLASMASANS,SPECIES_IPC)
+
+/obj/item/clothing/shoes/magboots/rig/command/sea
+	icon = 'icons/obj/clothing/obj_feet.dmi'
+	item_icons = list(slot_shoes_str = 'icons/mob/onmob/onmob_feet.dmi')
+	species_restricted = list(SPECIES_HUMAN,SPECIES_PLASMASANS,SPECIES_IPC)
+
+/obj/item/clothing/gloves/rig/command/sea
+	icon = 'icons/obj/clothing/obj_hands.dmi'
+	item_icons = list(slot_gloves_str = 'icons/mob/onmob/onmob_hands.dmi')
+	species_restricted = list(SPECIES_HUMAN,SPECIES_PLASMASANS,SPECIES_IPC)
+
+
+/obj/item/weapon/rig/command/sea/equipped
+	initial_modules = list(
+		/obj/item/rig_module/maneuvering_jets,
+		/obj/item/rig_module/device/flash,
+		/obj/item/rig_module/cooling_unit
+		)
+
+/*
  * EXECUTIVE OFFICER
  */
 /obj/item/weapon/rig/command/xo
-	name = "officer's command HCM"
+	name = "officer's command hardsuit control module"
 	suit_type = "advanced command hardsuit"
-	desc = "A specialized hardsuit rig control module issued to high ranking officers of the Expeditionary Corps and their peers."
+	desc = "A specialized hardsuit control module issued to high ranking officers of the SolGov Fleet and their peers."
 	icon_state = "command_XO_rig"
 	armor = list(
 		melee = ARMOR_MELEE_KNIVES,
@@ -113,9 +180,9 @@
  * COMMANDING OFFICER
  */
 /obj/item/weapon/rig/command/co
-	name = "commanding officer's command HCM"
+	name = "commanding officer's command hardsuit control module"
 	suit_type = "advanced command hardsuit"
-	desc = "A specialized hardsuit rig control module issued to commanding officers of the Expeditionary Corps."
+	desc = "A specialized hardsuit control module issued to commanding officers of the SolGov Fleet."
 	icon_state = "command_CO_rig"
 	armor = list(
 		melee = ARMOR_MELEE_RESISTANT,
@@ -154,9 +221,9 @@
  * CHIEF MEDICAL OFFICER
  */
 /obj/item/weapon/rig/command/medical
-	name = "medical command HCM"
+	name = "medical command hardsuit control module"
 	suit_type = "medical command hardsuit"
-	desc = "A specialized hardsuit rig control module issued to ranking medical officers of the Expeditionary Corps and their peers."
+	desc = "A specialized hardsuit control module issued to ranking medical officers of the SolGov Fleet and their peers."
 	icon_state = "command_med_rig"
 
 	chest_type = /obj/item/clothing/suit/space/rig/command/medical
@@ -197,9 +264,9 @@
 * CHIEF OF SECURITY
 */
 /obj/item/weapon/rig/command/security
-	name = "security command HCM"
+	name = "security command hardsuit control module"
 	suit_type = "security command hardsuit"
-	desc = "A specialized hardsuit rig control module issued to ranking security officers of the Expeditionary Corps and their peers."
+	desc = "A specialized hardsuit control module issued to ranking security officers of the SolGov Fleet or Marines and their peers."
 	icon_state = "command_sec_rig"
 	armor = list(
 		melee = ARMOR_MELEE_RESISTANT,
@@ -244,9 +311,9 @@
 * CHIEF SCIENCE OFFICER
 */
 /obj/item/weapon/rig/command/science
-	name = "research command HCM"
+	name = "research command hardsuit control module"
 	suit_type = "research command hardsuit"
-	desc = "A specialized hardsuit rig control module issued to ranking research officers of the Expeditionary Corps."
+	desc = "A specialized hardsuit control module issued to ranking research officers of the SolGov Fleet."
 	icon_state = "command_sci_rig"
 	armor = list(
 		melee = ARMOR_MELEE_KNIVES,
@@ -305,16 +372,17 @@
 * EXPLORATION
 */
 /obj/item/weapon/rig/exploration
-	name = "heavy exploration HCM"
+	name = "heavy exploration hardsuit control module"
 	suit_type = "heavy exploration hardsuit"
-	desc = "Expeditionary Corps' Exoplanet Exploration Armored Unit, A-Unit for short. Built for more hostile (and hungry) environments, it features additional armor and powered exoskeleton."
+	icon = 'maps/torch/icons/obj/uniques.dmi'
+	desc = "Odyssey' Exoplanet Exploration Armored Unit, A-Unit for short. Built for more hostile (and hungry) environments, it features additional armor and powered exoskeleton."
 	icon_state = "command_exp_rig"
 	armor = list(
 		melee = ARMOR_MELEE_MAJOR,
-		bullet = ARMOR_BALLISTIC_RESISTANT,//Exosuit meant for hostile environments.
-		laser = ARMOR_LASER_SMALL,
+		bullet = ARMOR_BALLISTIC_PISTOL,
+		laser = ARMOR_LASER_RIFLES,
 		energy = ARMOR_ENERGY_RESISTANT,
-		bomb = ARMOR_BOMB_MINOR,
+		bomb = ARMOR_BOMB_RESISTANT,
 		bio = ARMOR_BIO_SHIELDED,
 		rad = ARMOR_RAD_SHIELDED
 		)

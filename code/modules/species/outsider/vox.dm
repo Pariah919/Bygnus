@@ -18,13 +18,10 @@
 		/datum/unarmed_attack/bite/strong
 	)
 	rarity_value = 4
-	description = "The Vox are a people most ancient, each one having existed well before the evolution of\
-	humanity, led by the Auralis to guide the galaxy to a glorious evolution. Since the fall of the empire\
-	and the disappearance of the Auralis, the Vox have struggled to reclaim their lost influence and territory.\
-	Maintaining their remaining Arks are the revered Apex and their talons, the Ark-Admirals, and the Quill-Captains\
-	fielded under their command.</BR></BR>\
-	From battleship to corvette, Scavenger to Biotechnician, recent demand for action has seen new fleets formed\
-	and territory claimed by the long-dormant nation.</BR></BR>\
+	description = "The Vox are a people most ancient, each one having existed well before the evolution of humanity, led by the Auralis to guide the galaxy to a glorious evolution. \
+	Since the fall of the empire and the disappearance of the Auralis, the Vox have struggled to reclaim their lost influence and territory. \
+	Maintaining their remaining Arks are the revered Apex and their talons, the Ark-Admirals, and the Quill-Captains fielded under their command. <br/><br/>\
+	From battleship to corvette, Scavenger to Biotechnician, recent demand for action has seen new fleets formed and territory claimed by the long-dormant nation. <br/><br/>\
 	The Vox are a proud people, and face much distrust from the galactic community, but this does not seem to deter them."
 	codex_description = "The Vox are a cautious, defensive species from the outer systems and beyond human space. They\
 	reveal little to the outside world, but are known to trade and cooperate with those they find trustworthy. When\
@@ -54,8 +51,7 @@
 	poison_types = list(GAS_OXYGEN = TRUE)
 	siemens_coefficient = 0.2
 
-	species_flags = SPECIES_FLAG_NO_SCAN
-	spawn_flags = SPECIES_CAN_JOIN // | SPECIES_IS_WHITELISTED
+	spawn_flags = SPECIES_CAN_JOIN// | SPECIES_IS_WHITELISTED
 	appearance_flags = HAS_EYE_COLOR | HAS_HAIR_COLOR
 
 	blood_color = "#2299fc"
@@ -90,24 +86,31 @@
 
 	available_cultural_info = list(
 		TAG_CULTURE =   list(
-			CULTURE_VOX_ARKSHIP,
-			CULTURE_VOX_SALVAGER,
-			CULTURE_VOX_RAIDER
+			CULTURE_VOX_ACOLYTE,
+			CULTURE_VOX_TRUTH,
+			CULTURE_VOX_TECHNICIAN,
+			CULTURE_VOX_LIGHT,
+			CULTURE_VOX_MERCHANT
 		),
 		TAG_HOMEWORLD = list(
-			HOME_SYSTEM_VOX_ARK,
-			HOME_SYSTEM_VOX_SHROUD,
-			HOME_SYSTEM_VOX_SHIP
+			HOME_SYSTEM_VOX_CAPITAL,
+			HOME_SYSTEM_VOX_FORTRESS,
+			HOME_SYSTEM_VOX_RESEARCH,
+			HOME_SYSTEM_VOX_PROCESSING,
+			HOME_SYSTEM_VOX_PRODUCTION
 		),
 		TAG_FACTION = list(
-			FACTION_VOX_RAIDER,
-			FACTION_VOX_CREW,
-			FACTION_VOX_APEX
+			FACTION_VOX_FLEET,
+			FACTION_VOX_COVENANT,
+			FACTION_VOX_ARK
 		),
 		TAG_RELIGION =  list(
-			RELIGION_VOX
+			RELIGION_VOX_CODEX,
+			RELIGION_VOX_GUARDIAN,
+			RELIGION_VOX_FORCE
 		)
 	)
+
 
 /datum/species/vox/equip_survival_gear(var/mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/vox(H), slot_wear_mask)
@@ -141,11 +144,22 @@
 
 	slowdown = 1.5
 	hidden_from_codex = TRUE
-	spawn_flags = SPECIES_CAN_JOIN | SPECIES_NO_FBP_CONSTRUCTION | SPECIES_FLAG_NO_MINOR_CUT | SPECIES_IS_WHITELISTED
+	spawn_flags = SPECIES_CAN_JOIN | SPECIES_NO_FBP_CONSTRUCTION | SPECIES_IS_WHITELISTED
+	species_flags = SPECIES_FLAG_NO_PAIN | SPECIES_FLAG_NO_POISON | SPECIES_FLAG_NO_MINOR_CUT | SPECIES_FLAG_NO_SCAN
 	brute_mod = 0.5
 	burn_mod = 0.5
 	strength = STR_HIGH
 	mob_size = MOB_LARGE
+
+	base_auras = list(
+		/obj/aura/regenerating/human/armalis
+		)
+
+	unarmed_types = list(
+		/datum/unarmed_attack/stomp/armalis,
+		/datum/unarmed_attack/claws/armalis,
+		/datum/unarmed_attack/bite/armalis
+	)
 
 	speech_sounds = list('sound/voice/shriek1.ogg')
 	speech_chance = 25
@@ -173,4 +187,65 @@
 		grabber.unEquip(grabber.r_hand)
 		to_chat(grabber, SPAN_WARNING("You drop everything in a rage as you seize \the [target]!"))
 		playsound(grabber.loc, 'sound/weapons/pierce.ogg', 25, 1, -1)
-	. = ..(grabber, target, GRAB_NAB)
+	. = ..(grabber, target, GRAB_ARMALIS)
+
+
+/datum/species/vox/pariah
+	name = SPECIES_VOXPARIAH
+	description = "Sickly biproducts of Vox society, these creatures are vilified by their own kind \
+	and taken advantage of by enterprising companies for cheap, disposable labor. \
+	They aren't very smart, smell worse than a vox, and vomit constantly, \
+	earning them the true title of 'shitbird'."
+	rarity_value = 0.1
+	speech_chance = 60        // No volume control.
+	siemens_coefficient = 0.5 // Ragged scaleless patches.
+	unarmed_types = list(
+		/datum/unarmed_attack/stomp,
+		/datum/unarmed_attack/kick,
+		/datum/unarmed_attack/claws/,
+		/datum/unarmed_attack/punch,
+		/datum/unarmed_attack/bite/
+	)
+
+	oxy_mod = 1.4
+	brute_mod = 1.3
+	burn_mod = 1.4
+	toxins_mod = 1.3
+
+	cold_level_1 = 130
+	cold_level_2 = 100
+	cold_level_3 = 60
+
+	warning_low_pressure = WARNING_LOW_PRESSURE
+	hazard_low_pressure = HAZARD_LOW_PRESSURE
+
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick,  /datum/unarmed_attack/claws, /datum/unarmed_attack/bite)
+
+	// Pariahs have no stack.
+	has_organ = list(
+		BP_STOMACH =    /obj/item/organ/internal/stomach/vox,
+		BP_HEART =      /obj/item/organ/internal/heart/vox,
+		BP_LUNGS =      /obj/item/organ/internal/lungs/vox,
+		BP_LIVER =      /obj/item/organ/internal/liver/vox,
+		BP_KIDNEYS =    /obj/item/organ/internal/kidneys/vox,
+		BP_BRAIN =      /obj/item/organ/internal/pariah_brain,
+		BP_EYES =       /obj/item/organ/internal/eyes/vox,
+		BP_HINDTONGUE = /obj/item/organ/internal/hindtongue
+		)
+
+	descriptors = list(
+		/datum/mob_descriptor/height = -1,
+		/datum/mob_descriptor/build = 1,
+		/datum/mob_descriptor/pariah_stink = 0
+	)
+
+	species_flags = SPECIES_FLAG_NO_SCAN//shouldn't be needed, but in game happenings have shown otherwise. For some reason.
+	spawn_flags = SPECIES_IS_RESTRICTED
+	appearance_flags = HAS_EYE_COLOR | HAS_HAIR_COLOR
+
+/datum/species/vox/pariah/get_bodytype(var/mob/living/carbon/human/H)
+	return SPECIES_VOX
+
+// No combat skills for you.
+/datum/species/vox/pariah/can_shred(var/mob/living/carbon/human/H, var/ignore_intent)
+	return 0

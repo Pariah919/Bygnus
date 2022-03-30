@@ -75,11 +75,6 @@
 	path = /obj/item/clothing/head/helmet/skrell
 	sort_category = "Xenowear"
 
-/datum/gear/accessory/skrell_badge
-	display_name = "skrellian SDTF badge"
-	path = /obj/item/clothing/accessory/badge/tags/skrell
-	sort_category = "Xenowear"
-
 // IPC clothing
 /datum/gear/mask/ipc_monitor
 	display_name = "display monitor (IPC)"
@@ -93,7 +88,6 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/xyn_machine
 	slot = slot_wear_suit
 	sort_category = "Xenowear"
-	whitelisted = list(SPECIES_IPC)
 
 // Misc clothing
 /datum/gear/uniform/harness
@@ -155,3 +149,15 @@
 	sort_category = "Xenowear"
 	whitelisted = list(SPECIES_VOX,SPECIES_VOX_ARMALIS)
 
+datum/gear/bible/vox
+	display_name = "holy vox book"
+	path = /obj/item/weapon/storage/bible
+	sort_category = "Xenowear"
+	whitelisted = list(SPECIES_VOX,SPECIES_VOX_ARMALIS)
+
+/datum/gear/bible/vox/New()
+	var/books = list()
+	books["chakala"] = /obj/item/weapon/storage/bible/chakala
+	books["kihikihi"] = /obj/item/weapon/storage/bible/kihikihi
+	books["kritika"] = /obj/item/weapon/storage/bible/kritika
+	gear_tweaks += new/datum/gear_tweak/path(books)

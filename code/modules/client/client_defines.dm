@@ -14,11 +14,12 @@
 		/////////
 	var/datum/preferences/prefs = null
 	var/adminobs		= null
+	var/list/selected_target[2] // For the full auto autoclicker.
 
 	var/adminhelped = 0
 
 	var/staffwarn = null
-	
+
 	var/datum/tooltip/tooltips 	= null
 
 		///////////////
@@ -52,3 +53,6 @@
 	http://www.byond.com/forum/post/1906517?page=2#comment23727144
 	*/
 	preload_rsc = 0
+
+
+	var/fullscreen = FALSE

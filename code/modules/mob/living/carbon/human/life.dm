@@ -81,6 +81,8 @@
 
 		handle_medical_side_effects()
 
+		process_weaver_silk()
+
 		if(!client && !mind)
 			species.handle_npc(src)
 
@@ -119,7 +121,7 @@
 		update_skin(1)
 	if(client && client.is_afk())
 		if(old_stat == UNCONSCIOUS && stat == CONSCIOUS)
-			playsound_simple(null, 'sound/effects/bells.ogg', 100, is_global=TRUE)
+			playsound_simple(null, 'sound/effects/bells.ogg', 100)
 
 /mob/living/carbon/human/proc/handle_some_updates()
 	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
@@ -301,6 +303,13 @@
 	if(head && (head.item_flags & ITEM_FLAG_BLOCK_GAS_SMOKE_EFFECT))
 		return
 	..()
+
+/mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
+	..()
+	//spread some viruses while we are at it
+	if(breath && !internal && virus2.len > 0 && prob(10))
+		for(var/mob/living/carbon/M in view(1,src))
+			src.spread_disease_to(M)
 
 /mob/living/carbon/human/get_breath_from_internal(volume_needed=STD_BREATH_VOLUME)
 	if(internal)
@@ -886,7 +895,6 @@
 		mind.changeling.regenerate()
 
 /mob/living/carbon/human/proc/handle_shock()
-	..()
 	if(status_flags & GODMODE)	return 0	//godmode
 	if(!can_feel_pain())
 		shock_stage = 0
@@ -967,15 +975,25 @@
 		var/image/holder = hud_list[LIFE_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
+		else if(status_flags & XENO_HOST)
+			holder.icon_state = "hudxeno"
 		else
 			holder.icon_state = "hudhealthy"
 		hud_list[LIFE_HUD] = holder
 
 	if (BITTEST(hud_updateflag, STATUS_HUD) && hud_list[STATUS_HUD] && hud_list[STATUS_HUD_OOC])
+		var/foundVirus = 0
+		for (var/ID in virus2)
+			if (ID in virusDB)
+				foundVirus = 1
+				break
 		var/image/holder = hud_list[STATUS_HUD]
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
-
+		else if(foundVirus)
+			holder.icon_state = "hudill"
+		else if(status_flags & XENO_HOST)
+			holder.icon_state = "hudxeno"
 		else if(has_brain_worms())
 			var/mob/living/simple_animal/borer/B = has_brain_worms()
 			if(B.controlling)
@@ -990,6 +1008,8 @@
 			holder2.icon_state = "huddead"
 		else if(has_brain_worms())
 			holder2.icon_state = "hudbrainworm"
+		else if(virus2.len)
+			holder2.icon_state = "hudill"
 		else
 			holder2.icon_state = "hudhealthy"
 
@@ -1145,3 +1165,11 @@
 	..()
 	if((CE_THIRDEYE in chem_effects) || (MUTATION_XRAY in mutations))
 		set_sight(sight|SEE_TURFS|SEE_MOBS|SEE_OBJS)
+
+/mob/living/carbon/human/proc/process_weaver_silk()
+	if(!species || !(species.is_weaver))
+		return
+
+	if(species.silk_reserve < species.silk_max_reserve && species.silk_production == TRUE && nutrition > 100)
+		species.silk_reserve = min(species.silk_reserve + 2, species.silk_max_reserve)
+		adjust_nutrition(-0.4)

@@ -196,7 +196,7 @@ var/list/_client_preferences_by_type
 	key = "SHOW_CREDITS"
 
 /datum/client_preference/show_ckey_credits
-	description = "Show Ckey in End Credits"
+	description = "Show Ckey in End Credits/Antagonist Role List"
 	key = "SHOW_CKEY_CREDITS"
 	options = list(GLOB.PREF_HIDE, GLOB.PREF_SHOW)
 
@@ -218,6 +218,21 @@ var/list/_client_preferences_by_type
 	description ="Examining messages"
 	key = "EXAMINE_MESSAGES"
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
+
+/datum/client_preference/goonchat
+	description = "Use Goon Chat"
+	key = "USE_GOONCHAT"
+
+/datum/client_preference/goonchat/changed(var/mob/preference_mob, var/new_value)
+	if(preference_mob && preference_mob.client)
+		var/client/C = preference_mob.client
+		if(new_value == GLOB.PREF_YES)
+			C.chatOutput.loaded = FALSE
+			C.chatOutput.start()
+		else
+			C.force_white_theme()
+			winset(C, "output", "is-visible=true;is-disabled=false")
+			winset(C, "browseroutput", "is-visible=false")
 
 /********************
 * General Staff Preferences *

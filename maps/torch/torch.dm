@@ -54,6 +54,7 @@
 	#include "infantry/outfits.dm"
 	#include "infantry/storage.dm"
 	#include "infantry/vending.dm"
+	#include "infantry/hardsuit.dm"
 
 	#include "items/cards_ids.dm"
 	#include "items/encryption_keys.dm"
@@ -161,6 +162,7 @@
 	#include "loadout/loadout_uniform_boh.dm"
 	#include "loadout/loadout_xeno.dm"
 	#include "loadout/loadout_augments.dm"
+	#include "loadout/loadout_sikits.dm"
 	#include "loadout/~defines.dm"
 
 	#include "torch1_deck5.dmm"
@@ -191,6 +193,8 @@
 	#include "../away/unishi/unishi.dm"
 	#include "../away/voxship/voxship.dm"
 	#include "../away/skrellscoutship/skrellscoutship.dm"
+	#include "../away/rawl/rawl.dm"
+	#include "../away/scavver/scavver_gantry.dm"
 
 	#include "../../code/datums/music_tracks/chasing_time.dm"
 

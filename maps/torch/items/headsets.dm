@@ -7,7 +7,7 @@
 
 /obj/item/device/radio/headset/heads/torchexec
 	name = "executive headset"
-	desc = "The headset of those brave men and women who command the NTSS Dagon."
+	desc = "The headset of those brave men and women who command the SGV Dagon."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks1type = /obj/item/device/encryptionkey/heads/torchexec
@@ -156,3 +156,10 @@
 	name = "pilot's bowman headset"
 	icon_state = "pilot_headset_alt"
 	item_state = "pilot_headset_alt"
+
+/obj/item/device/radio/headset/federal
+	name = "federal headset"
+	desc = "A headset with access to the command channel."
+	icon_state = "com_headset"
+	item_state = "headset"
+	ks1type = /obj/item/device/encryptionkey/federal

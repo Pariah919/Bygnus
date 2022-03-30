@@ -1,6 +1,6 @@
 /datum/map/torch
 	name = "Dagon"
-	full_name = "NTSS Dagon"
+	full_name = "SGV Dagon"
 	path = "torch"
 	flags = MAP_HAS_BRANCH | MAP_HAS_RANK
 
@@ -14,11 +14,11 @@
 	allowed_spawns = list("Cryogenic Storage", "Cyborg Storage")
 	default_spawn = "Cryogenic Storage"
 
-	station_name  = "NTSS Dagon"
+	station_name  = "SGV Dagon"
 	station_short = "Dagon"
 	dock_name     = "TBD"
-	boss_name     = "High Fleet Command"
-	boss_short    = "HighCom"
+	boss_name     = "Strategic Command"
+	boss_short    = "Stratcom"
 	company_name  = "SolGov"
 	company_short = "SG"
 
@@ -36,6 +36,6 @@
 	use_overmap = 1
 	num_exoplanets = 1
 
-	away_site_budget = 5
+	away_site_budget = 12
 	//id_hud_icons = 'maps/torch/icons/assignment_hud.dmi'
 	id_hud_icons = 'maps/torch/icons/assignment_hud_boh.dmi'

@@ -87,6 +87,11 @@
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 		if("vars")		return view_var_Topic(href,href_list,hsrc)
+		if("chat")		return chatOutput.Topic(href, href_list)
+
+	switch(href_list["action"])
+		if("openLink")
+			send_link(src, href_list["link"])
 
 	if(codex_topic(href, href_list))
 		return
@@ -202,19 +207,22 @@
 	log_client_to_db()
 
 	send_resources()
-
+/*
 	if(prefs.lastchangelog != changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		to_chat(src, "<span class='info'>You have unread updates in the changelog.</span>")
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
 			src.changes()
-/*
+
 	if(isnum(player_age) && player_age < 7)
 		src.lore_splash()
 		to_chat(src, "<span class = 'notice'>Greetings, and welcome to the server! A link to the beginner's lore page has been opened, please read through it! This window will stop automatically opening once your account here is greater than 7 days old.</span>")
 */
 	if(!winexists(src, "asset_cache_browser")) // The client is using a custom skin, tell them.
 		to_chat(src, "<span class='warning'>Unable to access asset cache browser, if you are using a custom skin file, please allow DS to download the updated version, if you are not, then make a bug report. This is not a critical issue but can cause issues with resource downloading, as it is impossible to know when extra resources arrived to you.</span>")
+
+	if(get_preference_value(/datum/client_preference/goonchat) == GLOB.PREF_YES)
+		chatOutput.start()
 
 	if(holder)
 		src.control_freak = 0 //Devs need 0 for profiler access
@@ -413,3 +421,197 @@ client/verb/character_setup()
 	var/mob/living/M = mob
 	if(istype(M))
 		M.OnMouseDrag(src_object, over_object, src_location, over_location, src_control, over_control, params)
+
+/client/verb/toggle_fullscreen()
+	set name = "Toggle Fullscreen"
+	set category = "OOC"
+
+	fullscreen = !fullscreen
+
+	if (fullscreen)
+		winset(usr, "mainwindow", "titlebar=false")
+		winset(usr, "mainwindow", "can-resize=false")
+		winset(usr, "mainwindow", "is-maximized=false")
+		winset(usr, "mainwindow", "is-maximized=true")
+		winset(usr, "mainwindow", "statusbar=false")
+		winset(usr, "mainwindow", "menu=")
+//		winset(usr, "mainwindow.mainvsplit", "size=0x0")
+	else
+		winset(usr, "mainwindow", "is-maximized=false")
+		winset(usr, "mainwindow", "titlebar=true")
+		winset(usr, "mainwindow", "can-resize=true")
+		winset(usr, "mainwindow", "statusbar=true")
+		winset(usr, "mainwindow", "menu=menu")
+
+	fit_viewport()
+
+/client/verb/fit_viewport()
+	set name = "Fit Viewport"
+	set category = "OOC"
+	set desc = "Fit the width of the map window to match the viewport"
+
+	// Fetch aspect ratio
+	var/view_size = getviewsize(view)
+	var/aspect_ratio = view_size[1] / view_size[2]
+
+	// Calculate desired pixel width using window size and aspect ratio
+	var/sizes = params2list(winget(src, "mainwindow.mainvsplit;mapwindow", "size"))
+	var/map_size = splittext(sizes["mapwindow.size"], "x")
+	var/height = text2num(map_size[2])
+	var/desired_width = round(height * aspect_ratio)
+	if (text2num(map_size[1]) == desired_width)
+		// Nothing to do
+		return
+
+	var/split_size = splittext(sizes["mainwindow.mainvsplit.size"], "x")
+	var/split_width = text2num(split_size[1])
+
+	// Calculate and apply a best estimate
+	// +4 pixels are for the width of the splitter's handle
+	var/pct = 100 * (desired_width + 4) / split_width
+	winset(src, "mainwindow.mainvsplit", "splitter=[pct]")
+
+	// Apply an ever-lowering offset until we finish or fail
+	var/delta
+	for(var/safety in 1 to 10)
+		var/after_size = winget(src, "mapwindow", "size")
+		map_size = splittext(after_size, "x")
+		var/got_width = text2num(map_size[1])
+
+		if (got_width == desired_width)
+			// success
+			return
+		else if (isnull(delta))
+			// calculate a probable delta value based on the difference
+			delta = 100 * (desired_width - got_width) / split_width
+		else if ((delta > 0 && got_width > desired_width) || (delta < 0 && got_width < desired_width))
+			// if we overshot, halve the delta and reverse direction
+			delta = -delta/2
+
+		pct += delta
+		winset(src, "mainwindow.mainvsplit", "splitter=[pct]")
+
+/client/proc/deactivate_darkmode()
+	winset(src, "infowindow", "background-color = [COLOR_DARKMODE_DARKBACKGROUND];background-color = none")
+	winset(src, "infowindow", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "rpane", "background-color = [COLOR_DARKMODE_DARKBACKGROUND];background-color = none")
+	winset(src, "rpane", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "info", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "info", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "browseroutput", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "browseroutput", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "outputwindow", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "outputwindow", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "rpanewindow", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "rpanewindow", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "mainwindow", "background-color = [COLOR_DARKMODE_DARKBACKGROUND];background-color = none")
+	winset(src, "split", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "mainvsplit", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	//Buttons
+	winset(src, "textb", "background-color = #494949;background-color = none")
+	winset(src, "textb", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "infob", "background-color = #494949;background-color = none")
+	winset(src, "infob", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "rulesb", "background-color = #494949;background-color = none")
+	winset(src, "rulesb", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "Lore", "background-color = #494949;background-color = none")
+	winset(src, "Lore", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "wikib", "background-color = #494949;background-color = none")
+	winset(src, "wikib", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "forumb", "background-color = #494949;background-color = none")
+	winset(src, "forumb", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "changelog", "background-color = #494949;background-color = none")
+	winset(src, "changelog", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "github", "background-color = #494949;background-color = none")
+	winset(src, "github", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "BugReport", "background-color = #494949;background-color = none")
+	winset(src, "BugReport", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "hotkey_toggle", "background-color = #494949;background-color = none")
+	winset(src, "hotkey_toggle", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	//Status and verb tabs
+	winset(src, "output", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "output", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "outputwindow", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "outputwindow", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "statwindow", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "statwindow", "text-color = #eaeaea;text-color = #000000")
+	winset(src, "info", "background-color = [COLOR_DARKMODE_DARKBACKGROUND];background-color = #FFFFFF")
+	winset(src, "info", "tab-background-color = [COLOR_DARKMODE_BACKGROUND];tab-background-color = none")
+	winset(src, "info", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "info", "tab-text-color = [COLOR_DARKMODE_TEXT];tab-text-color = #000000")
+	winset(src, "info", "prefix-color = [COLOR_DARKMODE_TEXT];prefix-color = #000000")
+	winset(src, "info", "suffix-color = [COLOR_DARKMODE_TEXT];suffix-color = #000000")
+	//Say, OOC, me Buttons etc.
+	winset(src, "saybutton", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "saybutton", "text-color = [COLOR_DARKMODE_TEXT];text-color = #000000")
+	winset(src, "asset_cache_browser", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+	winset(src, "asset_cache_browser", "background-color = [COLOR_DARKMODE_BACKGROUND];background-color = none")
+
+/client/proc/activate_darkmode()
+	//Main windows
+	winset(src, "infowindow", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "infowindow", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "rpane", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "rpane", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "info", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "info", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "browseroutput", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "browseroutput", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "outputwindow", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "outputwindow", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "rpanewindow", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "rpanewindow", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "mainwindow", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "split", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "mainvsplit", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	//Buttons
+	winset(src, "textb", "background-color = none;background-color = #494949")
+	winset(src, "textb", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "infob", "background-color = none;background-color = #494949")
+	winset(src, "infob", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "rulesb", "background-color = none;background-color = #494949")
+	winset(src, "rulesb", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "Lore", "background-color = none;background-color = #494949")
+	winset(src, "Lore", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "wikib", "background-color = none;background-color = #494949")
+	winset(src, "wikib", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "forumb", "background-color = none;background-color = #494949")
+	winset(src, "forumb", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "changelog", "background-color = none;background-color = #494949")
+	winset(src, "changelog", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "github", "background-color = none;background-color = #494949")
+	winset(src, "github", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "BugReport", "background-color = none;background-color = #494949")
+	winset(src, "BugReport", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "hotkey_toggle", "background-color = none;background-color = #494949")
+	winset(src, "hotkey_toggle", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	//Status and verb tabs
+	winset(src, "output", "background-color = none;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
+	winset(src, "output", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "outputwindow", "background-color = none;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
+	winset(src, "outputwindow", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "statwindow", "background-color = none;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
+	winset(src, "statwindow", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "info", "background-color = #FFFFFF;background-color = [COLOR_DARKMODE_DARKBACKGROUND]")
+	winset(src, "info", "tab-background-color = none;tab-background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "info", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "info", "tab-text-color = #000000;tab-text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "info", "prefix-color = #000000;prefix-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "info", "suffix-color = #000000;suffix-color = [COLOR_DARKMODE_TEXT]")
+	//Say, OOC, me Buttons etc.
+	winset(src, "saybutton", "background-color = none;background-color = #494949")
+	winset(src, "saybutton", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+	winset(src, "asset_cache_browser", "background-color = none;background-color = [COLOR_DARKMODE_BACKGROUND]")
+	winset(src, "asset_cache_browser", "text-color = #000000;text-color = [COLOR_DARKMODE_TEXT]")
+
+client/verb/darkmodeon()
+	set name = "Darkmode On"
+	set desc = "Does what it says on the tin."
+	set category = "OOC"
+	activate_darkmode()
+
+client/verb/darkmodeoff()
+	set name = "Darkmode Off"
+	set desc = "Does what it says on the tin."
+	set category = "OOC"
+	deactivate_darkmode()

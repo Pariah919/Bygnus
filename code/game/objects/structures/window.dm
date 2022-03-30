@@ -30,8 +30,6 @@
 /obj/structure/window/get_material()
 	return material
 
-/obj/structure/window/New(var/newloc, var/start_dir, var/new_material, var/new_reinf_material)
-	..(newloc, start_dir, new_material, new_reinf_material)
 /obj/structure/window/Initialize(mapload, start_dir=null, constructed=0, var/new_material, var/new_reinf_material)
 	. = ..()
 	if(!new_material)
@@ -239,14 +237,18 @@
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			to_chat(user, (construction_state == 1 ? "<span class='notice'>You have unfastened the window from the frame.</span>" : "<span class='notice'>You have fastened the window to the frame.</span>"))
 		else if(reinf_material && construction_state == 0)
+			if(!can_install_here(user))
+				return
 			set_anchored(!anchored)
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			to_chat(user, (anchored ? "<span class='notice'>You have fastened the frame to the floor.</span>" : "<span class='notice'>You have unfastened the frame from the floor.</span>"))
-		else if(!reinf_material)
+		else
+			if(!can_install_here(user))
+				return
 			set_anchored(!anchored)
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			to_chat(user, (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>"))
-	else if(isCrowbar(W) && reinf_material && construction_state <= 1)
+	else if(isCrowbar(W) && reinf_material && construction_state <= 1 && anchored)
 		construction_state = 1 - construction_state
 		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
 		to_chat(user, (construction_state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>"))
@@ -334,8 +336,15 @@
 		to_chat(user, SPAN_NOTICE("\The [src] is secured to the floor!"))
 		return
 
+	var/newdir=turn(dir, 90)
+	if(!is_fulltile())
+		for(var/obj/structure/window/W in loc)
+			if(W.dir == newdir)
+				to_chat(user, SPAN_NOTICE("There's already a window facing that direction here!"))
+				return
+
 	update_nearby_tiles(need_rebuild=1) //Compel updates before
-	set_dir(turn(dir, 90))
+	set_dir(newdir)
 	update_nearby_tiles(need_rebuild=1)
 
 /obj/structure/window/Move()
@@ -504,6 +513,16 @@
 	if(locate(/obj/structure/wall_frame) in loc)
 		return TRUE
 
+/obj/structure/window/proc/can_install_here(var/mob/user)
+	//only care about full tile. Border can be installed anywhere
+	if(!anchored && is_fulltile())
+		for(var/obj/O in loc)
+			if((O != src) && O.density && !(O.atom_flags & ATOM_FLAG_CHECKS_BORDER) \
+			&& !(istype(O, /obj/structure/wall_frame) || istype(O, /obj/structure/grille)))
+				to_chat(user, SPAN_NOTICE("There isn't enough space to install \the [src]."))
+				return FALSE
+	return TRUE
+
 /obj/machinery/button/windowtint
 	name = "window tint control"
 	icon = 'icons/obj/power.dmi'
@@ -582,7 +601,7 @@
 			to_chat(user, "<span class='notice'>There is already a window there.</span>")
 			return
 	to_chat(user, "<span class='notice'>You start placing the window.</span>")
-	if(do_after(user,20,src))
+	if(do_after(user, 2 SECONDS))
 		for(var/obj/structure/window/WINDOW in loc)
 			if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
 				to_chat(user, "<span class='notice'>There is already a window facing this way there.</span>")

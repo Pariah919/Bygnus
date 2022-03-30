@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/magnetic/railgun
-	name = "railgun"
-	desc = "The HelTek Arms LM-76 Thunderclap. A portable linear motor cannon produced during the Aigaion Conflict for anti-armour and anti-fortification operations. Today, it sees wide use among private militaries, and is a staple on the black market."
+	name = "HellTek Thundergod"
+	desc = "The HelTek Arms Thundergod is a powerful pattern of railgun originally produced for the Human-Unathi War. With a capable battery and fast coils, this weapon has ironically become a favorite amongst Unathi Stormtroops!"
 	icon = 'icons/obj/guns/railgun.dmi'
 	icon_state = "railgun"
 	removable_components = TRUE // Can swap out the capacitor for more shots, or cell for longer usage before recharge
@@ -19,8 +19,8 @@
 	var/initial_cell_type = /obj/item/weapon/cell/hyper
 	var/initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/adv // 6-8 shots
 	gun_unreliable = 0
-	var/slowdown_held = 3
-	var/slowdown_worn = 2
+	slowdown_held = 3
+	slowdown_worn = 2
 
 /obj/item/weapon/gun/magnetic/railgun/Initialize()
 
@@ -30,11 +30,6 @@
 	cell = new initial_cell_type(src)
 	if (ispath(loaded))
 		loaded = new loaded (src, load_sheet_max)
-	slowdown_per_slot[slot_l_hand] =  slowdown_held
-	slowdown_per_slot[slot_r_hand] =  slowdown_held
-	slowdown_per_slot[slot_back] =    slowdown_worn
-	slowdown_per_slot[slot_belt] =    slowdown_worn
-	slowdown_per_slot[slot_s_store] = slowdown_worn
 
 	. = ..()
 
@@ -70,8 +65,8 @@
 	icon_state = "old_railgun"
 
 /obj/item/weapon/gun/magnetic/railgun/tcc // Oppa! Should only be available to TCC shock troops or high-budget mercs.
-	name = "advanced railgun"
-	desc = "The HelTek Arms HR-22 Hammerhead. A man-portable helical rail cannon; favorite weapon of Terran shock troops and anti-tank personnel."
+	name = "HelTek Eviction"
+	desc = "The HelTek Arms Eviction is then next evolution in man-portable helical rail cannons! This weapon's pricetag alone has led to it being considered more a legend than a actual firearm!"
 	icon = 'icons/obj/guns/railgun_adv.dmi'
 	icon_state = "railgun-tcc"
 	removable_components = TRUE // Railgunners are expected to be able to completely disassemble and reassemble their weapons in the field. But we don't have that mechanic, so the cell and capacitor will do.
@@ -111,7 +106,7 @@
 
 /obj/item/weapon/gun/magnetic/railgun/automatic // Adminspawn only, this shit is absurd.
 	name = "\improper LMRA autocannon"
-	desc = "The HelTek Arms LMRA-14A Meteor. Originally a vehicle-mounted turret weapon used by the United Colonies in the Aigaion Conflict for anti-vehicular operations, the fact that it was made man-portable is mindboggling in itself."
+	desc = "The HelTek Arms LMRA-14A Autocannon. Designed originally for light-skinned vehicles, this weapon has been upgraded with hyperlight materials and 'recoil dampeners' to somehow make it man-portable! A favorite amongst the SMC!"
 	icon = 'icons/obj/guns/railgun_heavy.dmi'
 	icon_state = "heavy_railgun"
 	removable_components = FALSE // Absolutely not. This has an infinity cell.
@@ -169,10 +164,10 @@
 
 /obj/item/weapon/gun/magnetic/railgun/flechette/out_of_ammo()
 	visible_message("<span class='warning'>\The [src] beeps to indicate the magazine is empty.</span>")
-	
+
 
 /obj/item/weapon/gun/magnetic/railgun/flechette/skrell
-	name = "skrellian rifle"
+	name = "ZT-8 rifle"
 	desc = "The Zquiv*Tzuuli-8, or ZT-8, is a railgun rarely seen by anyone other than those within Skrellian SDTF ranks. The rotary magazine houses a cylinder with individual chambers, that press against the barrel when loaded."
 	icon = 'icons/obj/guns/skrell_rifle.dmi'
 	icon_state = "skrell_rifle"
@@ -181,6 +176,9 @@
 	fire_delay = 10
 	slowdown_held = 1
 	slowdown_worn = 1
+	screen_shake = 0 //screenshake breaks the scope.
+	scoped_accuracy = 4
+	scope_zoom = 1
 	removable_components = FALSE
 	initial_cell_type = /obj/item/weapon/cell/hyper
 	initial_capacitor_type = /obj/item/weapon/stock_parts/capacitor/adv

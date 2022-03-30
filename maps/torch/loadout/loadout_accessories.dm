@@ -53,9 +53,9 @@
 	allowed_branches = NT_BRANCHES
 
 /datum/gear/accessory/torch_patch
-	display_name = "NTSS Dagon mission patch"
+	display_name = "SGV Dagon mission patch"
 	path = /obj/item/clothing/accessory/solgov/torch_patch
-	description = "A shoulder patch representing the NTSS Dagon and its mission. Given to all the oddjobs pulled from various branches to work on the Dagon."
+	description = "A shoulder patch representing the SGV Dagon and its mission. Given to all the oddjobs pulled from various branches to work on the Dagon."
 
 /datum/gear/accessory/pilot_pin
 	display_name = "pilot's qualification pin"
@@ -68,6 +68,14 @@
 	flags = GEAR_HAS_TYPE_SELECTION
 	cost = 0
 	allowed_branches = list(/datum/mil_branch/fleet)
+
+/datum/gear/accessory/fleetpatch/New()
+	..()
+	var/fleetpatch = list()
+	fleetpatch["Group 40 patch"] = /obj/item/clothing/accessory/solgov/fleet_patch
+	fleetpatch["Border Patrol patch"] = /obj/item/clothing/accessory/solgov/fleet_patch/second
+	fleetpatch["Sol Defense Group patch"] = /obj/item/clothing/accessory/solgov/fleet_patch/fourth
+	gear_tweaks += new/datum/gear_tweak/path(fleetpatch)
 
 /datum/gear/accessory/armband_ma
 	display_name = "master-at-arms brassard"
@@ -94,7 +102,7 @@
 /datum/gear/accessory/armband_corpsman
 	display_name = "medical armband"
 	path = /obj/item/clothing/accessory/armband/medblue
-	allowed_roles = list(/datum/job/cmo, /datum/job/senior_doctor, /datum/job/doctor, /datum/job/medical_trainee)
+	allowed_roles = list(/datum/job/cmo, /datum/job/senior_doctor, /datum/job/doctor/virologist, /datum/job/doctor, /datum/job/medical_trainee)
 
 /datum/gear/accessory/armband_engineering
 	allowed_roles = ENGINEERING_ROLES
@@ -155,7 +163,6 @@
 	allowed_roles = ARMORED_ROLES
 
 /datum/gear/clothing/hawaii
-	allowed_roles = SEMIFORMAL_ROLES
 	allowed_branches = CASUAL_BRANCHES
 
 /datum/gear/clothing/scarf

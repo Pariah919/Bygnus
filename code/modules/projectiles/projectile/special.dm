@@ -13,6 +13,11 @@
 		empulse(A, heavy_effect_range, light_effect_range)
 		return 1
 
+/obj/item/projectile/ion/skrell
+	name = "ionic payload"
+	heavy_effect_range = 2
+	light_effect_range = 3
+
 /obj/item/projectile/ion/small
 	name = "ion pulse"
 	heavy_effect_range = 0
@@ -56,7 +61,7 @@
 	damage_type = BRUTE
 	nodamage = 1
 
-	Bump(atom/A as mob|obj|turf|area)
+	Bump(atom/A as mob|obj|turf|area, forced=0)
 		if(A == firer)
 			forceMove(A.loc)
 			return
@@ -170,19 +175,19 @@
 	if(L.reagents)
 		L.reagents.add_reagent(/datum/reagent/toxin/venom, 5)
 
-/obj/item/missile
-	icon = 'icons/obj/grenade.dmi'
+/obj/item/projectile/missile
 	icon_state = "missile"
-	var/primed = null
 	throwforce = 15
 
-/obj/item/missile/throw_impact(atom/hit_atom)
-	if(primed)
-		explosion(hit_atom, 0, 1, 2, 4)
-		qdel(src)
-	else
-		..()
-	return
+/obj/item/projectile/missile/on_impact(var/atom/target, var/blocked = 0)
+	explosion(target, 0, 2, 2, 4)
+
+/obj/item/projectile/missile/on_hit(atom/target, blocked, def_zone) // Oh no, someone got hit by the RPG.
+	. = ..()
+	if(isliving(target))
+		var/mob/living/L = target
+		to_chat(target, SPAN_WARNING("OH SHI-")) // You've been hit by an RPG!
+		L.gib() // You're dead kiddo.
 
 /obj/item/projectile/hotgas
 	name = "gas vent"
