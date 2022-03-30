@@ -1,5 +1,0 @@
-[langserver]
-dreamchecker = true
-
-[debugger]
-engine = "auxtools"

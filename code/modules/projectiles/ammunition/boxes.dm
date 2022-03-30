@@ -9,17 +9,12 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/speedloader/xo
-	labels = list("magnum")
-	caliber = CALIBER_PISTOL_MAGNUM
-	ammo_type = /obj/item/ammo_casing/pistol/magnum
+	labels = list("custom")
+	ammo_type = /obj/item/ammo_casing/pistol/xo
 
 /obj/item/ammo_magazine/speedloader/rubber
 	labels = list("rubber")
 	ammo_type = /obj/item/ammo_casing/pistol/rubber
-
-/obj/item/ammo_magazine/speedloader/pepperball
-	labels = list("pepperball")
-	ammo_type = /obj/item/ammo_casing/pistol/rubber/pepperball
 
 /obj/item/ammo_magazine/speedloader/magnum
 	icon_state = "spdloader_magnum"
@@ -99,12 +94,6 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/stunshell
 	matter = list(MATERIAL_STEEL = 1700, MATERIAL_GLASS = 2900)
 	marking_color = COLOR_MUZZLE_FLASH
-
-/obj/item/ammo_magazine/shotholder/net
-	name = "net shell holder"
-	ammo_type = /obj/item/ammo_casing/shotgun/net
-	matter = list(MATERIAL_STEEL = 720)
-	marking_color = COLOR_PALE_PURPLE_GRAY
 
 /obj/item/ammo_magazine/shotholder/empty
 	name = "shotgun ammunition holder"
@@ -275,7 +264,7 @@
 	caliber = CALIBER_GYROJET
 	ammo_type = /obj/item/ammo_casing/gyrojet
 	multiple_sprites = 1
-	max_ammo = 20
+	max_ammo = 4
 
 /obj/item/ammo_magazine/gyrojet/empty
 	initial_ammo = 0
@@ -331,13 +320,3 @@
 	matter = list(MATERIAL_STEEL = 600)
 	max_ammo = 7
 	multiple_sprites = 1
-
-/obj/item/ammo_magazine/nailgun
-	name = "nail cartridge"
-	desc = "A cartridge of nails for a nailgun."
-	icon_state = "nail_cartridge"
-	mag_type = MAGAZINE
-	ammo_type = /obj/item/ammo_casing/nails
-	matter = list(MATERIAL_STEEL = 700)
-	caliber = CALIBER_NAILS
-	max_ammo = 100

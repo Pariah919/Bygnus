@@ -26,7 +26,7 @@
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
-	species_restricted = list("exclude",SPECIES_NABBER,SPECIES_DIONA, "Xenophage")
+	species_restricted = list("exclude",SPECIES_NABBER,SPECIES_DIONA)
 	flash_protection = FLASH_PROTECTION_MAJOR
 
 	var/obj/machinery/camera/camera
@@ -76,12 +76,10 @@
 /obj/item/clothing/head/helmet/space/proc/update_tint()
 	if(tinted)
 		icon_state = "[initial(icon_state)]_dark"
-		item_state = "[initial(item_state)]_dark"
 		flash_protection = FLASH_PROTECTION_MAJOR
 		flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	else
 		icon_state = initial(icon_state)
-		item_state = initial(item_state)
 		flash_protection = FLASH_PROTECTION_NONE
 		flags_inv = HIDEEARS|BLOCKHAIR
 	update_icon()
@@ -130,7 +128,7 @@
 	siemens_coefficient = 0.9
 	center_of_mass = null
 	randpixel = 0
-	species_restricted = list("exclude",SPECIES_NABBER,SPECIES_DIONA, "Xenophage")
+	species_restricted = list("exclude",SPECIES_NABBER,SPECIES_DIONA)
 	valid_accessory_slots = list(ACCESSORY_SLOT_INSIGNIA)
 
 /obj/item/clothing/suit/space/New()

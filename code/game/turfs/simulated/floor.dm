@@ -24,8 +24,6 @@
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
 	var/lava = 0
-	
-	height = -FLUID_SHALLOW / 2
 
 /turf/simulated/floor/is_plating()
 	return !flooring
@@ -83,10 +81,8 @@
 
 	if(flooring)
 		layer = TURF_LAYER
-		height = flooring.height
 	else
 		layer = PLATING_LAYER
-		height = -FLUID_SHALLOW / 2
 
 /turf/simulated/floor/can_engrave()
 	return (!flooring || flooring.can_engrave)

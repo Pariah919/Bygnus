@@ -14,14 +14,15 @@
 	gear_tweaks += new/datum/gear_tweak/path/specified_types_list(uniform)
 
 /datum/gear/uniform/fleet
-	display_name = "fleet coveralls"
+	display_name = "fleet fatigue"
 	path = /obj/item/clothing/under/solgov/utility/fleet
 	cost = 0
-	allowed_branches = list(/datum/mil_branch/fleet)
+	allowed_branches = NT_BRANCHES
 
 /datum/gear/uniform/fleet/officer
-	display_name = "fleet officer's coveralls"
+	display_name = "fleet officer fatigues"
 	path = /obj/item/clothing/under/solgov/utility/fleet/officer
 	cost = 0
-	allowed_branches = list(/datum/mil_branch/fleet)
+	allowed_branches = NT_BRANCHES
 	allowed_roles = COMMANDANDOFFICER_ROLES
+

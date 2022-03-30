@@ -301,7 +301,6 @@ Sells devices, odds and ends, and medical stuff
 	possible_trading_items = list(/mob/living/simple_animal/hostile/carp= TRADER_THIS_TYPE,
 								/obj/item/device/dociler              = TRADER_THIS_TYPE,
 								/obj/item/weapon/beartrap			  = TRADER_THIS_TYPE,
-								/obj/item/seeds/random                = TRADER_THIS_TYPE,
 								/obj/item/device/scanner/xenobio = TRADER_THIS_TYPE)
 
 /datum/trader/medical
@@ -336,7 +335,6 @@ Sells devices, odds and ends, and medical stuff
 								)
 
 	possible_trading_items = list(/obj/item/weapon/storage/pill_bottle = TRADER_SUBTYPES_ONLY,
-								  /obj/item/weapon/storage/pill_bottle/three_eye  = TRADER_THIS_TYPE,
 								  /obj/item/weapon/storage/firstaid/fire  = TRADER_THIS_TYPE,
 								  /obj/item/weapon/storage/firstaid/toxin  = TRADER_THIS_TYPE,
 								  /obj/item/weapon/storage/firstaid/adv  = TRADER_THIS_TYPE,
@@ -356,7 +354,7 @@ Sells devices, odds and ends, and medical stuff
 								  /obj/item/weapon/reagent_containers/glass/bottle/antitoxin = TRADER_THIS_TYPE,
 								  /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = TRADER_THIS_TYPE,
 								  /obj/item/bodybag/cryobag = TRADER_THIS_TYPE,
-								  /obj/item/weapon/reagent_containers/chem_disp_cartridge = TRADER_SUBTYPES_ONLY,
+								  /obj/item/weapon/reagent_containers/chem_disp_cartridge/dexalin/small = TRADER_THIS_TYPE,
 								  /obj/item/sign/medipolma = TRADER_THIS_TYPE
 								)
 

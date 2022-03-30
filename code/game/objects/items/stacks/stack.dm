@@ -180,20 +180,22 @@
 
 /obj/item/stack/proc/use(var/used)
 	if (!can_use(used))
-		return FALSE
+		return 0
 	if(!uses_charge)
 		amount -= used
 		if (amount <= 0)
 			qdel(src) //should be safe to qdel immediately since if someone is still using this stack it will persist for a little while longer
 		else
 			update_icon()
-		return TRUE
-	if(get_amount() < used)
-		return FALSE
-	for(var/i = 1 to charge_costs.len)
-		var/datum/matter_synth/S = synths[i]
-		S.use_charge(charge_costs[i] * used) // Doesn't need to be deleted
-	return TRUE
+		return 1
+	else
+		if(get_amount() < used)
+			return 0
+		for(var/i = 1 to charge_costs.len)
+			var/datum/matter_synth/S = synths[i]
+			S.use_charge(charge_costs[i] * used) // Doesn't need to be deleted
+		return 1
+	return 0
 
 /obj/item/stack/proc/add(var/extra)
 	if(!uses_charge)

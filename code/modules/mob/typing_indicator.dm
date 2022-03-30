@@ -58,7 +58,7 @@ I IS TYPIN'!'
 	set hidden = 1
 
 	create_typing_indicator()
-	var/message = input("","me (text)") as message
+	var/message = input("","me (text)") as text
 	remove_typing_indicator()
 	if(message)
 		me_verb(message)

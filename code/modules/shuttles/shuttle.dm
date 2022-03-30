@@ -82,7 +82,7 @@
 		playsound(current_location, sound_takeoff, 100, 20, 0.2)
 	spawn(warmup_time*10)
 		if (moving_status == SHUTTLE_IDLE)
-			return	//someone cancelled the launch
+			return FALSE	//someone cancelled the launch
 
 		if(!fuel_check()) //fuel error (probably out of fuel) occured, so cancel the launch
 			var/datum/shuttle/autodock/S = src
@@ -147,12 +147,10 @@
 	for(var/area/A in shuttle_area)
 		testing("Moving [A]")
 		translation += get_turf_translation(get_turf(current_location), get_turf(destination), A.contents)
-	var/obj/effect/shuttle_landmark/old_location = current_location
+	var/old_location = current_location
 	GLOB.shuttle_pre_move_event.raise_event(src, old_location, destination)
 	shuttle_moved(destination, translation)
 	GLOB.shuttle_moved_event.raise_event(src, old_location, destination)
-	if(istype(old_location))
-		old_location.shuttle_departed(src)
 	destination.shuttle_arrived(src)
 	return TRUE
 

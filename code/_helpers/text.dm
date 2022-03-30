@@ -335,10 +335,13 @@ proc/TextPreview(var/string,var/len=40)
 	return html_encode(copytext(html_decode(text), first, last))
 
 //For generating neat chat tag-images
+//The icon var could be local in the proc, but it's a waste of resources
+//	to always create it and then throw it out.
+/var/icon/text_tag_icons = new('./icons/chattags.dmi')
 /proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
 	if(!(C && C.get_preference_value(/datum/client_preference/chat_tags) == GLOB.PREF_SHOW))
 		return tagdesc
-	return icon2html(icon('./icons/chattags.dmi', tagname), world, realsize=TRUE, class="text_tag")
+	return "<IMG src='\ref[text_tag_icons.icon]' class='text_tag' iconstate='[tagname]'" + (tagdesc ? " alt='[tagdesc]'" : "") + ">"
 
 /proc/contains_az09(var/input)
 	for(var/i=1, i<=length(input), i++)
@@ -430,7 +433,6 @@ proc/TextPreview(var/string,var/len=40)
 	text = replacetext(text, "\[fontblue\]", "<font color=\"blue\">")//</font> to pass travis html tag integrity check
 	text = replacetext(text, "\[fontgreen\]", "<font color=\"green\">")
 	text = replacetext(text, "\[/font\]", "</font>")
-	text = replacetext(text, "\[redacted\]", "<span class=\"redacted\">R E D A C T E D</span>")
 	return pencode2html(text)
 
 //Will kill most formatting; not recommended.
@@ -475,7 +477,6 @@ proc/TextPreview(var/string,var/len=40)
 	t = replacetext(t, "<img src = xynlogo.png>", "\[xynlogo\]")
 	t = replacetext(t, "<img src = sfplogo.png>", "\[sfplogo\]")
 	t = replacetext(t, "<span class=\"paper_field\"></span>", "\[field\]")
-	t = replacetext(t, "<span class=\"redacted\">R E D A C T E D</span>", "\[redacted\]")
 	t = strip_html_properly(t)
 	return t
 

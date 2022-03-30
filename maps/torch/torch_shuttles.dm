@@ -45,6 +45,7 @@ TORCH_ESCAPE_POD(5)
 TORCH_ESCAPE_POD(6)
 TORCH_ESCAPE_POD(7)
 TORCH_ESCAPE_POD(8)
+TORCH_ESCAPE_POD(9)
 TORCH_ESCAPE_POD(10)
 TORCH_ESCAPE_POD(11)
 
@@ -342,7 +343,7 @@ TORCH_ESCAPE_POD(11)
 	base_turf = /turf/simulated/floor/plating
 
 /datum/shuttle/autodock/overmap/exploration_shuttle
-	name = "SGEV Gaunt"
+	name = "NTEV Gaunt"
 	move_time = 90
 	shuttle_area = list(/area/exploration_shuttle/cockpit, /area/exploration_shuttle/atmos, /area/exploration_shuttle/power, /area/exploration_shuttle/crew, /area/exploration_shuttle/cargo, /area/exploration_shuttle/airlock)
 	dock_target = "calypso_shuttle"
@@ -355,7 +356,7 @@ TORCH_ESCAPE_POD(11)
 	ceiling_type = /turf/simulated/floor/shuttle_ceiling/torch
 
 /obj/effect/shuttle_landmark/torch/hangar/exploration_shuttle
-	name = "SGEV Gaunt Hangar"
+	name = "NTEV Gaunt Hangar"
 	landmark_tag = "nav_hangar_calypso"
 	base_area = /area/quartermaster/hangar
 	base_turf = /turf/simulated/floor/plating
@@ -385,7 +386,7 @@ TORCH_ESCAPE_POD(11)
 	landmark_tag = "nav_transit_calypso"
 
 /datum/shuttle/autodock/overmap/guppy
-	name = "SGRP Garuda"
+	name = "NTRP Garuda"
 	warmup_time = 5
 	move_time = 30
 	shuttle_area = /area/guppy_hangar/start
@@ -401,7 +402,7 @@ TORCH_ESCAPE_POD(11)
 	ceiling_type = /turf/simulated/floor/shuttle_ceiling/torch
 
 /obj/effect/shuttle_landmark/torch/hangar/guppy
-	name = "SGRP Garuda Hangar"
+	name = "NTRP Garuda Hangar"
 	landmark_tag = "nav_hangar_guppy"
 	base_area = /area/quartermaster/hangar
 	base_turf = /turf/simulated/floor/plating
@@ -431,7 +432,7 @@ TORCH_ESCAPE_POD(11)
 	landmark_tag = "nav_transit_guppy"
 
 /datum/shuttle/autodock/overmap/aquila
-	name = "SGGS Byakhee"
+	name = "NTSC Byakhee"
 	move_time = 60
 	shuttle_area = list(/area/aquila/cockpit, /area/aquila/maintenance, /area/aquila/storage, /area/aquila/secure_storage, /area/aquila/mess, /area/aquila/passenger, /area/aquila/medical, /area/aquila/head, /area/aquila/airlock)
 	current_location = "nav_hangar_aquila"
@@ -443,7 +444,7 @@ TORCH_ESCAPE_POD(11)
 	ceiling_type = /turf/simulated/floor/shuttle_ceiling/torch
 
 /obj/effect/shuttle_landmark/torch/hangar/aquila
-	name = "SGGS Byakhee Hangar"
+	name = "NTSC Byakhee Hangar"
 	landmark_tag = "nav_hangar_aquila"
 	docking_controller = "aquila_shuttle_dock_airlock"
 	base_turf = /turf/simulated/floor/reinforced/airless

@@ -23,7 +23,6 @@
 #define SS_INIT_PERSISTENT_CONFIG 19
 #define SS_INIT_EARLY            18
 #define SS_INIT_GARBAGE          17
-
 #define SS_INIT_CHEMISTRY        16
 #define SS_INIT_MATERIALS        15
 #define SS_INIT_PLANTS           14
@@ -52,7 +51,6 @@
 #define SS_INIT_XENOARCH        -10
 #define SS_INIT_BAY_LEGACY      -12
 #define SS_INIT_TICKER          -20
-#define SS_INIT_CHAT            -90 // Should be lower to ensure chat remains smooth during init.
 #define SS_INIT_UNIT_TESTS      -100
 
 // SS runlevels
@@ -62,5 +60,5 @@
 #define RUNLEVEL_SETUP 2
 #define RUNLEVEL_GAME 4
 #define RUNLEVEL_POSTGAME 8
-#define RUNLEVELS_ALL 0xffffff
+
 #define RUNLEVELS_DEFAULT (RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME)

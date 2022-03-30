@@ -13,7 +13,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="https://bastion-of-hestia.com/wiki/Sol_Central_Government_Law" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="[config.wikiurl]Sol_Central_Government_Law&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
@@ -22,11 +22,11 @@
 
 
 /obj/item/weapon/book/manual/military_law
-	name = "The Sol Code of Uniform Justice"
+	name = "The Sol Code of Military Justice"
 	desc = "A brief overview of military law."
 	icon_state = "bookSolGovLaw"
 	author = "The Sol Central Government"
-	title = "The Sol Code of Uniform Justice"
+	title = "The Sol Code of Military Justice"
 
 /obj/item/weapon/book/manual/military_law/Initialize()
 	. = ..()
@@ -36,17 +36,16 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="https://bastion-of-hestia.com/wiki/Sol_Code_of_Uniform_Justice" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="[config.wikiurl]Sol_Gov_Military_Justice&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
 
 		"}
 
-
 /obj/item/weapon/book/manual/sol_sop
 	name = "Standard Operating Procedure"
-	desc = "SOP aboard the SGV Dagon."
+	desc = "SOP aboard the NTSS Dagon."
 	icon_state = "booksolregs"
 	author = "The Sol Central Government"
 	title = "Standard Operating Procedure"
@@ -59,7 +58,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="https://bastion-of-hestia.com/wiki/Standard_Operating_Procedures" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="[config.wikiurl]Standard_Operating_Procedure&printable=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>
@@ -88,10 +87,10 @@
 	var/memo = {"
 	<tt><center><b><font color='red'>SECRET - CODE WORDS: DAGON</font></b>
 	<h3>SOLGOV FLEET COMMAND</h3>
-	<img src = sollogo.png>
+	<img src = ntlogo.png>
 	</center>
 	<b>FROM:</b> ADM William Lau<br>
-	<b>TO:</b> Commanding Officer of SGV Dagon<br>
+	<b>TO:</b> Commanding Officer of NTSS Dagon<br>
 	<b>SUBJECT:</b> Standing Orders<br>
 	<hr>
 	Captain.<br>
@@ -131,17 +130,17 @@
 	info = {"
 	<tt><center><b><font color='red'>TOP SECRET - CODE WORDS: DAGON UMBRA</font></b>
 	<h3>OFFICE OF THE SECRETARY GENERAL OF THE SOLGOV FLEET</h3>
-	<img src = sollogo.png>
+	<img src = ntlogo.png
 	</center>
 	<b>FROM:</b> Johnathan Smitherson, Special Aide of the Secretary General<br>
-	<b>TO:</b> Commanding Officer of the SGV Dagon<br>
-	<b>CC:</b> Special Representative aboard the SGV Dagon<br>
+	<b>TO:</b> Commanding Officer of the NTSS Dagon<br>
+	<b>CC:</b> Special Representative aboard the NTSS Dagon<br>
 	<b>SUBJECT:</b> UMBRA protocol<br>
 	<hr>
 	This is a small addendum to the usual operating procedures. Unlike the rest of SOP, this is not left to the Commanding Officer's discretion and is mandatory. As unconventional as this is, we felt it is essential for smooth operation of this mission.<br>
 	Procedure can be initiated only by transmission from SolGov Command via secure channel. The sender may not introduce themselves, but you shouldn't have trouble confirming the transmission source, I believe.<br>
 	The signal to initiate the procedure are codewords 'GOOD NIGHT WORLD' used in this order as one phrase. You do not need to send acknowledgement.
-	<li>Information about this expedition's findings is to be treated as secret and vital to NTF security, and is protected under codeword UMBRA. Crew aboard the SGV Dagon are allowed access to this information on a need-to-know basis.</li>
+	<li>Information about this expedition's findings is to be treated as secret and vital to NTF security, and is protected under codeword UMBRA. Crew aboard the NTSS Dagon are allowed access to this information on a need-to-know basis.</li>
 	<li>The secrecy of this information is to be applied retroactively. Any non-cleared personnel who were exposed to such information are to be secured and transferred to DIA on arrival at home port.</li>
 	<li>Any devices capable of transmitting or receiving data at interstellar range are to be confiscated from private possession.</li>
 	<li>Disregard any systems remaining in your flight plan and set course for Sol, Neptune orbit. You will be contacted upon your arrival. Do not make stops in ports on the way unless absolutely necessary.</li>

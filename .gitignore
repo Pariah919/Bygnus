@@ -48,6 +48,3 @@ lib/*.so
 # python
 *.pyc
 __pycache__
-
-# debugserver
-debug_server.dll

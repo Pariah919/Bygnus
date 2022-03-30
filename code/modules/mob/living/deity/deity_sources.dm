@@ -42,11 +42,11 @@
 	if(!ismovable(source))
 		return
 	if(amount > 0)
-		eyenet.add_source(source)
+		eyeobj.visualnet.add_source(source)
 		if(istype(source, /obj/structure/deity))
 			structures |= source
 	else
-		eyenet.remove_source(source)
+		eyeobj.visualnet.remove_source(source)
 		if(istype(source, /obj/structure/deity))
 			structures -= source
 

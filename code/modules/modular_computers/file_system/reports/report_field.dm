@@ -51,7 +51,7 @@
 	value = given_value
 
 //Exports the contents of the field into html for viewing.
-/datum/report_field/proc/get_value(in_line = 0)
+/datum/report_field/proc/get_value()
 	return value
 
 //In case the name needs to be displayed dynamically.

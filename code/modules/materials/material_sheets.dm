@@ -190,7 +190,7 @@
 	amount = 10
 
 /obj/item/stack/material/uranium
-	name = "uranium"
+	name = "nuranium"
 	icon_state = "sheet-faery-uranium"
 	plural_icon_state = "sheet-faery-uranium-mult"
 	max_icon_state = "sheet-faery-uranium-max"

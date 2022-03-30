@@ -1,8 +1,6 @@
 // THIS FILE IS AUTOMATICALLY CREATED BY tools/gen_globals.py
 /proc/readglobal(which)
 	switch(which)
-		if("ALL_ANTIGENS")
-			return global.ALL_ANTIGENS;
 		if("ANTAG_FREQS")
 			return global.ANTAG_FREQS;
 		if("BSACooldown")
@@ -47,8 +45,6 @@
 			return global.SSatoms;
 		if("SScharacter_setup")
 			return global.SScharacter_setup;
-		if("SSchat")
-			return global.SSchat;
 		if("SSchemistry")
 			return global.SSchemistry;
 		if("SScircuit")
@@ -111,8 +107,6 @@
 			return global.SSobj;
 		if("SSpersistence")
 			return global.SSpersistence;
-		if("SSping")
-			return global.SSping;
 		if("SSplants")
 			return global.SSplants;
 		if("SSprocessing")
@@ -871,6 +865,8 @@
 			return global.tape_roll_applications;
 		if("telecomms_list")
 			return global.telecomms_list;
+		if("text_tag_icons")
+			return global.text_tag_icons;
 		if("ticket_panels")
 			return global.ticket_panels;
 		if("tickets")
@@ -911,8 +907,6 @@
 			return global.view_variables_dont_expand;
 		if("view_variables_no_assoc")
 			return global.view_variables_no_assoc;
-		if("virusDB")
-			return global.virusDB;
 		if("visual_nets")
 			return global.visual_nets;
 		if("vsc")
@@ -948,8 +942,6 @@
 
 /proc/writeglobal(which, newval)
 	switch(which)
-		if("ALL_ANTIGENS")
-			global.ALL_ANTIGENS=newval;
 		if("ANTAG_FREQS")
 			global.ANTAG_FREQS=newval;
 		if("BSACooldown")
@@ -994,8 +986,6 @@
 			global.SSatoms=newval;
 		if("SScharacter_setup")
 			global.SScharacter_setup=newval;
-		if("SSchat")
-			global.SSchat=newval;
 		if("SSchemistry")
 			global.SSchemistry=newval;
 		if("SScircuit")
@@ -1058,8 +1048,6 @@
 			global.SSobj=newval;
 		if("SSpersistence")
 			global.SSpersistence=newval;
-		if("SSping")
-			global.SSping=newval;
 		if("SSplants")
 			global.SSplants=newval;
 		if("SSprocessing")
@@ -1818,6 +1806,8 @@
 			global.tape_roll_applications=newval;
 		if("telecomms_list")
 			global.telecomms_list=newval;
+		if("text_tag_icons")
+			global.text_tag_icons=newval;
 		if("ticket_panels")
 			global.ticket_panels=newval;
 		if("tickets")
@@ -1858,8 +1848,6 @@
 			global.view_variables_dont_expand=newval;
 		if("view_variables_no_assoc")
 			global.view_variables_no_assoc=newval;
-		if("virusDB")
-			global.virusDB=newval;
 		if("visual_nets")
 			global.visual_nets=newval;
 		if("vsc")
@@ -1894,7 +1882,6 @@
 			global.zone_blocked=newval;
 
 /var/list/_all_globals=list(
-	"ALL_ANTIGENS",
 	"ANTAG_FREQS",
 	"BSACooldown",
 	"BUMP_TELEPORTERS",
@@ -1917,7 +1904,6 @@
 	"SSao",
 	"SSatoms",
 	"SScharacter_setup",
-	"SSchat",
 	"SSchemistry",
 	"SScircuit",
 	"SScircuit_components",
@@ -1949,7 +1935,6 @@
 	"SSnano",
 	"SSobj",
 	"SSpersistence",
-	"SSping",
 	"SSplants",
 	"SSprocessing",
 	"SSpsi",
@@ -2351,7 +2336,6 @@
 	"ventcrawl_machinery",
 	"view_variables_dont_expand",
 	"view_variables_no_assoc",
-	"virusDB",
 	"visual_nets",
 	"vsc",
 	"wax_recipes",

@@ -75,7 +75,7 @@ medals
 	return check_codex_val || ..()
 
 /obj/item/clothing/accessory/solgov/torch_patch
-	name = "\improper SGV Dagon mission patch"
+	name = "\improper NTSS Dagon mission patch"
 	desc = "A fire resistant shoulder patch, worn by the personnel involved in the Dagon Project."
 	icon_state = "torchpatch"
 	on_rolled = list("down" = "none")
@@ -108,30 +108,30 @@ patches
 	check_codex_val = FACTION_EXPEDITIONARY
 
 /obj/item/clothing/accessory/solgov/fleet_patch
-	name = "\improper Group 40 patch"
-	desc = "A fancy shoulder patch carrying insignia of Naval Group 40."
+	name = "\improper First Fleet patch"
+	desc = "A fancy shoulder patch carrying insignia of First Fleet."
 	icon_state = "fleetpatch1"
 	on_rolled = list("down" = "none")
 	slot = ACCESSORY_SLOT_INSIGNIA
 
 /obj/item/clothing/accessory/solgov/fleet_patch/second
-	name = "\improper Patrol Group patch"
-	desc = "A well-worn shoulder patch carrying insignia of the Border Patrol Group."
+	name = "\improper Second Fleet patch"
+	desc = "A well-worn shoulder patch carrying insignia of Second Fleet."
 	icon_state = "fleetpatch2"
 
 /obj/item/clothing/accessory/solgov/fleet_patch/third
-	name = "\improper Special Operations Group patch"
-	desc = "A tactical shoulder patch carrying insignia of the SolGov Fleet S.O.G. task force."
+	name = "\improper Third Fleet patch"
+	desc = "A scuffed shoulder patch carrying insignia of Third Fleet."
 	icon_state = "fleetpatch3"
 
 /obj/item/clothing/accessory/solgov/fleet_patch/fourth
-	name = "\improper Sol Defence Group patch"
-	desc = "A pristine shoulder patch carrying insignia of S.D.G."
+	name = "\improper Fourth Fleet patch"
+	desc = "A pristine shoulder patch carrying insignia of Fourth Fleet."
 	icon_state = "fleetpatch4"
 
 /obj/item/clothing/accessory/solgov/fleet_patch/fifth
-	name = "\improper NWB patch"
-	desc = "A shiny shoulder patch carrying insignia of the Non-Conventional Warfare Board."
+	name = "\improper Fifth Fleet patch"
+	desc = "A tactical shoulder patch carrying insignia of Fifth Fleet."
 	icon_state = "fleetpatch5"
 
 /*****

@@ -51,7 +51,7 @@
 	var/arterial_bleed_chance_multiplier = 0.2 // Multiplier for post-hit damage-based artery severing proc.
 
 	var/hitscan = 0		// whether the projectile should be hitscan
-	var/step_delay = 0.25	// the delay between iterations if not a hitscan projectile
+	var/step_delay = 1	// the delay between iterations if not a hitscan projectile
 
 	// effect types to be used
 	var/muzzle_type
@@ -263,7 +263,7 @@
 		if(istype(A, /mob/living))
 			//if they have a neck grab on someone, that person gets hit instead
 			var/obj/item/grab/G = locate() in M
-			if(G && G.shield_assailant() && src.dir == GLOB.reverse_dir[M.dir])
+			if(G && G.shield_assailant())
 				visible_message("<span class='danger'>\The [M] uses [G.affecting] as a shield!</span>")
 				if(Bump(G.affecting, forced=1))
 					return //If Bump() returns 0 (keep going) then we continue on to attack M.
@@ -425,7 +425,7 @@
 	xo = null
 	var/result = 0 //To pass the message back to the gun.
 
-/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area, forced=0)
+/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area)
 	if(A == firer)
 		forceMove(A.loc)
 		return //cannot shoot yourself

@@ -27,9 +27,6 @@
 	species_restricted = list("exclude",SPECIES_NABBER,SPECIES_ADHERENT)
 	var/allow_hair_covering = 1
 
-	//Species-specific stuff.
-	sprite_sheets = list(SPECIES_SKRELL = 'icons/mob/species/skrell/onmob_head_skrell.dmi')
-	sprite_sheets_obj = list(SPECIES_SKRELL = 'icons/obj/clothing/species/skrell/obj_head_skrell.dmi')
 // Snowflakes gotta snowflake.
 /obj/item/clothing/head/helmet/verb/toggle_block_hair()
 	set name = "Toggle Helmet Hair Coverage"
@@ -38,6 +35,7 @@
 	if(allow_hair_covering)
 		flags_inv ^= BLOCKHEADHAIR
 		to_chat(usr, "<span class='notice'>[src] will now [flags_inv & BLOCKHEADHAIR ? "hide" : "show"] hair.</span>")
+	..()
 
 /obj/item/clothing/head/helmet/nt
 	name = "\improper corporate security helmet"
@@ -240,4 +238,5 @@
 /obj/item/clothing/head/helmet/skrell
 	name = "skrellian helmet"
 	desc = "A helmet built for use by a Skrell. This one appears to be fairly standard and reliable."
-	icon_state = "helmet_skrell" //Now actually has helmet covers
+	icon_state = "helmet_skrell"
+	valid_accessory_slots = null

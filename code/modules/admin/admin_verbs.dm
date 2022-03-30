@@ -27,7 +27,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/admin_ghost,			//allows us to ghost/reenter body at will,
 	/client/proc/toggle_view_range,		//changes how far we can see,
 	/datum/admins/proc/view_txt_log,	//shows the server log (diary) for today,
-//	/datum/admins/proc/view_atk_log,	//shows the server combat-log, doesn't do anything presently,
+	/datum/admins/proc/view_atk_log,	//shows the server combat-log, doesn't do anything presently,
 	/client/proc/cmd_admin_pm_context,	//right-click adminPM interface,
 	/client/proc/cmd_admin_pm_panel,	//admin-pm list,
 	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,
@@ -116,7 +116,6 @@ var/list/admin_verbs_fun = list(
 	/client/proc/everyone_random,
 	/client/proc/cinematic,
 	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_alien_eggs,
 	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_add_random_ai_law,
@@ -126,9 +125,7 @@ var/list/admin_verbs_fun = list(
 	/datum/admins/proc/call_supply_drop,
 	/datum/admins/proc/call_drop_pod,
 	/client/proc/create_dungeon,
-	/datum/admins/proc/ai_hologram_set,
-	/client/proc/reveal_sensor_map,
-	/client/proc/hide_sensor_map
+	/datum/admins/proc/ai_hologram_set
 	)
 
 var/list/admin_verbs_spawn = list(
@@ -159,7 +156,6 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
 	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_alien_eggs,
 	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/toggle_random_events,
 	/client/proc/nanomapgen_DumpImage,
@@ -290,7 +286,7 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/giveruntimelog,
 	/client/proc/getserverlog,
 	/client/proc/jumptocoord,
-	/client/proc/colorooc,
+	/client/proc/colorooc,	
 	/datum/admins/proc/force_mode_latespawn,
 	/datum/admins/proc/force_antag_latespawn,
 	/datum/admins/proc/toggleenter,
@@ -311,7 +307,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
 	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_alien_eggs,
 	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/toggle_random_events,
 	/client/proc/nanomapgen_DumpImage,
@@ -325,7 +320,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/everyone_random,
 	/client/proc/cinematic,
 	/datum/admins/proc/toggle_aliens,
-	/datum/admins/proc/toggle_alien_eggs,
 	/datum/admins/proc/toggle_space_ninja,
 	/client/proc/cmd_admin_add_freeform_ai_law,
 	/client/proc/cmd_admin_add_random_ai_law,
@@ -390,9 +384,7 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/addbunkerbypass,
 	/client/proc/reload_webhooks,
 	/client/proc/ping_webhook,
-	/datum/admins/proc/revokebunkerbypass,
-	/client/proc/reveal_sensor_map,
-	/client/proc/hide_sensor_map
+	/datum/admins/proc/revokebunkerbypass
 	)
 var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_pm_context,	// right-click adminPM interface,
@@ -672,36 +664,6 @@ var/list/admin_verbs_mod = list(
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	log_and_message_admins("created an admin explosion at [epicenter.loc].")
 	SSstatistics.add_field_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/give_disease2(mob/T as mob in SSmobs.mob_list) // -- Giacom
-	set category = "Fun"
-	set name = "Give Disease"
-	set desc = "Gives a Disease to a mob."
-
-	var/datum/disease2/disease/D = new /datum/disease2/disease()
-
-	var/severity = 1
-	var/greater = input("Is this a lesser, greater, or badmin disease? (severity 1, 2, or 99)", "Give Disease") in list("Lesser", "Greater", "Badmin")
-	switch(greater)
-		if ("Lesser") severity = 1
-		if ("Greater") severity = 2
-		if ("Badmin") severity = 99
-
-	D.makerandom(severity)
-	D.infectionchance = input("How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
-
-	if(istype(T,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = T
-		if (H.species)
-			D.affected_species = list(H.species.get_bodytype(H))
-			if(H.species.primitive_form)
-				D.affected_species |= H.species.primitive_form
-			if(H.species.greater_form)
-				D.affected_species |= H.species.greater_form
-	infect_virus2(T,D,1)
-
-	SSstatistics.add_field_details("admin_verb","GD2") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_and_message_admins("gave [key_name(T)] a [greater] disease2 with infection chance [D.infectionchance].")
 
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"

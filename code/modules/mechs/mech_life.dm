@@ -43,7 +43,6 @@
 	handle_vision()
 
 /mob/living/exosuit/get_cell()
-	RETURN_TYPE(/obj/item/weapon/cell)
 	return body ? body.cell : null
 
 /mob/living/exosuit/proc/calc_power_draw()
@@ -74,7 +73,7 @@
 	//A possibility is to hook up interface icons here. But this works pretty well in my experience
 		if(prob(5))
 			visible_message(SPAN_DANGER("\The [src]'s hull bends and buckles under the intense heat!"))
-
+			
 
 /mob/living/exosuit/death(var/gibbed)
 

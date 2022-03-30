@@ -83,27 +83,8 @@
 	name = "RN8-KOSMAG slug"
 	icon_state = "slug"
 	desc = "A charge to power the obstruction field disperser with. It looks impossibly round and shiny. This charge is designed to punch through defences and explode moments after entering a vessel."
-	chargetype = OVERMAP_WEAKNESS_EXPLOSIVE
+//	chargetype = OVERMAP_WEAKNESS_EXPLOSIVE //lol no
 	chargedesc = "KOSMAG"
 
-/obj/structure/closet/odst
-	name = "OFD droppod"
-	desc = "A crude droppod allowing the OFD to safely fire itself, with a living creature at a target. Oxygen not included. Designed to fit a single rifleman, but may be used to drop two soldiers in a pinch."
-	icon = 'icons/obj/closets/bases/odst.dmi'
-	closet_appearance = null
-	storage_capacity = (MOB_MEDIUM * 2)
-	var/chargedesc = "ODST"
-
 /obj/structure/ship_munition/disperser_charge/s2s/fire(turf/target, strength, range)
-	explosion(target, strength * range / 1)
-
-/obj/structure/ship_munition/disperser_charge/vox
-	name = "Vox charge"
-	color = "#a33fbf"
-	desc = "A glowing, dense orb. It looks like a OFD round"
-	chargetype = OVERMAP_WEAKNESS_FIRE | OVERMAP_WEAKNESS_EXPLOSIVE
-	chargedesc = "VOX"
-
-/obj/structure/ship_munition/disperser_charge/vox/fire(turf/target, strength, range)
-	explosion(target,max(2,strength * range / 10),strength * range / 8,strength * range / 5)
-	empulse(target, strength * range / 5, strength * range)
+	explosion(target,max(1,strength * range / 1),strength * range / 1,strength * range / 1)

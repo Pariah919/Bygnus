@@ -67,12 +67,11 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 	icon = 'icons/obj/ascent_sleepers.dmi'
 	base_type = /obj/machinery/sleeper
 	construct_state = /decl/machine_construction/default/no_deconstruct
-	available_chemicals = list("Inaprovaline" = /datum/reagent/inaprovaline, "Soporific" = /datum/reagent/soporific, "Tramadol" = /datum/reagent/tramadol, "Dylovene" = /datum/reagent/dylovene, "Dexalin Plus" = /datum/reagent/dexalinp, "Crystalizing Agent" = /datum/reagent/crystal, "Bromide" = /datum/reagent/toxin/bromide, "Peridaxon" = /datum/reagent/peridaxon, "Alkysine" = /datum/reagent/alkysine, "Kelotane" = /datum/reagent/kelotane, "Bicaridine" = /datum/reagent/bicaridine, "Hyronalin" = /datum/reagent/hyronalin)
-	base_chemicals = list("Inaprovaline" = /datum/reagent/inaprovaline, "Soporific" = /datum/reagent/soporific, "Tramadol" = /datum/reagent/tramadol, "Dylovene" = /datum/reagent/dylovene, "Dexalin Plus" = /datum/reagent/dexalinp, "Crystalizing Agent" = /datum/reagent/crystal, "Bromide" = /datum/reagent/toxin/bromide, "Peridaxon" = /datum/reagent/peridaxon, "Alkysine" = /datum/reagent/alkysine, "Kelotane" = /datum/reagent/kelotane, "Bicaridine" = /datum/reagent/bicaridine, "Hyronalin" = /datum/reagent/hyronalin)
 
 /obj/machinery/sleeper/ascent/Initialize(mapload, d, populate_parts)
 	. = ..()
-
+	base_chemicals["Crystalizing Agent"] = /datum/reagent/crystal
+	base_chemicals["Bromide"] = /datum/reagent/toxin/bromide
 
 /obj/machinery/fabricator/ascent
 	name = "\improper Ascent nanofabricator"
@@ -89,9 +88,7 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 	base_type = /obj/machinery/power/apc
 
 /obj/machinery/hologram/holopad/longrange/ascent
-	req_access = list(access_ascent) //Who the hell put access on a god damn HOLOPAD? ~10sc
-	construct_state = /decl/machine_construction/default/panel_closed/floor/no_deconstruct
-	base_type = /obj/machinery/hologram/holopad/longrange
+	req_access = list(access_ascent)
 
 /obj/effect/catwalk_plated/ascent
 	color = COLOR_GRAY40
@@ -176,22 +173,6 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 	construct_state = /decl/machine_construction/default/panel_closed/computer/no_deconstruct
 	base_type = /obj/machinery/computer/ship/sensors
 
-/obj/machinery/computer/ship/disperser/ascent
-	icon_state = "ascent"
-	icon_keyboard = "ascent_key"
-	icon_screen = "ascent_screen"
-	req_access = list(access_ascent)
-	construct_state = /decl/machine_construction/default/panel_closed/computer/no_deconstruct
-	base_type = /obj/machinery/computer/ship/disperser
-
-/obj/machinery/computer/ship/missiles/ascent
-	icon_state = "ascent"
-	icon_keyboard = "ascent_key"
-	icon_screen = "ascent_screen"
-	req_access = list(access_ascent)
-	construct_state = /decl/machine_construction/default/panel_closed/computer/no_deconstruct
-	base_type = /obj/machinery/computer/ship/missiles
-
 // This is an absolutely stupid machine. Basically the same as the debug one with some alterations.
 // It is a placeholder for a proper reactor setup (probably a RUST descendant)
 /obj/machinery/power/ascent_reactor
@@ -201,7 +182,7 @@ MANTIDIFY(/obj/machinery/door/airlock/external/bolted, "mantid airlock", "door")
 	icon_state = "core1"
 	color = COLOR_PURPLE
 	var/on = TRUE
-	var/output_power = 90 MEGAWATTS //Doubled due to shield nerfs by bay unintentionally making the Ascent Shields worse than the Dagon's
+	var/output_power = 45 MEGAWATTS //it's the future, and this is a god darn fusion reactor. Why would it produce measly kilowatts?
 	var/image/field_image
 
 /obj/machinery/power/ascent_reactor/attack_hand(mob/user)

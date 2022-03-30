@@ -1038,15 +1038,6 @@
 	heating_point = 145 CELSIUS
 	heating_message = "separates."
 
-/datum/reagent/toxin/boron
-	name = "Boron"
-	description = "A chemical that is highly valued for its potential in fusion energy."
-	taste_description = "metal"
-	reagent_state = SOLID
-	color = "#837e79"
-	value = 4
-	strength = 7
-
 /datum/reagent/toxin/saltpetre
 	name = "Saltpetre"
 	description = "Also known as potassium nitrate. Useful for increasing the potency of plants, however using too much can poison it."
@@ -1059,12 +1050,3 @@
 	H.weedlevel += removed*strength*0.05
 	seed.set_trait(TRAIT_POTENCY, seed.get_trait(TRAIT_POTENCY) + removed*0.1, 200, 0)
 	return
-
-// Drug Update Toxins
-
-/datum/reagent/toxin/blackspicebad
-	name = "Black Spice"
-	description = "Produced from bioengineered opium poppy, Black-Spice is one of the cheapest hard-drug on the black-market! It's incredibly dangerous as both a stimulant and opiod!"
-	taste_description = "oddly sweet dirt"
-	color = "#000000"
-	strength = 20

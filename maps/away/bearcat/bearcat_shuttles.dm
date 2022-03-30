@@ -10,15 +10,15 @@
 
 /datum/shuttle/autodock/overmap/bearcat_shuttle
 	name = "Cargo shuttle"
-	move_time = 30 //Longer move delay to match other shuttles
+	move_time = 10
 	shuttle_area = list(/area/ship/scrap/bearcat_shuttle)
 	dock_target = "bearcat_shuttle"
 	current_location = "nav_bearcat_dock"
 	landmark_transition = "nav_bearcat_transit"
 	range = 1
-	fuel_consumption = 1 //small tiny ship, should not be using as much as the Charon/Gaunt
+	fuel_consumption = 4
 	ceiling_type = /turf/simulated/floor/shuttle_ceiling/
-	skill_needed = SKILL_BASIC
+	skill_needed = SKILL_NONE
 	defer_initialisation = TRUE
 
 /obj/effect/overmap/visitable/ship/landable/bearcat_shuttle

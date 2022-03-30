@@ -1,7 +1,7 @@
-/obj/item/weapon/pen/retractable //Worst addition ever, probably.
+/obj/item/weapon/pen/retractable
 	desc = "It's a retractable pen."
 	icon_state = "pen" //for map visibility
-	active = FALSE
+	var/active = FALSE
 	var/base_state = "ret_black"
 
 /obj/item/weapon/pen/retractable/blue
@@ -34,13 +34,17 @@
 
 /obj/item/weapon/pen/retractable/attack(atom/A, mob/user, target_zone)
 	if(!active)
-		toggle()
+		to_chat(user, SPAN_NOTICE("You'll have to activate \the [src] if you wish to use it."))
+		return
 	..()
 
 /obj/item/weapon/pen/retractable/attack_self(mob/user)
-	toggle()
-
-/obj/item/weapon/pen/retractable/toggle()
 	active = !active
 	playsound(src, 'sound/items/penclick.ogg', 5, 0, -4)
 	update_icon()
+
+/obj/item/weapon/pen/retractable/pen_usable(var/mob/living/user)
+	if(active)
+		return TRUE
+	else
+		to_chat(user, SPAN_NOTICE("You'll have to activate \the [src] if you wish to write with it."))

@@ -118,7 +118,6 @@ var/list/slot_equipment_priority = list( \
 
 //Returns the thing in our active hand
 /mob/proc/get_active_hand()
-	RETURN_TYPE(/obj/item)
 	if(hand)	return l_hand
 	else		return r_hand
 

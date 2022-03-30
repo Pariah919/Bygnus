@@ -1,5 +1,5 @@
 /obj/effect/overmap/visitable/ship/torch
-	name = "SGV Dagon"
+	name = "NTSS Dagon"
 	desc = "A bluespace-capable corvette bearing markings of the NanoTrasen Surveyor Corps."
 	fore_dir = WEST
 	vessel_mass = 100000
@@ -9,16 +9,9 @@
 	contact_class = /decl/ship_contact_class/dagon
 
 	initial_restricted_waypoints = list(
-		"SGEV Gaunt" = list("nav_hangar_calypso"), 	//can't have random shuttles popping inside the ship
-		"SGRP Garuda" = list("nav_hangar_guppy"),
-		"SGGS Byakhee" = list("nav_hangar_aquila"),
-
-		"Skrellian Scout" = list("nav_skrellscoutsh_dock", "nav_skrellscoutsh_altdock"),
-		"Rescue" = list("nav_ert_dock"),
-		"IPV Rawl" = list("nav_hangar_rawlship_torch","nav_hangar_rawlship_torchdock"),
-		"Trichoptera" = list("nav_ascentshipone_dock", "nav_ascentshipone_altdock"),
-		"Lepidoptera" = list("nav_ascentshiptwo_dock"),
-		"Vox Shuttle" = list("nav_vox_shuttle_dock")
+		"NTEV Gaunt" = list("nav_hangar_calypso"), 	//can't have random shuttles popping inside the ship
+		"NTRP Garuda" = list("nav_hangar_guppy"),
+		"NTSC Byakhee" = list("nav_hangar_aquila")
 	)
 
 	initial_generic_waypoints = list(
@@ -71,18 +64,21 @@
 		"nav_merc_hanger",
 		"nav_ninja_hanger",
 		"nav_skipjack_hanger",
-		"nav_ert_hanger"
+		"nav_ert_hanger",
+
+		"nav_skrellscoutsh_altdock",
+		"nav_ert_dock"
 	)
 
 /decl/ship_contact_class/dagon
-	class_short = "EPSILON"
-	class_long = "Epsilon-Class Frigate"
+	class_short = "MAKO"
+	class_long = "Mako-Class Frigate"
 	max_ship_mass = 100000
 
 /obj/effect/overmap/visitable/ship/landable/exploration_shuttle
-	name = "SGEV Gaunt"
-	desc = "A medium-sized long-range shuttle. It bears markings of the SolGov Fleet."
-	shuttle = "SGEV Gaunt"
+	name = "NTEV Gaunt"
+	desc = "A medium-sized long-range shuttle. It bears markings of the NanoTrasen Surveyor Corps."
+	shuttle = "NTEV Gaunt"
 	max_speed = 1/(2 SECONDS)
 	burn_delay = 1 SECONDS
 	vessel_mass = 5000
@@ -91,9 +87,9 @@
 	vessel_size = SHIP_SIZE_SMALL
 
 /obj/effect/overmap/visitable/ship/landable/aquila
-	name = "SGGS Byakhee"
-	desc = "A vessel escort gunship. It bears markings of the SolGov Fleet."
-	shuttle = "SGGS Byakhee"
+	name = "NTSC Byakhee"
+	desc = "A vessel escort gunship. It bears markings of the NanoTrasen Surveyor Corps."
+	shuttle = "NTSC Byakhee"
 	vessel_mass = 20000
 	max_speed = 1/(1 SECONDS)
 	burn_delay = 0.5 SECONDS //spammable, but expensive
@@ -101,9 +97,9 @@
 	vessel_size = SHIP_SIZE_SMALL
 
 /obj/effect/overmap/visitable/ship/landable/guppy
-	name = "SGRP Garuda"
-	desc = "A small recovery pod. It's capable of limited independant space travel. It's marked as 'SGRP Garuda'."
-	shuttle = "SGRP Garuda"
+	name = "NTRP Garuda"
+	desc = "A small recovery pod. It's capable of limited independant space travel. It's marked as 'NTRP Garuda'."
+	shuttle = "NTRP Garuda"
 	max_speed = 1/(3 SECONDS)
 	burn_delay = 2 SECONDS
 	vessel_mass = 3000 //very inefficient pod
@@ -113,15 +109,15 @@
 
 /obj/machinery/computer/shuttle_control/explore/aquila
 	name = "Byakhee control console"
-	shuttle_tag = "SGGS Byakhee"
+	shuttle_tag = "NTSC Byakhee"
 	req_access = list(access_aquila_helm)
 
 /obj/machinery/computer/shuttle_control/explore/exploration_shuttle
 	name = "shuttle control console"
-	shuttle_tag = "SGEV Gaunt"
+	shuttle_tag = "NTEV Gaunt"
 	req_access = list(access_expedition_shuttle_helm)
 
 /obj/machinery/computer/shuttle_control/explore/guppy
 	name = "Garuda control console"
-	shuttle_tag = "SGRP Garuda"
+	shuttle_tag = "NTRP Garuda"
 	req_access = list(access_guppy_helm)

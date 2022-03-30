@@ -25,7 +25,6 @@
 		LANGUAGE_UNATHI_YEOSA = 50
 	)
 
-
 /datum/language/yeosa
 	name = LANGUAGE_UNATHI_YEOSA
 	desc = "A language of Moghes consisting of a combination of spoken word and gesticulation. While it is uncommonly spoken in the drier regions, it enjoys popular usage as the official tongue of the Yeosa clans."
@@ -53,5 +52,3 @@
 		LANGUAGE_SPACER = 2,
 		LANGUAGE_UNATHI_SINTA = 50
 	)
-/datum/language/yeosa/get_random_name()
-	return ..(FEMALE,3)

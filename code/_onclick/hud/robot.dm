@@ -4,12 +4,9 @@ var/obj/screen/robot_inventory
 	hud_type = /datum/hud/robot
 
 /datum/hud/robot/FinalizeInstantiation()
-	if(!isrobot(mymob))
-		return
-	var/mob/living/silicon/robot/R = mymob
 
-	adding = list()
-	other = list()
+	src.adding = list()
+	src.other = list()
 
 	var/obj/screen/using
 
@@ -20,7 +17,7 @@ var/obj/screen/robot_inventory
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "radio"
 	using.screen_loc = ui_movi
-	adding += using
+	src.adding += using
 
 	//Module select
 
@@ -30,8 +27,8 @@ var/obj/screen/robot_inventory
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv1"
 	using.screen_loc = ui_inv1
-	adding += using
-	R.inv1 = using
+	src.adding += using
+	mymob:inv1 = using
 
 	using = new /obj/screen()
 	using.SetName("module2")
@@ -39,8 +36,8 @@ var/obj/screen/robot_inventory
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv2"
 	using.screen_loc = ui_inv2
-	adding += using
-	R.inv2 = using
+	src.adding += using
+	mymob:inv2 = using
 
 	using = new /obj/screen()
 	using.SetName("module3")
@@ -48,8 +45,8 @@ var/obj/screen/robot_inventory
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "inv3"
 	using.screen_loc = ui_inv3
-	adding += using
-	R.inv3 = using
+	src.adding += using
+	mymob:inv3 = using
 
 	//End of module select
 
@@ -58,31 +55,31 @@ var/obj/screen/robot_inventory
 	using.SetName("act_intent")
 	using.set_dir(SOUTHWEST)
 	using.icon = 'icons/mob/screen1_robot.dmi'
-	using.icon_state = R.a_intent
+	using.icon_state = mymob.a_intent
 	using.screen_loc = ui_acti
-	adding += using
+	src.adding += using
 	action_intent = using
 
 	//Cell
-	R.cells = new /obj/screen()
-	R.cells.icon = 'icons/mob/screen1_robot.dmi'
-	R.cells.icon_state = "charge-empty"
-	R.cells.SetName("cell")
-	R.cells.screen_loc = ui_toxin
+	mymob:cells = new /obj/screen()
+	mymob:cells.icon = 'icons/mob/screen1_robot.dmi'
+	mymob:cells.icon_state = "charge-empty"
+	mymob:cells.SetName("cell")
+	mymob:cells.screen_loc = ui_toxin
 
 	//Health
-	R.healths = new /obj/screen()
-	R.healths.icon = 'icons/mob/screen1_robot.dmi'
-	R.healths.icon_state = "health0"
-	R.healths.SetName("health")
-	R.healths.screen_loc = ui_borg_health
+	mymob.healths = new /obj/screen()
+	mymob.healths.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.healths.icon_state = "health0"
+	mymob.healths.SetName("health")
+	mymob.healths.screen_loc = ui_borg_health
 
 	//Installed Module
-	R.hands = new /obj/screen()
-	R.hands.icon = 'icons/mob/screen1_robot.dmi'
-	R.hands.icon_state = "nomod"
-	R.hands.SetName("module")
-	R.hands.screen_loc = ui_borg_module
+	mymob.hands = new /obj/screen()
+	mymob.hands.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.hands.icon_state = "nomod"
+	mymob.hands.SetName("module")
+	mymob.hands.screen_loc = ui_borg_module
 
 	//Module Panel
 	using = new /obj/screen()
@@ -90,14 +87,14 @@ var/obj/screen/robot_inventory
 	using.icon = 'icons/mob/screen1_robot.dmi'
 	using.icon_state = "panel"
 	using.screen_loc = ui_borg_panel
-	adding += using
+	src.adding += using
 
 	//Store
-	R.throw_icon = new /obj/screen()
-	R.throw_icon.icon = 'icons/mob/screen1_robot.dmi'
-	R.throw_icon.icon_state = "store"
-	R.throw_icon.SetName("store")
-	R.throw_icon.screen_loc = ui_borg_store
+	mymob.throw_icon = new /obj/screen()
+	mymob.throw_icon.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.throw_icon.icon_state = "store"
+	mymob.throw_icon.SetName("store")
+	mymob.throw_icon.screen_loc = ui_borg_store
 
 	//Inventory
 	robot_inventory = new /obj/screen()
@@ -107,51 +104,51 @@ var/obj/screen/robot_inventory
 	robot_inventory.screen_loc = ui_borg_inventory
 
 	//Temp
-	R.bodytemp = new /obj/screen()
-	R.bodytemp.icon = 'icons/mob/status_indicators.dmi'
-	R.bodytemp.icon_state = "temp0"
-	R.bodytemp.SetName("body temperature")
-	R.bodytemp.screen_loc = ui_temp
+	mymob.bodytemp = new /obj/screen()
+	mymob.bodytemp.icon = 'icons/mob/status_indicators.dmi'
+	mymob.bodytemp.icon_state = "temp0"
+	mymob.bodytemp.SetName("body temperature")
+	mymob.bodytemp.screen_loc = ui_temp
 
 
-	R.oxygen = new /obj/screen()
-	R.oxygen.icon = 'icons/mob/screen1_robot.dmi'
-	R.oxygen.icon_state = "oxy0"
-	R.oxygen.SetName("oxygen")
-	R.oxygen.screen_loc = ui_oxygen
+	mymob.oxygen = new /obj/screen()
+	mymob.oxygen.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.oxygen.icon_state = "oxy0"
+	mymob.oxygen.SetName("oxygen")
+	mymob.oxygen.screen_loc = ui_oxygen
 
-	R.pullin = new /obj/screen()
-	R.pullin.icon = 'icons/mob/screen1_robot.dmi'
-	R.pullin.icon_state = "pull0"
-	R.pullin.SetName("pull")
-	R.pullin.screen_loc = ui_borg_pull
+	mymob.pullin = new /obj/screen()
+	mymob.pullin.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.pullin.icon_state = "pull0"
+	mymob.pullin.SetName("pull")
+	mymob.pullin.screen_loc = ui_borg_pull
 
-	R.fire = new /obj/screen()
-	R.fire.icon = 'icons/mob/screen1_robot.dmi'
-	R.fire.icon_state = "fire0"
-	R.fire.SetName("fire")
-	R.fire.screen_loc = ui_fire
+	mymob.fire = new /obj/screen()
+	mymob.fire.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.fire.icon_state = "fire0"
+	mymob.fire.SetName("fire")
+	mymob.fire.screen_loc = ui_fire
 
-	R.up_hint = new /obj/screen()
-	R.up_hint.icon = 'icons/mob/screen1_robot.dmi'
-	R.up_hint.icon_state = "uphint0"
-	R.up_hint.SetName("up hint")
-	R.up_hint.screen_loc = ui_up_hint
+	mymob.up_hint = new /obj/screen()
+	mymob.up_hint.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.up_hint.icon_state = "uphint0"
+	mymob.up_hint.SetName("up hint")
+	mymob.up_hint.screen_loc = ui_up_hint
 
-	R.zone_sel = new /obj/screen/zone_sel()
-	R.zone_sel.icon = 'icons/mob/screen1_robot.dmi'
-	R.zone_sel.overlays.Cut()
-	R.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[R.zone_sel.selecting]")
+	mymob.zone_sel = new /obj/screen/zone_sel()
+	mymob.zone_sel.icon = 'icons/mob/screen1_robot.dmi'
+	mymob.zone_sel.overlays.Cut()
+	mymob.zone_sel.overlays += image('icons/mob/zone_sel.dmi', "[mymob.zone_sel.selecting]")
 
 	//Handle the gun settings buttons
-	R.gun_setting_icon = new /obj/screen/gun/mode(null)
-	R.item_use_icon = new /obj/screen/gun/item(null)
-	R.gun_move_icon = new /obj/screen/gun/move(null)
-	R.radio_use_icon = new /obj/screen/gun/radio(null)
+	mymob.gun_setting_icon = new /obj/screen/gun/mode(null)
+	mymob.item_use_icon = new /obj/screen/gun/item(null)
+	mymob.gun_move_icon = new /obj/screen/gun/move(null)
+	mymob.radio_use_icon = new /obj/screen/gun/radio(null)
 
-	R.client.screen = list()
-	R.client.screen += list(R.throw_icon, R.zone_sel, R.oxygen, R.fire, R.up_hint, R.hands, R.healths, R.cells, R.pullin, robot_inventory, R.gun_setting_icon)
-	R.client.screen += adding + other
+	mymob.client.screen = list()
+	mymob.client.screen += list(mymob.throw_icon, mymob.zone_sel, mymob.oxygen, mymob.fire, mymob.up_hint, mymob.hands, mymob.healths, mymob:cells, mymob.pullin, robot_inventory, mymob.gun_setting_icon)
+	mymob.client.screen += src.adding + src.other
 
 /datum/hud/proc/toggle_show_robot_modules()
 	if(!isrobot(mymob))

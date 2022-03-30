@@ -60,12 +60,8 @@
 	name = "Fourth Deck Maintenance"
 	icon_state = "maintcentral"
 
-/area/maintenance/fourthdeck/aftport
-	name = "Fourth Deck Aft Port Maintenance"
-	icon_state = "amaint"
-
-/area/maintenance/fourthdeck/aftstarboard
-	name = "Fourth Deck Aft Starboard Maintenance"
+/area/maintenance/fourthdeck/aft
+	name = "Fourth Deck Aft Maintenance"
 	icon_state = "amaint"
 
 /area/maintenance/fourthdeck/foreport
@@ -148,16 +144,12 @@
 /area/crew_quarters/safe_room/thirddeck
 	name = "\improper Third Deck Safe Room"
 
-/area/crew_quarters/public_office
-	name = "public_office"
-	icon_state = "crew_quarters"
-
 /area/crew_quarters/laundry
 	name = "\improper Laundry Room"
 	icon_state = "Sleep"
 
-/area/crew_quarters/recreation
-	name = "\improper Recreation"
+/area/crew_quarters/garden
+	name = "\improper Ship Garden"
 
 //Second Deck (Z-3)
 /area/maintenance/seconddeck
@@ -335,6 +327,10 @@
 	name = "Escape Pod Eight"
 	area_flags = AREA_FLAG_RAD_SHIELDED | AREA_FLAG_ION_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
 
+/area/shuttle/escape_pod9/station
+	name = "Escape Pod Nine"
+	area_flags = AREA_FLAG_RAD_SHIELDED | AREA_FLAG_ION_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
+
 /area/shuttle/escape_pod10/station
 	name = "Escape Pod Ten"
 	area_flags = AREA_FLAG_RAD_SHIELDED | AREA_FLAG_ION_SHIELDED | AREA_FLAG_IS_NOT_PERSISTENT
@@ -346,34 +342,34 @@
 //Charon
 
 /area/exploration_shuttle/
-	name = "\improper SGEV Gaunt"
+	name = "\improper NTEV Gaunt"
 	icon_state = "shuttlered"
 	base_turf = /turf/simulated/floor/plating
 	area_flags = AREA_FLAG_RAD_SHIELDED | AREA_FLAG_ION_SHIELDED
 
 /area/exploration_shuttle/cockpit
-	name = "\improper SGEV Gaunt - Cockpit"
+	name = "\improper NTEV Gaunt - Cockpit"
 	req_access = list(access_expedition_shuttle)
 
 /area/exploration_shuttle/atmos
-	name = "\improper SGEV Gaunt - Atmos Compartment"
+	name = "\improper NTEV Gaunt - Atmos Compartment"
 
 /area/exploration_shuttle/power
-	name = "\improper SGEV Gaunt - Power Compartment"
+	name = "\improper NTEV Gaunt - Power Compartment"
 
 /area/exploration_shuttle/crew
-	name = "\improper SGEV Gaunt - Crew Compartment"
+	name = "\improper NTEV Gaunt - Crew Compartment"
 
 /area/exploration_shuttle/cargo
-	name = "\improper SGEV Gaunt - Cargo Bay"
+	name = "\improper NTEV Gaunt - Cargo Bay"
 
 /area/exploration_shuttle/airlock
-	name = "\improper SGEV Gaunt - Airlock Compartment"
+	name = "\improper NTEV Gaunt - Airlock Compartment"
 
 //Aquila
 
 /area/aquila
-	name = "\improper SGGS Byakhee"
+	name = "\improper NTSC Byakhee"
 	icon_state = "shuttlered"
 	base_turf = /turf/simulated/floor/reinforced/airless
 	requires_power = 1
@@ -381,41 +377,41 @@
 	area_flags = AREA_FLAG_RAD_SHIELDED | AREA_FLAG_ION_SHIELDED
 
 /area/aquila/cockpit
-	name = "\improper SGGS Byakhee - Cockpit"
+	name = "\improper NTSC Byakhee - Cockpit"
 	req_access = list(access_aquila)
 
 /area/aquila/maintenance
-	name = "\improper SGGS Byakhee - Maintenance"
+	name = "\improper NTSC Byakhee - Maintenance"
 	req_access = list(access_solgov_crew)
 
 /area/aquila/storage
-	name = "\improper SGGS Byakhee - Storage"
+	name = "\improper NTSC Byakhee - Storage"
 	req_access = list(access_solgov_crew)
 
 /area/aquila/secure_storage
-	name = "\improper SGGS Byakhee - Secure Storage"
+	name = "\improper NTSC Byakhee - Secure Storage"
 	req_access = list(access_aquila)
 
 /area/aquila/mess
-	name = "\improper SGGS Byakhee - Mess Hall"
+	name = "\improper NTSC Byakhee - Mess Hall"
 
 /area/aquila/passenger
-	name = "\improper SGGS Byakhee - Passenger Compartment"
+	name = "\improper NTSC Byakhee - Passenger Compartment"
 
 /area/aquila/medical
-	name = "\improper SGGS Byakhee - Medical"
+	name = "\improper NTSC Byakhee - Medical"
 
 /area/aquila/head
-	name = "\improper SGGS Byakhee - Cannon"
+	name = "\improper NTSC Byakhee - Cannon"
 
 /area/aquila/airlock
-	name = "\improper SGGS Byakhee - Airlock Compartment"
+	name = "\improper NTSC Byakhee - Airlock Compartment"
 	req_access = list(access_solgov_crew)
 
 //Guppy
 
 /area/guppy_hangar/start
-	name = "\improper SGRP Garuda"
+	name = "\improper NTRP Garuda"
 	icon_state = "shuttlered"
 	requires_power = 1
 	dynamic_lighting = 1
@@ -544,11 +540,6 @@
 	icon_state = "shuttle3"
 	base_turf = /turf/simulated/open
 
-/area/turbolift/missiles_lift
-	name = "\improper Missiles Lift"
-	icon_state = "shuttle3"
-	base_turf = /turf/simulated/open
-
 //Merchant
 
 /area/shuttle/merchant/home
@@ -636,11 +627,6 @@
 	icon_state = "disperser"
 	req_access = list(access_bridge)
 
-/area/command/disperser/odst
-	name = "\improper Drop-Pod Bays"
-	icon_state = "disperser"
-	req_access = list(access_infantry)
-
 /area/crew_quarters/heads
 	icon_state = "heads"
 	req_access = list(access_heads)
@@ -687,15 +673,14 @@
 	name = "\improper Command - CL's Office"
 	req_access = list(access_liaison)
 
-/area/crew_quarters/heads/office/solrep
-	icon_state = "heads_sol"
-	name = "\improper Command - Rep's Office"
-	req_access = list(access_representative)
+/area/crew_quarters/heads/office/cl/backroom
+	icon_state = "heads_cl"
+	name = "\improper Command - CL's Backroom"
+	req_access = list(access_liaison)
 
-/area/crew_quarters/heads/office/solrep/backroom
-	icon_state = "heads_sol"
-	name = "\improper Command - Rep's Backroom"
-	req_access = list(access_representative)
+/area/crew_quarters/heads/office/vip
+	icon_state = "heads_sr"
+	name = "\improper Command - VIP Quarters"
 
 /area/crew_quarters/heads/office/sea
 	icon_state = "heads_sea"
@@ -804,7 +789,7 @@
 	sound_env = SMALL_ENCLOSED
 	req_access = list(list(access_mining, access_xenoarch))
 
-/area/medical/storage
+/area/storage/medical
 	name = "Medical Storage"
 	icon_state = "medbay4"
 	sound_env = SMALL_ENCLOSED
@@ -937,6 +922,10 @@
 /area/crew_quarters/head/sauna
 	name = "\improper Sauna"
 	icon_state = "sauna"
+
+/area/crew_quarters/gym
+	name = "\improper Gym"
+	icon_state = "fitness"
 
 /area/crew_quarters/mess
 	name = "\improper Mess Hall"
@@ -1096,6 +1085,10 @@
 	icon_state = "locker"
 	req_access = list(access_medical_equip)
 
+/area/medical/subacute
+	name = "\improper Sub-Acute Ward"
+	icon_state = "patients"
+
 /area/medical/counselor
 	name = "\improper Counselor's Office"
 	icon_state = "medbay3"
@@ -1115,20 +1108,17 @@
 	sound_env = SMALL_ENCLOSED
 	req_access = list(access_crematorium)
 
-/area/medical/triage
-	name = "\improper Triage"
-	icon_state = "medbay"
-	req_access = list(access_medical)
+/area/medical/lounge
+	name = "\improper Staff Lounge"
+	icon_state = "locker"
+	req_access = list(access_medical_equip)
 
 /area/medical/reslab
 	name = "\improper Resuscitation Lab"
 	req_access = list(access_surgery)
 
 /area/medical/virology
-	name = "\improper Virology"
-
-/area/crew_quarters/safe_room/medical
-	name = "\improper Medical Safe Room"
+	name = "\improper Virology (decomissioned)"
 
 // Shield Rooms
 /area/shield
@@ -1190,7 +1180,7 @@
 // Command
 
 /area/bridge
-	name = "\improper SGV Dagon Bridge"
+	name = "\improper NTSS Dagon Bridge"
 	icon_state = "bridge"
 	req_access = list(access_bridge)
 
@@ -1686,28 +1676,32 @@
 	name = "\improper Thunderdome (Observer.)"
 	icon_state = "purple"
 
+/area/defturrets
+	name = "\improper Anti-Boarding Control"
+	icon_state = "security_sub"
+	base_turf = /turf/simulated/floor/reinforced/airless
+	requires_power = 1
+	dynamic_lighting = 1
+	req_access = list(access_brig)
+	area_flags = AREA_FLAG_RAD_SHIELDED | AREA_FLAG_ION_SHIELDED
+
 /area/command/gunnery
 	name = "\improper Weapon Mounts"
 	icon = 'icons/boh/area.dmi'
 	icon_state = "guntemp"
 	req_access = list(access_gunnery)
 
-/area/command/gunnery/missiles
-	name = "\improper Missile Pod Exterior"
+/area/command/gunnery/ob
+	name = "\improper KOSMAG Exterior"
 	icon_state = "kosmag1"
 
-/area/command/gunnery/missiles/inside
-	name = "\improper Missile Pod Interior"
+/area/command/gunnery/ob/inside
+	name = "\improper KOSMAG Interior"
 	icon_state = "kosmag2"
 
-/area/command/gunnery/missiles/storage
-	name = "\improper Weapon Mounts"
-	icon = 'icons/boh/area.dmi'
-	icon_state = "guntemp"
-
-/area/command/gunnery/missiles/storage/lower
-	name = "\improper Weapon Mounts"
-	icon = 'icons/boh/area.dmi'
+/area/command/gunnery/ob/airlock
+	name = "\improper KOSMAG Airlock"
+	icon_state = "kosmagairlock"
 
 /area/command/gunnery/mim
 	name = "\improper Tactical Operations Center"
@@ -1724,7 +1718,7 @@
 /area/crew_quarters_boh/cabin_main
 	name = "\improper Cabin Primary"
 	icon_state = "crew_quarters"
-//	area_flags = AREA_FLAG_RAD_SHIELDED
+	area_flags = AREA_FLAG_RAD_SHIELDED
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/crew_quarters_boh/cabin_main/c1
@@ -1733,6 +1727,10 @@
 
 /area/crew_quarters_boh/cabin_main/c2
 	name = "\improper Cabin Two"
+	icon_state = "Sleep"
+
+/area/crew_quarters_boh/cabin_main/c3
+	name = "\improper Cabin Three"
 	icon_state = "Sleep"
 
 /area/crew_quarters_boh/cabin_main/janitorial
@@ -1745,6 +1743,12 @@
 	icon_state = "heads"
 	req_access = list(access_psiadvisor)
 
+//Lawyer Office
+/area/crew_quarters/heads/office/lawyer_office
+//	name = "\improper Lawyer Office"// Not for the moment, sorry. :(
+	name = "\improper Vacant Cryo Office"
+	icon_state = "heads"
+//	req_access = list(access_lawyer)
 /*
 /area/crew_quarters/courtroom
 	name = "\improper Courtroom"
@@ -1762,34 +1766,26 @@
 	icon_state = "crew_quarters"
 	sound_env = MEDIUM_SOFTFLOOR
 	req_access = list(access_infantry)
-
+/*
 /area/security/infantry/gear
 	name = "\improper Technician Prep"
 	icon = 'icons/boh/area.dmi'
 	icon_state = "triage"
-//	req_access = list(access_inftech, access_infmed)
+	req_access = list(access_inftech)
 
 /area/security/infantry/com
 	name = "\improper Squad Leader Prep"
 	icon = 'icons/boh/area.dmi'
 	icon_state = "triage"
 	req_access = list(access_infcom)
-
+*/
 /area/security/infantry/armory
 	name = "\improper Infantry Hard Storage"
 	icon = 'icons/boh/area.dmi'
 	icon_state = "triage"
 	req_access = list(access_infcom)
 
-/area/security/infantry/bunk
-	name = "\improper Infantry Barracks"
-	icon_state = "Sleep"
-	req_access = list(access_infantry)
 
-/area/security/infantry/exterior
-	name = "\improper Infantry Barracks Exterior"
-	icon_state = "Sleep"
-	req_access = list(access_infantry)
 
 /////////
 // Anom

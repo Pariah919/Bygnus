@@ -25,21 +25,19 @@
 			overlays += image(icon, "ammo_ok")
 
 /obj/item/weapon/gun/projectile/pistol/military
-	name = "Hephaestus P20"
-	desc = "The Hephaestus Industries P20 - a mass produced kinetic sidearm in widespread service with the SDF."
+	name = "military pistol"
+	desc = "The Hephaestus Industries P20 - a mass produced kinetic sidearm in widespread service with the SCGDF."
 	magazine_type = /obj/item/ammo_magazine/pistol/double
 	allowed_magazines = /obj/item/ammo_magazine/pistol/double
 	icon = 'icons/obj/guns/military_pistol.dmi'
-	fire_sound = 'sound/weapons/gunshot/pistol_p20.ogg'
 	icon_state = "military"
 	item_state = "secgundark"
 	safety_icon = "safety"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
-	fire_delay = 2.5
+	fire_delay = 6
 	ammo_indicator = TRUE
 
 /obj/item/weapon/gun/projectile/pistol/military/alt
-	name = "HelTek Optimus"
 	desc = "The HelTek Optimus, best known as the standard-issue sidearm for the ICCG Navy."
 	icon = 'icons/obj/guns/military_pistol2.dmi'
 	icon_state = "military-alt"
@@ -48,20 +46,21 @@
 	fire_delay = 8
 
 /obj/item/weapon/gun/projectile/pistol/sec
-	name = "MA-Mk58"
-	desc = "Incredibly cheap knockoff of Nanotrasens Mk58 model pistol. This weapon has earned it's reputation as a 'Saturday Night Special'!"
+	name = "pistol"
+	desc = "The NT Mk58 is a cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. Found pretty much everywhere humans are."
 	icon = 'icons/obj/guns/pistol.dmi'
 	icon_state = "secguncomp"
 	safety_icon = "safety"
 	magazine_type = /obj/item/ammo_magazine/pistol/rubber
-	fire_delay = 3
+	accuracy = -1
+	fire_delay = 6
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
 /obj/item/weapon/gun/projectile/pistol/sec/lethal
 	magazine_type = /obj/item/ammo_magazine/pistol
 
 /obj/item/weapon/gun/projectile/pistol/magnum_pistol
-	name = "Heltek Magnum"
+	name = "magnum pistol"
 	desc = "The HelTek Magnus, a robust Terran handgun that uses high-caliber ammo."
 	icon = 'icons/obj/guns/magnum_pistol.dmi'
 	icon_state = "magnum"
@@ -81,8 +80,8 @@
 	ammo_indicator = TRUE
 
 /obj/item/weapon/gun/projectile/pistol/throwback
-	name = "MA-Patriot"
-	desc = "The Martian Armoury patriot is a relatively well-made line of handguns commonly seen on the shelves of ex-military members."
+	name = "pistol"
+	desc = "A product of one of thousands of illegal workshops from around the galaxy. Often replicas of ancient Earth handguns, these guns are usually found in hands of frontier colonists and pirates."
 	icon = 'icons/obj/guns/pistol_throwback.dmi'
 	icon_state = "pistol1"
 	magazine_type = /obj/item/ammo_magazine/pistol/throwback
@@ -106,8 +105,8 @@
 		icon_state = "[base_icon]-e"
 
 /obj/item/weapon/gun/projectile/pistol/gyropistol
-	name = "Heltek Witness"
-	desc = "A bulky pistol designed to fire self propelled gyro-assisted rounds. In otherwords: A pocket rocket-launcher!"
+	name = "gyrojet pistol"
+	desc = "A bulky pistol designed to fire self propelled rounds."
 	icon = 'icons/obj/guns/gyropistol.dmi'
 	icon_state = "gyropistol"
 	max_shells = 8
@@ -131,8 +130,8 @@
 		icon_state = "gyropistol"
 
 /obj/item/weapon/gun/projectile/pistol/holdout
-	name = "Lumoco Whisper"
-	desc = "The Lumoco Arms Whisper. A small, easily concealable gun that might be useful for a poker-game gone wrong!"
+	name = "holdout pistol"
+	desc = "The Lumoco Arms P3 Whisper. A small, easily concealable gun."
 	icon = 'icons/obj/guns/holdout_pistol.dmi'
 	icon_state = "pistol"
 	item_state = null

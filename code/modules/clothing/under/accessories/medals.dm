@@ -5,7 +5,6 @@
 	desc = "A simple medal."
 	icon_state = "bronze"
 	slot = ACCESSORY_SLOT_MEDAL
-	high_visibility = 1
 
 /obj/item/clothing/accessory/medal/iron
 	name = "iron medal"

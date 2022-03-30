@@ -39,7 +39,6 @@
 	w_class = ITEM_SIZE_SMALL
 	force = 3
 	base_parry_chance = 15
-	parrysound = 'sound/weapons/parry/parry_wood.ogg'
 	var/on = 0
 
 

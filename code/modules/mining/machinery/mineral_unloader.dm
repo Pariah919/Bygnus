@@ -5,9 +5,7 @@
 	output_turf = EAST
 
 /obj/machinery/mineral/unloading_machine/Process()
-	if(input_turf)
-		if(isnull(output_turf))
-			output_turf = get_turf(src)
+	if(input_turf && output_turf)
 		if(length(output_turf.contents) < 15)
 			var/ore_this_tick = 10
 			for(var/obj/structure/ore_box/unloading in input_turf)

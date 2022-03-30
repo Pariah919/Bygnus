@@ -114,12 +114,6 @@
 	cost = 20
 	containername = "diamond sheets crate"
 
-/decl/hierarchy/supply_pack/materials/platinum10
-	name = "10 platinum sheets"
-	contains = list(/obj/item/stack/material/platinum/ten)
-	cost = 20
-	containername = "platinum sheets crate"
-
 //wood zone
 /decl/hierarchy/supply_pack/materials/wood50
 	name = "50 wooden planks"

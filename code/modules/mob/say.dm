@@ -12,7 +12,7 @@
 	remove_typing_indicator()
 	usr.say(message)
 
-/mob/verb/me_verb(message as message)
+/mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
 

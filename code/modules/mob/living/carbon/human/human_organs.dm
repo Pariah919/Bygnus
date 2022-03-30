@@ -257,7 +257,7 @@
 	if(isSynthetic())
 		var/obj/item/organ/internal/cell/C = internal_organs_by_name[BP_CELL]
 		if(istype(C))
-			if(!C.is_usable() || !C.percent())
+			if(!C.is_usable())
 				return TRUE
 	else if(should_have_organ(BP_HEART))
 		var/obj/item/organ/internal/heart/heart = internal_organs_by_name[BP_HEART]

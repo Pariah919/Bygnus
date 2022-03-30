@@ -82,9 +82,3 @@
 		REMOVE_ACTIVE_FLUID_SOURCE(src)
 		for(var/obj/effect/fluid/F in src)
 			ADD_ACTIVE_FLUID(F)
-
-/turf/proc/get_physical_height()
-	return 0
-
-/turf/simulated/floor/get_physical_height()
-	return flooring?.height || 0

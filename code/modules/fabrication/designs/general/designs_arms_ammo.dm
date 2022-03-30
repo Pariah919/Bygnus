@@ -25,7 +25,7 @@
 	path = /obj/item/ammo_magazine/shotholder/shell
 
 /datum/fabricator_recipe/arms_ammo/hidden/shotgun_holder_rubbershot
-	name = "shotgun shell pack (12g), (birdshot)"
+	name = "shotgun shell pack (12g), (rubbershot)"
 	path = /obj/item/ammo_magazine/shotholder/birdshot
 
 /datum/fabricator_recipe/arms_ammo/hidden/shotgun_holder_beanbag
@@ -51,10 +51,6 @@
 /datum/fabricator_recipe/arms_ammo/hidden/speedloader_rubber
 	name = "speedloader (10mm), (rubber)"
 	path = /obj/item/ammo_magazine/speedloader/rubber
-
-/datum/fabricator_recipe/arms_ammo/hidden/speedloader_pepperball
-	name = "speedloader (10mm), (pepperball)"
-	path = /obj/item/ammo_magazine/speedloader/pepperball
 
 /datum/fabricator_recipe/arms_ammo/hidden/speedloader_large
 	name = "speedloader (.454)"
@@ -112,10 +108,6 @@
 	name = "smg magazine (7mm)"
 	path = /obj/item/ammo_magazine/smg_top
 
-/datum/fabricator_recipe/arms_ammo/hidden/magazine_smg_bad
-	name = "smg magazine (7mm), (frangible)"
-	path = /obj/item/ammo_magazine/smg_top/frangible
-
 /datum/fabricator_recipe/arms_ammo/hidden/magazine_smg_rubber
 	name = "smg magazine (7mm), (rubber)"
 	path = /obj/item/ammo_magazine/smg_top/rubber
@@ -148,13 +140,13 @@
 	name = "rifle magazine (7mmR)"
 	path = /obj/item/ammo_magazine/rifle
 
+/datum/fabricator_recipe/arms_ammo/hidden/skrellian_rifle_flechette
+	name = "Skrellian rifle cylinder (flechette)"
+	path = /obj/item/weapon/magnetic_ammo/skrell
+
 /datum/fabricator_recipe/arms_ammo/hidden/skrellian_rifle_slug
 	name = "Skrellian rifle cylinder (slug)"
 	path = /obj/item/weapon/magnetic_ammo/skrell/slug
-
-/datum/fabricator_recipe/arms_ammo/hidden/skrell_flechette
-	name = "skrellian flechette magazine"
-	path = /obj/item/ammo_magazine/skrell_shotgun
 
 /datum/fabricator_recipe/arms_ammo/hidden/lmg
 	name = "lmg box magazine (7mmR)"
@@ -190,27 +182,3 @@
 
 /datum/fabricator_recipe/arms_ammo/hidden/large_grenade
 	path = /obj/item/weapon/grenade/chem_grenade/large
-
-/datum/fabricator_recipe/arms_ammo/hidden/firearmpart_internals
-	path = /obj/item/weapon/firearmpart_internals
-
-/datum/fabricator_recipe/arms_ammo/hidden/firearmpart_grip
-	path = /obj/item/weapon/firearmpart_grip
-
-/datum/fabricator_recipe/arms_ammo/hidden/firearmpart_body
-	path = /obj/item/weapon/firearmpart_body
-
-/datum/fabricator_recipe/arms_ammo/hidden/firearmpart_barrel
-	path = /obj/item/weapon/firearmpart_barrel
-
-/datum/fabricator_recipe/arms_ammo/hidden/spec_pistol
-	path = /obj/item/weapon/firearmpart_spec/pistol
-
-/datum/fabricator_recipe/arms_ammo/hidden/spec_revolver
-	path = /obj/item/weapon/firearmpart_spec/revolver
-
-/datum/fabricator_recipe/arms_ammo/hidden/spec_shotgun
-	path = /obj/item/weapon/firearmpart_spec/shotgun
-
-/datum/fabricator_recipe/arms_ammo/hidden/spec_rifle
-	path = /obj/item/weapon/firearmpart_spec/rifle

@@ -4,7 +4,8 @@
 	var/headphones_on = 0
 	icon_state = "headphones_off"
 	item_state = "headphones_off"
-	slot_flags = SLOT_EARS
+	slot_flags = SLOT_EARS | SLOT_TWOEARS
+	volume_multiplier = 0.5
 	var/sound_channel
 	var/current_track
 	var/music_volume = 50
@@ -39,7 +40,7 @@
 	else
 		headphones_on = 1
 		to_chat(user, "<span class='notice'>You turn the music on.</span>")
-		volume_multiplier = 0.6
+		volume_multiplier = 0.1
 		play_music(user)
 
 	update_icon()

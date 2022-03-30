@@ -188,9 +188,8 @@ main ui datum.
 /datum/vueui/proc/send_resources_and_assets(var/client/cl)
 	for(var/asset_name in assets)
 		var/asset = assets[asset_name]
-		var/image/I = asset["img"]
-		if (!QDELETED(I))
-			cl << browse_rsc(I, "vueuiimg_" + ckey("\ref[I]") + ".png")
+		if (!QDELETED(asset["img"]))
+			send_rsc(cl, asset["img"], "vueuiimg_" + ckey("\ref[asset["img"]]") + ".png")
 
 /**
   * Sends requested asset to ui's client
@@ -203,9 +202,8 @@ main ui datum.
 	if (QDELETED(user) || !user.client)
 		return
 	var/asset = assets[ckey(name)]
-	var/image/I = asset["img"]
-	if (asset && !QDELETED(I))
-		user.client << browse_rsc(I, "vueuiimg_" + ckey("\ref[I]") + ".png")
+	if (asset && !QDELETED(asset["img"]))
+		send_rsc(user.client, asset["img"], "vueuiimg_" + ckey("\ref[asset["img"]]") + ".png")
 
 /**
   * Adds / sets dynamic asset for this ui's use
@@ -281,6 +279,7 @@ main ui datum.
 /datum/vueui/proc/push_change(var/list/ndata)
 	if(ndata && status > STATUS_DISABLED)
 		src.data = ndata
+	to_chat(user, output(list2params(list(generate_data_json())),"[windowid].browser:receiveUIState"))
 
 /**
   * Check for change and push that change of data

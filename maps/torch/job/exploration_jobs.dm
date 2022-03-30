@@ -29,14 +29,14 @@
 	access = list(
 		access_pathfinder, access_explorer, access_eva, access_maint_tunnels, access_bridge, access_emergency_storage,
 		access_guppy_helm, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_research,
-		access_guppy, access_hangar, access_petrov_analysis, access_petrov, access_petrov_maint, access_petrov_helm, access_petrov_toxins, access_petrov_security
+		access_guppy, access_hangar
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/deck_management,
 							 /datum/computer_file/program/reports)
 
 /datum/job/pathfinder/get_description_blurb()
-	return "You are the Pathfinder. Your duty is to organize and lead the expeditions to away sites, carrying out the SC's Primary Mission. You command Explorers. You make sure that expedition has the supplies and personnel it needs. You can pilot 'SGEV Gaunt' if nobody else provides a pilot. Once on the away mission, your duty is to ensure that anything of scientific interest is brought back to the ship and passed to the relevant research lab."
+	return "You are the Pathfinder. Your duty is to organize and lead the expeditions to away sites, carrying out the SC's Primary Mission. You command Explorers. You make sure that expedition has the supplies and personnel it needs. You can pilot 'NTEV Gaunt' if nobody else provides a pilot. Once on the away mission, your duty is to ensure that anything of scientific interest is brought back to the ship and passed to the relevant research lab."
 
 /datum/job/nt_pilot
 	title = "Shuttle Pilot"
@@ -64,7 +64,7 @@
 
 	access = list(
 	 access_guppy, access_hangar, access_maint_tunnels, access_guppy_helm, access_expedition_shuttle, access_expedition_shuttle_helm, access_pilot,
-		access_solgov_crew, access_eva, access_explorer, access_petrov_analysis, access_petrov, access_petrov_maint, access_petrov_helm, access_aquila, access_aquila_helm
+		access_solgov_crew, access_eva, access_explorer,
 	)
 	min_skill = list(	SKILL_EVA   = SKILL_BASIC,
 						SKILL_PILOT = SKILL_ADEPT)
@@ -96,7 +96,7 @@
 	                    SKILL_WEAPONS     = SKILL_EXPERT)
 
 	access = list(access_explorer, access_maint_tunnels, access_eva, access_emergency_storage,
-		access_guppy_helm, access_solgov_crew, access_expedition_shuttle, access_guppy, access_hangar, access_petrov_analysis, access_petrov, access_petrov_maint
+		access_guppy_helm, access_solgov_crew, access_expedition_shuttle, access_guppy, access_hangar,
 	)
 
 	software_on_spawn = list(/datum/computer_file/program/deck_management)

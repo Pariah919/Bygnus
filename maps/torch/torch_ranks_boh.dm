@@ -1,6 +1,6 @@
 // Branch-specific defines
 #define UNRESTRICTED /datum/mil_branch/civilian, /datum/mil_branch/fleet
-#define SEMIRESTRICTED /datum/mil_branch/marine_corps, /datum/mil_branch/private_security, /datum/mil_branch/spacefbi
+#define SEMIRESTRICTED /datum/mil_branch/marine_corps, /datum/mil_branch/private_security
 
 // Rank-specific defines
 #define SMC_TROOPERS_ONLY /datum/mil_branch/marine_corps = list(\
@@ -51,8 +51,6 @@
 	/datum/mil_rank/sol/scientist, \
 	)
 
-#define SOLGOV_SFP /datum/mil_branch/spacefbi = list(/datum/mil_rank/sol/agent)
-
 /datum/map/torch
 	branch_types = list(
 		/datum/mil_branch/expeditionary_corps,
@@ -60,7 +58,6 @@
 		/datum/mil_branch/marine_corps,
 		/datum/mil_branch/civilian,
 		/datum/mil_branch/solgov,
-		/datum/mil_branch/spacefbi,
 		/datum/mil_branch/private_security,
 		/datum/mil_branch/army,
 		/datum/mil_branch/alien,
@@ -72,7 +69,6 @@
 		/datum/mil_branch/marine_corps,
 		/datum/mil_branch/civilian,
 		/datum/mil_branch/solgov,
-		/datum/mil_branch/spacefbi,
 		/datum/mil_branch/private_security,
 		/datum/mil_branch/alien,
 		/datum/mil_branch/skrell_fleet
@@ -81,7 +77,15 @@
 	species_to_branch_blacklist = list(
 		/datum/species/human   = list(/datum/mil_branch/alien, /datum/mil_branch/skrell_fleet),
 		/datum/species/machine = list(/datum/mil_branch/alien, /datum/mil_branch/skrell_fleet),
-		/datum/species/vox     = list(/datum/mil_branch/solgov, /datum/mil_branch/fleet, /datum/mil_branch/marine_corps, /datum/mil_branch/skrell_fleet)
+		/datum/species/vox     = list(
+			/datum/mil_branch/expeditionary_corps,
+			/datum/mil_branch/fleet,
+			/datum/mil_branch/marine_corps,
+			/datum/mil_branch/civilian,
+			/datum/mil_branch/private_security,
+			/datum/mil_branch/solgov,
+			/datum/mil_branch/skrell_fleet
+		)
 	)
 
 	species_to_branch_whitelist = list(
@@ -95,8 +99,8 @@
 		/datum/species/humanathi	= list(UNRESTRICTED, SEMIRESTRICTED, /datum/mil_branch/solgov),
 		/datum/species/tajaran		= list(UNRESTRICTED, SEMIRESTRICTED, /datum/mil_branch/solgov),
  		/datum/species/shapeshifter/promethean	= list(UNRESTRICTED, /datum/mil_branch/solgov, /datum/mil_branch/private_security),
-		/datum/species/plasmasans	= list(UNRESTRICTED, SEMIRESTRICTED, /datum/mil_branch/civilian, /datum/mil_branch/solgov, /datum/mil_branch/private_security),
-		/datum/species/vox			= list(/datum/mil_branch/alien, /datum/mil_branch/civilian, /datum/mil_branch/private_security),
+		/datum/species/plasmasans	= list(/datum/mil_branch/civilian, /datum/mil_branch/solgov),
+		/datum/species/vox			= list(/datum/mil_branch/alien),
 		/datum/species/vox/armalis	= list(/datum/mil_branch/alien)
 	)
 
@@ -253,7 +257,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 1
 	pow_cat = 1
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e1_exp
 	name = "Recruit Explorer"
@@ -268,7 +271,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e2, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 2
 	pow_cat = 1
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e2_exp
 	name = "Junior Explorer"
@@ -283,7 +285,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e3, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 3
 	pow_cat = 1
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e3_exp
 	name = "Explorer"
@@ -298,7 +299,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e4, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 4
 	pow_cat = 1
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e5
 	name = "Petty Officer Second Class"
@@ -306,7 +306,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e5, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 5
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e5_exp
 	name = "Senior Explorer"
@@ -321,7 +320,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e6, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 6
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e7
 	name = "Chief Petty Officer"
@@ -329,7 +327,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e7, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 7
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e7_exp
 	name = "Chief Explorer"
@@ -344,7 +341,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e8, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 8
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e9
 	name = "Master Chief Petty Officer"
@@ -352,7 +348,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e9, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 9
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e9_alt1
 	name = "Command Master Chief Petty Officer"
@@ -360,7 +355,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e9_alt1, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 9
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e9_alt2
 	name = "Fleet Master Chief Petty Officer"
@@ -368,7 +362,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e9_alt2, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 9
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e9_alt3
 	name = "Force Master Chief Petty Officer"
@@ -376,7 +369,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e9_alt3, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 9
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/fleet/e9_alt4
 	name = "Master Chief Petty Officer of the Fleet"
@@ -384,42 +376,36 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e9_alt4, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 9
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/fleet/w1
 	name = "Junior Warrant Officer"
 	name_short = "JWO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/warrant_officer/w1)
 	sort_order = 11
-	cit_rank = 4
 
 /datum/mil_rank/fleet/w2
 	name = "Chief Warrant Officer"
 	name_short = "CWO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/warrant_officer/w2)
 	sort_order = 12
-	cit_rank = 4
 
 /datum/mil_rank/fleet/w3
 	name = "Senior Chief Warrant Officer"
 	name_short = "SCWO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/warrant_officer/w3)
 	sort_order = 13
-	cit_rank = 4
 
 /datum/mil_rank/fleet/w4
 	name = "Master Chief Warrant Officer"
 	name_short = "MCWO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/warrant_officer/w4)
 	sort_order = 14
-	cit_rank = 4
 
 /datum/mil_rank/fleet/w5
 	name = "Command Master Chief Warrant Officer"
 	name_short = "CMCWO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/warrant_officer/w5)
 	sort_order = 15
-	cit_rank = 4
 
 /datum/mil_rank/fleet/o1
 	name = "Ensign"
@@ -427,7 +413,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 16
 	pow_cat = 3
-	cit_rank = 4
 
 /datum/mil_rank/fleet/o2
 	name = "Lieutenant Junior-Grade"
@@ -435,7 +420,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o2, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 17
 	pow_cat = 3
-	cit_rank = 4
 
 /datum/mil_rank/fleet/o3
 	name = "Lieutenant"
@@ -443,7 +427,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o3, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 18
 	pow_cat = 3
-	cit_rank = 4
 
 /datum/mil_rank/fleet/o4
 	name = "Lieutenant Commander"
@@ -451,7 +434,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o4, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 19
 	pow_cat = 4
-	cit_rank = 4
 
 /datum/mil_rank/fleet/o5
 	name = "Commander"
@@ -459,7 +441,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o5, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 20
 	pow_cat = 4
-	cit_rank = 4
 
 /datum/mil_rank/fleet/o6
 	name = "Captain"
@@ -467,7 +448,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o6, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 21
 	pow_cat = 4
-	cit_rank = 5
 
 /datum/mil_rank/fleet/o7
 	name = "Commodore"
@@ -475,7 +455,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/flag, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 22
 	pow_cat = 5
-	cit_rank = 5
 
 /datum/mil_rank/fleet/o8
 	name = "Rear Admiral"
@@ -483,7 +462,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/flag/o8, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 23
 	pow_cat = 5
-	cit_rank = 5
 
 /datum/mil_rank/fleet/o9
 	name = "Vice Admiral"
@@ -491,7 +469,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/flag/o9, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 24
 	pow_cat = 5
-	cit_rank = 5
 
 /datum/mil_rank/fleet/o10
 	name = "Admiral"
@@ -499,7 +476,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/flag/o10, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 25
 	pow_cat = 5
-	cit_rank = 5
 
 /datum/mil_rank/fleet/o10_alt
 	name = "Fleet Admiral"
@@ -507,7 +483,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/flag/o10_alt, /obj/item/clothing/accessory/solgov/specialty/officer)
 	sort_order = 25
 	pow_cat = 5
-	cit_rank = 5
 /*****/
 
 /*
@@ -520,7 +495,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted)
 	sort_order = 1
 	pow_cat = 1
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e2
 	name = "Private First Class"
@@ -528,7 +502,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e2)
 	sort_order = 2
 	pow_cat = 1
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e3
 	name = "Lance Corporal"
@@ -536,7 +509,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e3)
 	sort_order = 3
 	pow_cat = 1
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e4
 	name = "Corporal"
@@ -544,7 +516,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e4)
 	sort_order = 4
 	pow_cat = 1
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e5
 	name = "Sergeant"
@@ -552,7 +523,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e5)
 	sort_order = 5
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e6
 	name = "Staff Sergeant"
@@ -560,7 +530,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e6)
 	sort_order = 6
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e7
 	name = "Gunnery Sergeant"
@@ -568,7 +537,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e7)
 	sort_order = 7
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e8
 	name = "Master Sergeant"
@@ -576,7 +544,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e8)
 	sort_order = 8
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e8_alt
 	name = "First Sergeant"
@@ -584,7 +551,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e8_alt)
 	sort_order = 8
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e9
 	name = "Master Gunnery Sergeant"
@@ -592,7 +558,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e9)
 	sort_order = 9
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e9_alt
 	name = "Sergeant Major"
@@ -600,7 +565,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e9_alt)
 	sort_order = 9
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/e9_alt2
 	name = "Sergeant Major of the Marine Corps"
@@ -608,42 +572,36 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/enlisted/e9_alt2)
 	sort_order = 9
 	pow_cat = 2
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/w1
 	name = "Warrant Officer"
 	name_short = "WO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/warrant_officer/w1)
 	sort_order = 11
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/w2
 	name = "Second Warrant Officer"
 	name_short = "SWO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/warrant_officer/w2)
 	sort_order = 12
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/w3
 	name = "First Warrant Officer"
 	name_short = "FWO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/warrant_officer/w3)
 	sort_order = 13
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/w4
 	name = "Major Warrant Officer"
 	name_short = "MWO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/warrant_officer/w4)
 	sort_order = 14
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/w5
 	name = "General Warrant Officer"
 	name_short = "GWO"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/warrant_officer/w5)
 	sort_order = 15
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/o1
 	name = "Second Lieutenant"
@@ -651,7 +609,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/officer)
 	sort_order = 16
 	pow_cat = 3
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/o2
 	name = "First Lieutenant"
@@ -659,7 +616,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/officer/o2)
 	sort_order = 17
 	pow_cat = 3
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/o3
 	name = "Captain "
@@ -667,7 +623,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/officer/o3)
 	sort_order = 18
 	pow_cat = 3
-	cit_rank = 4
 
 // Specially, to avoid two "Capt" on-board.
 /datum/mil_rank/marine_corps/o3_alt
@@ -676,7 +631,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/officer/o3_alt)
 	sort_order = 19
 	pow_cat = 3
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/o3_alt2
 	name = "Specialist Captain"
@@ -684,7 +638,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/officer/o3_alt2)
 	sort_order = 20
 	pow_cat = 3
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/o4
 	name = "Major"
@@ -692,7 +645,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/officer/o4)
 	sort_order = 21
 	pow_cat = 4
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/o5
 	name = "Lieutenant Colonel"
@@ -700,7 +652,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/officer/o5)
 	sort_order = 22
 	pow_cat = 4
-	cit_rank = 4
 
 /datum/mil_rank/marine_corps/o6
 	name = "Colonel"
@@ -708,7 +659,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/officer/o6)
 	sort_order = 23
 	pow_cat = 4
-	cit_rank = 5
 
 /datum/mil_rank/marine_corps/o7
 	name = "Brigadier General"
@@ -716,7 +666,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/flag)
 	sort_order = 24
 	pow_cat = 5
-	cit_rank = 5
 
 /datum/mil_rank/marine_corps/o8
 	name = "Major General"
@@ -724,7 +673,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/flag/o8)
 	sort_order = 25
 	pow_cat = 5
-	cit_rank = 5
 
 /datum/mil_rank/marine_corps/o9
 	name = "Lieutenant General"
@@ -732,7 +680,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/flag/o9)
 	sort_order = 26
 	pow_cat = 5
-	cit_rank = 5
 
 /datum/mil_rank/marine_corps/o10
 	name = "General"
@@ -740,8 +687,6 @@
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/marine_corps/flag/o10)
 	sort_order = 27
 	pow_cat = 5
-	cit_rank = 5
-
 /*****/
 
 // Addon: Sec Contractors
@@ -766,40 +711,19 @@
 	name = "PCRC Contractor"
 	name_short = "PCRC"
 	pow_cat = 3
-	cit_rank = 3
 
 // Kind of hacky, to allow usage of PCRC suit via outfit.
 /datum/mil_rank/private_security/pcrc_agt
 	name = "PCRC Agent"
 	name_short = "PCRC-AGT"
 	pow_cat = 3
-	cit_rank = 3
 
 /datum/mil_rank/private_security/saare
 	name = "SAARE Operative"
 	name_short = "SAARE"
 	pow_cat = 3
-	cit_rank = 3
-
 /*****/
 
-/datum/mil_branch/spacefbi
-	name = "Solarian Federal Police"
-	name_short = "SFP"
-	email_domain = "dagon.sec"
-
-	rank_types = list(/datum/mil_rank/sol/agent)
-
-	spawn_rank_types = list(/datum/mil_rank/sol/agent)
-
-/datum/mil_rank/sol/agent
-	name = "SFP Agent"
-	name_short = "AGT"
-	accessory = list(/obj/item/clothing/accessory/badge/agent)
-	pow_cat = 3
-	cit_rank = 5
-
-/*****/
 // Ends of defines
 #undef UNRESTRICTED
 #undef SEMIRESTRICTED
@@ -807,4 +731,3 @@
 #undef SMC_LIMITED_RANKS
 #undef NTEF_ENLISTED_ONLY
 #undef SOLGOV_NO_SFP
-#undef SOLGOV_SFP

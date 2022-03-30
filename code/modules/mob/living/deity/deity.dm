@@ -16,8 +16,7 @@
 	bone_material = null
 	bone_amount = 0
 
-	var/eye_type = /mob/observer/eye/freelook/cult
-	var/datum/visualnet/cultnet/eyenet
+	var/eye_type = /mob/observer/eye/cult
 	var/list/minions = list() //Minds of those who follow him
 	var/list/structures = list() //The objs that this dude controls.
 	var/list/feats = list()
@@ -27,10 +26,10 @@
 
 /mob/living/deity/New()
 	..()
-	eyenet = new()
-	eyeobj = new eye_type(get_turf(src), eyenet)
+	var/visualnet = new /datum/visualnet/cultnet()
+	eyeobj = new /mob/observer/eye/cult(get_turf(src), visualnet)
 	eyeobj.possess(src)
-	eyenet.add_source(src)
+	eyeobj.visualnet.add_source(src)
 
 /mob/living/deity/death()
 	. = ..()
@@ -55,7 +54,7 @@
 	minions.Cut()
 	structures.Cut()
 	eyeobj.release()
-	QDEL_NULL(eyenet) //We do it here as some mobs have eyes that have access to the visualnet and we only want to destroy it when the deity is destroyed
+	QDEL_NULL(eyeobj.visualnet) //We do it here as some mobs have eyes that have access to the visualnet and we only want to destroy it when the deity is destroyed
 	QDEL_NULL(eyeobj)
 	QDEL_NULL(form)
 	return ..()

@@ -2,10 +2,6 @@
 	name = "vocal synthesiser"
 	assists_languages = list(LANGUAGE_HUMAN_RUSSIAN, LANGUAGE_GUTTER, LANGUAGE_HUMAN_EURO, LANGUAGE_EAL)
 
-/obj/item/organ/internal/voicebox/nabber/ascent
-	name = "mantid vocal synthesiser"
-	assists_languages = list(LANGUAGE_SKRELLIAN, LANGUAGE_HUMAN_RUSSIAN, LANGUAGE_GUTTER, LANGUAGE_HUMAN_EURO, LANGUAGE_EAL)
-
 /obj/item/organ/internal/voicebox/nabber/Initialize()
 	. = ..()
 	robotize()
@@ -17,10 +13,6 @@
 	action_button_name = "Toggle Eye Shields"
 	eye_icon = 'icons/mob/human_races/species/nabber/eyes.dmi'
 	var/eyes_shielded
-
-/obj/item/organ/internal/eyes/insectoid/msq
-	name = "compound eyes"
-	eye_icon = 'icons/mob/human_races/species/nabber/msq/eyes.dmi'
 
 /obj/item/organ/internal/eyes/insectoid/nabber/get_special_overlay()
 	var/icon/I = get_onhead_icon()
@@ -73,27 +65,16 @@
 	. = ..()
 	color = rgb(new_dna.GetUIValue(DNA_UI_EYES_R), new_dna.GetUIValue(DNA_UI_EYES_G), new_dna.GetUIValue(DNA_UI_EYES_B))
 
-/obj/item/organ/internal/heart/open/nabber
-	name = "hemolymphatic pump"
-	icon_state = "organ_GASheart"
-	organ_tag = BP_HEART
-	parent_organ = BP_CHEST
-
-/obj/item/organ/internal/stomach/nabber
-	name = "digestive sacs"
-	icon_state = "organ_GASstomach"
-	organ_tag = BP_STOMACH
-	parent_organ = BP_GROIN
-
 /obj/item/organ/internal/phoron
 	name = "phoron storage"
-	icon_state = "organ_GASphoron"
+	icon_state = "stomach"
+	color = "#ed81f1"
 	organ_tag = BP_PHORON
 	parent_organ = BP_CHEST
 	can_be_printed = FALSE
 	var/dexalin_level = 10
 	var/phoron_level = 5
-	var/raw_amount = 0.110
+	var/raw_amount = 0.1
 
 /obj/item/organ/internal/phoron/Process()
 	if(owner)
@@ -114,13 +95,14 @@
 
 /obj/item/organ/internal/liver/insectoid/nabber
 	name = "toxin filter"
-	icon_state = "organ_GASliver"
+	color = "#66ff99"
 	organ_tag = BP_LIVER
 	parent_organ = BP_CHEST
 
 /obj/item/organ/internal/acetone
 	name = "acetone reactor"
-	icon_state = "organ_GASacetone"
+	icon_state = "vox lung"
+	color = "#ff6699"
 	organ_tag = BP_ACETONE
 	parent_organ = BP_GROIN
 	var/dexalin_level = 12
@@ -155,7 +137,6 @@
 // These are not actually lungs and shouldn't be thought of as such despite the claims of the parent.
 /obj/item/organ/internal/lungs/insectoid/nabber
 	name = "tracheae"
-	icon_state = "organ_GASlung"
 	gender = PLURAL
 	organ_tag = BP_TRACH
 	parent_organ = BP_GROIN
@@ -182,7 +163,6 @@
 /obj/item/organ/internal/brain/insectoid/nabber
 	var/lowblood_tally = 0
 	name = "distributed nervous system"
-	icon_state = "organ_GASbrain"
 	parent_organ = BP_CHEST
 
 /obj/item/organ/internal/brain/insectoid/nabber/Process()
@@ -193,8 +173,6 @@
 
 	//Effects of bloodloss
 	switch(blood_volume)
-		if (BLOOD_VOLUME_SAFE)
-			lowblood_tally = 0
 		if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 			lowblood_tally = 2
 			if(prob(1))

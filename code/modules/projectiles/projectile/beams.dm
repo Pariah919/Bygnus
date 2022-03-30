@@ -1,11 +1,11 @@
 /obj/item/projectile/beam
 	name = "laser"
 	icon_state = "laser"
-	temperature = T0C + 400
+	temperature = T0C + 300
 	fire_sound='sound/weapons/EnergyBoom.ogg'
 	impact_sounds = list(BULLET_IMPACT_MEAT = SOUNDS_LASER_MEAT, BULLET_IMPACT_METAL = SOUNDS_LASER_METAL)
 	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
-	damage = 50
+	damage = 30
 	damage_type = BURN
 	sharp = 1 //concentrated burns
 	damage_flags = DAM_LASER
@@ -22,15 +22,15 @@
 
 /obj/item/projectile/beam/practice
 	fire_sound = 'sound/weapons/Taser.ogg'
-	damage = 5
+	damage = 2
 	eyeblur = 2
 
 /obj/item/projectile/beam/smalllaser
 	damage = 25
-	armor_penetration = 10
+	armor_penetration = 5
 
 /obj/item/projectile/beam/midlaser
-	damage = 40
+	damage = 45
 	armor_penetration = 20
 	distance_falloff = 1
 
@@ -50,7 +50,7 @@
 	name = "x-ray beam"
 	icon_state = "xray"
 	fire_sound = 'sound/weapons/laser3.ogg'
-	damage = 30 //lower damage, high pen
+	damage = 30
 	armor_penetration = 30
 	shrapnel_chance_multiplier = 0.8
 	arterial_bleed_chance_multiplier = 0.8
@@ -61,27 +61,24 @@
 
 /obj/item/projectile/beam/xray/midlaser
 	damage = 30
-	armor_penetration = 70
+	armor_penetration = 60
 	distance_falloff = 1
 
 /obj/item/projectile/beam/pulse
 	name = "pulse"
 	icon_state = "u_laser"
 	fire_sound='sound/weapons/pulse.ogg'
-	damage = 20 //worse than the x-ray, but in burst.
-	armor_penetration = 20
+	damage = 15 //lower damage, but fires in bursts
 
 	muzzle_type = /obj/effect/projectile/laser/pulse/muzzle
 	tracer_type = /obj/effect/projectile/laser/pulse/tracer
 	impact_type = /obj/effect/projectile/laser/pulse/impact
 
 /obj/item/projectile/beam/pulse/mid
-	damage = 30
-	armor_penetration = 40
+	damage = 20
 
 /obj/item/projectile/beam/pulse/heavy
-	damage = 40
-	armor_penetration = 60
+	damage = 25
 
 /obj/item/projectile/beam/pulse/destroy
 	name = "destroyer pulse"
@@ -95,24 +92,16 @@
 
 /obj/item/projectile/beam/pulse/skrell
 	icon_state = "pu_laser"
-	damage = 30
-	armor_penetration = 20
+	damage = 20
 	muzzle_type = /obj/effect/projectile/laser/pulse/skrell/muzzle
 	tracer_type = /obj/effect/projectile/laser/pulse/skrell/tracer
 	impact_type = /obj/effect/projectile/laser/pulse/skrell/impact
 
 /obj/item/projectile/beam/pulse/skrell/heavy
-	damage = 40
-	armor_penetration = 30
+	damage = 30
 
 /obj/item/projectile/beam/pulse/skrell/single
 	damage = 50
-	armor_penetration = 40
-
-/obj/item/projectile/beam/pulse/skrell/single/lance
-	distance_falloff = 0.50
-	damage = 60
-	armor_penetration = 40
 
 /obj/item/projectile/beam/emitter
 	name = "emitter beam"
@@ -180,25 +169,11 @@
 	name = "sniper beam"
 	icon_state = "xray"
 	fire_sound = 'sound/weapons/marauder.ogg'
-	distance_falloff = 0.50
-	damage = 50
-	armor_penetration = 50
+	damage = 65
+	armor_penetration = 25
 	stun = 3
 	weaken = 3
 	stutter = 3
-
-	muzzle_type = /obj/effect/projectile/laser/xray/muzzle
-	tracer_type = /obj/effect/projectile/laser/xray/tracer
-	impact_type = /obj/effect/projectile/laser/xray/impact
-
-/obj/item/projectile/beam/snipervox
-	name = "sniper beam"
-	icon_state = "xray"
-	fire_sound = 'sound/weapons/marauder.ogg'
-	distance_falloff = 0.50
-	damage = 50
-	armor_penetration = 50
-	stutter = 2
 
 	muzzle_type = /obj/effect/projectile/laser/xray/muzzle
 	tracer_type = /obj/effect/projectile/laser/xray/tracer
@@ -221,12 +196,12 @@
 
 /obj/item/projectile/beam/stun/heavy
 	name = "heavy stun beam"
-	damage = 10
+	damage = 2
 	agony = 40
 
 /obj/item/projectile/beam/stun/shock
 	name = "shock beam"
-	agony = 20
+	agony = 0
 	damage = 15
 	damage_type = ELECTROCUTE
 	fire_sound='sound/weapons/pulse.ogg'
@@ -296,8 +271,8 @@
 /obj/item/projectile/beam/particle
 	name = "particle lance"
 	icon_state = "particle"
-	damage = 40
-	armor_penetration = 60
+	damage = 35
+	armor_penetration = 50
 	muzzle_type = /obj/effect/projectile/laser_particle/muzzle
 	tracer_type = /obj/effect/projectile/laser_particle/tracer
 	impact_type = /obj/effect/projectile/laser_particle/impact
@@ -307,15 +282,16 @@
 /obj/item/projectile/beam/particle/small
 	name = "particle beam"
 	damage = 30
-	armor_penetration = 20
+	armor_penetration = 40
 	shrapnel_chance_multiplier = 0.4
 	arterial_bleed_chance_multiplier = 0.4
 
 /obj/item/projectile/beam/darkmatter
 	name = "dark matter bolt"
 	icon_state = "darkb"
-	damage = 35
-	armor_penetration = 45
+	damage = 40
+	armor_penetration = 35
+	damage_type = BRUTE
 	muzzle_type = /obj/effect/projectile/darkmatter/muzzle
 	tracer_type = /obj/effect/projectile/darkmatter/tracer
 	impact_type = /obj/effect/projectile/darkmatter/impact
@@ -325,7 +301,7 @@
 	icon_state = "darkt"
 	damage_flags = 0
 	sharp = 0 //not a laser
-	agony = 25
+	agony = 40
 	damage_type = STUN
 	muzzle_type = /obj/effect/projectile/stun/darkmatter/muzzle
 	tracer_type = /obj/effect/projectile/stun/darkmatter/tracer

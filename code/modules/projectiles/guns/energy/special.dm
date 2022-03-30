@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/energy/ionrifle
-	name = "Nanotrasen Ion-Defender"
-	desc = "The Nanotrasen Ion-Defender is a man portable anti-armor weapon designed to disable mechanical threats, produced by Nanotrasen before the Corporate wars!"
+	name = "ion rifle"
+	desc = "The NT Mk60 EW Halicon is a man portable anti-armor weapon designed to disable mechanical threats, produced by NT. Not the best of its type."
 	icon = 'icons/obj/guns/ion_rifle.dmi'
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
@@ -21,8 +21,8 @@
 	..(max(severity, 2)) //so it doesn't EMP itself, I guess
 
 /obj/item/weapon/gun/energy/ionrifle/small
-	name = "Nanotrasen Ion-Guard"
-	desc = "The Nanotrasen Ion-Guard is a personal defense weapon designed to disable mechanical threats."
+	name = "ion pistol"
+	desc = "The NT Mk72 EW Preston is a personal defense weapon designed to disable mechanical threats."
 	icon = 'icons/obj/guns/ion_pistol.dmi'
 	icon_state = "ionpistol"
 	item_state = "ionpistol"
@@ -201,25 +201,3 @@
 	projectile_type = /obj/item/projectile/beam/incendiary_laser
 	max_shots = 5
 	self_recharge = 1
-
-/obj/item/weapon/gun/energy/plasmarifle
-	name = "Nanotrasen ITER"
-	desc = "A rare nanotrasen branded plasma rifle marketed as a weapon to change the war forever. However due to it's volatility and high maintenence costs it is uncommon outside of Sol-controlled space.\
-	Unlike it's older laser cousin it's projectiles deliver a meatier punch at higher firerate with the cost of it's precision and utlity. It is powered by miniature fusion reactor making it slowly recharge it's plasma reserves."
-	icon = 'icons/obj/guns/plasma_rifle.dmi'
-	icon_state = "plasma_rifle"
-	item_state = "plasma_rifle"
-	wielded_item_state = "plasma_rifle-wielded"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_POWER = 3)
-	w_class = ITEM_SIZE_HUGE
-	slot_flags = SLOT_BACK
-	fire_delay = 20
-	max_shots = 16
-	self_recharge = 1
-	recharge_time = 8
-	accuracy = 3
-	projectile_type = /obj/item/projectile/energy/plasmarifle
-	firemodes = list(
-		list(mode_name="single-fire", burst=1, move_delay=1),
-		list(mode_name="burst", burst=2, move_delay=2)
-		)

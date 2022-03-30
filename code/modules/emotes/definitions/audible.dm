@@ -222,20 +222,3 @@
 	key = "oorah"
 	emote_message_3p= "USER oorahs!"
 	emote_message_3p_target= "USER oorahs at TARGET!"
-
-/decl/emote/audible/skrell_warble
-	key ="warble"
-	emote_message_3p = "USER warbles."
-	emote_sound = 'sound/voice/warble.ogg'
-
-
-/decl/emote/audible/lizard_bellow
-	key = "bellow"
-	emote_message_3p_target = "USER bellows deeply at TARGET!"
-	emote_message_3p = "USER bellows!"
-	emote_sound = 'sound/voice/LizardBellow.ogg'
-
-/decl/emote/audible/lizard_squeal
-	key = "squeal"
-	emote_message_3p = "USER squeals."
-	emote_sound = 'sound/voice/LizardSqueal.ogg'

@@ -1,4 +1,5 @@
 //Contains the rapid construction device.
+//THIS SHIT IS STILL BROKEN, YO. FIX IT IF YOU CARE ENOUGH! - Carl. Probably.
 
 /obj/item/weapon/rcd
 	name = "rapid construction device"
@@ -66,15 +67,11 @@
 
 	if(istype(W, /obj/item/weapon/rcd_ammo))
 		var/obj/item/weapon/rcd_ammo/cartridge = W
-		if(stored_matter >= max_stored_matter)
-			to_chat(user, "<span class='notice'>The RCD is at maximum capacity.</span>")
+		if((stored_matter + cartridge.remaining) > max_stored_matter)
+			to_chat(user, "<span class='notice'>The RCD can't hold that many additional matter-units.</span>")
 			return
-		var/matter_exchange = min(cartridge.remaining,max_stored_matter - stored_matter)
-		stored_matter += matter_exchange
-		cartridge.remaining -= matter_exchange
-		if(cartridge.remaining <= 0)
-			qdel(W)
-		cartridge.matter = list(MATERIAL_STEEL = 500 * cartridge.remaining,MATERIAL_GLASS = 250 * cartridge.remaining)
+		stored_matter += cartridge.remaining
+		qdel(W)
 		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 		to_chat(user, "<span class='notice'>The RCD now holds [stored_matter]/[max_stored_matter] matter-units.</span>")
 		update_icon()
@@ -202,7 +199,7 @@
 		var/decl/hierarchy/rcd_mode/rcdm = child
 		if(!rcdm.can_handle_work(rcd, target))
 			continue
-		if(rcd.stored_matter < rcdm.cost)
+		if(!rcd.useResource(rcdm.cost, user))
 			rcd.lowAmmo(user)
 			return FALSE
 
@@ -214,9 +211,6 @@
 			if(!(do_after(user, rcdm.delay, target) && work_id == rcd.work_id && rcd.can_use(user, target) && rcdm.can_handle_work(rcd, target)))
 				return FALSE
 
-		if(!rcd.useResource(rcdm.cost, user))
-			rcd.lowAmmo(user)
-			return FALSE
 		rcdm.do_handle_work(target)
 		playsound(get_turf(user), 'sound/items/Deconstruct.ogg', 50, 1)
 		return TRUE
@@ -275,7 +269,7 @@
 	work_type = /turf/simulated/floor/airless
 
 /decl/hierarchy/rcd_mode/floor_and_walls/base_turf/can_handle_work(var/rcd, var/turf/target)
-	return istype(target) && (isspace(target) || isopenspace(target) || istype(target, get_base_turf_by_area(target)))
+	return istype(target) && (isspace(target) || istype(target, get_base_turf_by_area(target)))
 
 /decl/hierarchy/rcd_mode/floor_and_walls/floor_turf
 	cost = 3
@@ -313,28 +307,3 @@
 
 /decl/hierarchy/rcd_mode/deconstruction/wall/can_handle_work(var/obj/item/weapon/rcd/rcd, var/turf/simulated/wall/target)
 	return ..() && (rcd.canRwall || !target.reinf_material)
-
-/decl/hierarchy/rcd_mode/deconstruction/wall_frame
-	cost = 4
-	delay = 2 SECONDS
-	handles_type = /obj/structure/wall_frame
-
-/decl/hierarchy/rcd_mode/deconstruction/wall_frame/can_handle_work(obj/item/weapon/rcd/rcd, obj/structure/wall_frame/target)
-	. = ..()
-	if (.)
-		var/turf/T = get_turf(target)
-		if ((locate(/obj/structure/window) in T) || (locate(/obj/structure/grille) in T))
-			return FALSE
-
-/decl/hierarchy/rcd_mode/deconstruction/window
-	cost = 4
-	delay = 2 SECONDS
-	handles_type = /obj/structure/window
-
-/decl/hierarchy/rcd_mode/deconstruction/window/can_handle_work(obj/item/weapon/rcd/rcd, obj/structure/window/target)
-	return ..() && (rcd.canRwall || !target.reinf_material)
-
-/decl/hierarchy/rcd_mode/deconstruction/grille
-	cost = 2
-	delay = 1 SECOND
-	handles_type = /obj/structure/grille

@@ -21,17 +21,14 @@
 #define LANGUAGE_ROOTLOCAL         "Local Rootspeak"
 #define LANGUAGE_ROOTGLOBAL        "Global Rootspeak"
 #define LANGUAGE_ADHERENT          "Protocol"
-#define LANGUAGE_VOX               "Vox Dei"
+#define LANGUAGE_VOX               "Vox-pidgin"
 #define LANGUAGE_NABBER            "Serpentid"
-#define LANGUAGE_TAJARAN           "Siik'Maas"
 #define LANGUAGE_SERGAL            "Sagaru"
 
 //Antag
 #define LANGUAGE_CULT              "Cult"
 #define LANGUAGE_CULT_GLOBAL       "Occult"
 #define LANGUAGE_ALIUM             "Alium"
-#define LANGUAGE_XENOPHAGE         "Xenophage"
-#define LANGUAGE_XENOPHAGE_GLOBAL  "Hivemind"
 
 //Other
 #define LANGUAGE_PRIMITIVE         "Primitive"

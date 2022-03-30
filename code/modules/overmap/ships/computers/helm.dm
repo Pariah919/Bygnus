@@ -26,6 +26,7 @@ LEGACY_RECORD_STRUCTURE(all_waypoints, waypoint)
 			R.fields["x"] = S.x
 			R.fields["y"] = S.y
 			known_sectors[S.name] = R
+	..()
 
 /obj/machinery/computer/ship/helm/Process()
 	..()

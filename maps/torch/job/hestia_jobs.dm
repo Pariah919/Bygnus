@@ -39,14 +39,16 @@
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant)
 
 /datum/job/seccadetn/get_description_blurb()
-	return "You're a new trainee aboard the [GLOB.using_map.full_name]. Everyone is your senior, and as such, you'd best listen to them."
+	return "You're either a new hire, or a new trainee aboard the [GLOB.using_map.full_name]. Everyone is your senior, and as such, you'd best listen to them."
 
 /datum/job/squad_lead
 	allowed_branches = list(/datum/mil_branch/marine_corps)
 	allowed_ranks = list(
-		/datum/mil_rank/marine_corps/e6,
-		/datum/mil_rank/marine_corps/e7
+		/datum/mil_rank/marine_corps/e6
 	)
+	access = list(access_maint_tunnels, access_solgov_crew, access_petrov, access_petrov_security,
+			            access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
+			            access_infcom, access_inftech, access_aquila, access_eva)
 
 /datum/job/squad_lead
 	title = "Squad Lead"
@@ -60,20 +62,18 @@
 	selection_color = "#557e38"
 	minimal_player_age = 12
 	economic_power = 7
-	skill_points = 26
+	skill_points = 24
 	minimum_character_age = list(SPECIES_HUMAN = 25)
 	outfit_type = /decl/hierarchy/outfit/job/torch/crew/infantry/squad_lead
 	min_skill = list(   SKILL_BUREAUCRACY = SKILL_BASIC,
 						SKILL_EVA         = SKILL_ADEPT,
+						SKILL_PILOT       = SKILL_BASIC,
 						SKILL_COMBAT      = SKILL_ADEPT,
 						SKILL_WEAPONS     = SKILL_ADEPT)
 
 	max_skill = list(	SKILL_COMBAT      = SKILL_MAX,
 						SKILL_WEAPONS     = SKILL_MAX,
 						SKILL_EVA		  = SKILL_MAX)
-
-	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
-			            access_infcom, access_inftech, access_infmed, access_aquila, access_eva, access_bridge)
 
 	software_on_spawn = list(/datum/computer_file/program/deck_management,
 							 /datum/computer_file/program/reports)
@@ -106,16 +106,18 @@
 						SKILL_CONSTRUCTION = SKILL_MAX,
 						SKILL_ELECTRICAL   = SKILL_MAX)
 
-	allowed_branches = list(/datum/mil_branch/marine_corps)
+	allowed_branches = list(/datum/mil_branch/fleet)
 	allowed_ranks = list(
-		/datum/mil_rank/marine_corps/e3,
-		/datum/mil_rank/marine_corps/e4,
-		/datum/mil_rank/marine_corps/e5
+		/datum/mil_rank/fleet/e3,
+		/datum/mil_rank/fleet/e4,
+		/datum/mil_rank/fleet/e5
 		)
-	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
-			            access_aquila, access_eva, access_inftech)
+	access = list(access_maint_tunnels, access_petrov, access_petrov_security,
+			            access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
+			            access_inftech, access_aquila, access_eva)
 	alt_titles = list(
-		"Combat Engineer")
+		"Combat Engineer",
+		"Combat Medic")
 
 /datum/job/combat_tech/is_position_available()
 	if(..())
@@ -127,61 +129,12 @@
 /datum/job/combat_tech/get_description_blurb()
 	return "<span class='warning'>You are NOT Security. Ignoring this will get you job banned, or worse.</span> - You are the singular Combat Technician in the squad. Your duty is to provide both firepower and demolitions as required. You may assume Command if no Squad Leader is present."
 
-/datum/job/combat_medic
-	title = "Combat Medic"
-	supervisors = "the Squad Leader"
-	department = "Infantry"
-	department_flag = INF
-	total_positions = 1
-	spawn_positions = 1
-	selection_color = "#557e38"
-	economic_power = 4
-	minimal_player_age = 8
-	skill_points = 24
-	minimum_character_age = list(SPECIES_HUMAN = 20)
-	outfit_type = /decl/hierarchy/outfit/job/torch/crew/infantry/combat_medic
-	min_skill = list(SKILL_EVA    = SKILL_BASIC,
-					SKILL_MEDICAL = SKILL_BASIC,
-					SKILL_COMBAT  = SKILL_ADEPT,
-					SKILL_WEAPONS = SKILL_ADEPT,
-					SKILL_ANATOMY = SKILL_BASIC)
-
-	max_skill = list(SKILL_MEDICAL     = SKILL_MAX,
-					SKILL_COMBAT       = SKILL_MAX,
-					SKILL_WEAPONS      = SKILL_MAX,
-					SKILL_CHEMISTRY    = SKILL_MAX)
-
-	allowed_branches = list(
-		/datum/mil_branch/fleet,
-		/datum/mil_branch/marine_corps
-	)
-	allowed_ranks = list(
-		/datum/mil_rank/fleet/e3,
-		/datum/mil_rank/fleet/e4,
-		/datum/mil_rank/fleet/e5,
-		/datum/mil_rank/marine_corps/e3,
-		/datum/mil_rank/marine_corps/e4,
-		/datum/mil_rank/marine_corps/e5
-		)
-	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
-			            access_aquila, access_eva, access_infmed)
-
-/datum/job/combat_medic/is_position_available()
-	if(..())
-		for(var/mob/M in GLOB.player_list)
-			if(M.client && M.mind && M.mind.assigned_role == "Squad Lead")
-				return TRUE
-	return FALSE
-
-/datum/job/combat_medic/get_description_blurb()
-	return "<span class='warning'>You are NOT Security. Ignoring this will get you job banned, or worse.</span> - You are the singular Combat Medic in the squad. Your duty is to provide medical assistance as required. You may assume Command if no Squad Leader is present."
-
 /datum/job/grunt
 	title = "Rifleman"
 	department = "Infantry"
 	department_flag = INF
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 2
+	spawn_positions = 2
 	minimal_player_age = 6
 	supervisors = "the Combat Technician and Squad Leader"
 	selection_color = "#557e38"
@@ -204,11 +157,12 @@
 		/datum/mil_rank/marine_corps/e3,
 		/datum/mil_rank/marine_corps/e4
 	)
-	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
+	access = list(access_maint_tunnels, access_solgov_crew, access_petrov, access_petrov_security,
+			            access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
 			            access_aquila, access_eva)
 	alt_titles = list(
-		"Grenadier",
-		"Assaultman")
+		"Grunt",
+		"Trooper")
 
 /datum/job/grunt/is_position_available()
 	if(..())
@@ -244,7 +198,8 @@
 		SKILL_WEAPONS     = SKILL_EXPERT
 	)
 	skill_points = 30
-	access = list(access_psiadvisor, access_security, access_medical, access_maint_tunnels, access_bridge, access_RC_announce, access_solgov_crew, access_hangar)
+	access = list(access_psiadvisor, access_security, access_medical, access_engine, access_maint_tunnels, access_external_airlocks,
+				access_eva, access_bridge, access_cargo, access_RC_announce, access_solgov_crew, access_hangar)
 	minimal_access = list()
 	software_on_spawn = list(
 		/datum/computer_file/program/comm,
@@ -260,7 +215,7 @@
 	return ..()
 
 /datum/job/psiadvisor/get_description_blurb()
-	return "You are the Psionic Advisor, an agent of either the Foundation or Nanotrasen Psionic Corps. Alongside the Counselor, you're the only other individual with known and authorized Psionic abilities aboard the SGV Dagon. Your main responsibility is advising the Commanding Officer on psionic matters. \
+	return "You are the Psionic Advisor, an agent of either the Foundation or Nanotrasen Psionic Corps. Alongside the Counselor, you're the only other individual with known and authorized Psionic abilities aboard the NTSS Dagon. Your main responsibility is advising the Commanding Officer on psionic matters. \
 	Secondly, you're to assist the crew or Research on psionic matters, or guide any newly emergent crew that awaken with psionic abilities."
 
 /*
