@@ -31,11 +31,21 @@
 "ae" = (
 /obj/machinery/porta_turret/exterior/dagon,
 /turf/simulated/floor/airless,
-/area/command/gunnery/ob/inside)
+/area/command/gunnery/missiles/inside)
 "af" = (
-/obj/blocker,
-/turf/simulated/floor/airless,
-/area/command/gunnery/ob/inside)
+/obj/machinery/mass_driver{
+	dir = 8;
+	icon_state = "missile launcher 2";
+	id_tag = "missile2"
+	},
+/obj/machinery/mass_driver{
+	dir = 8;
+	icon_state = "mass_driver";
+	id_tag = "missile2";
+	name = "missile launcher 2"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/command/gunnery/missiles/inside)
 "ag" = (
 /turf/simulated/wall/r_wall/hull,
 /area/command/gunnery/ob/airlock)
@@ -464,15 +474,12 @@
 /turf/simulated/wall/r_wall/prepainted,
 /area/storage/tools)
 "bh" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1480;
-	icon_state = "closed";
-	id_tag = "ob_outer";
-	locked = 1;
-	name = "OB Interior Access"
-	},
-/turf/simulated/floor/tiled,
-/area/command/gunnery/ob/airlock)
+/obj/machinery/door/airlock/munitions,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/dark,
+/area/command/gunnery/missiles)
 "bi" = (
 /obj/structure/table/steel,
 /obj/item/device/multitool,
@@ -700,9 +707,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/wallframe_spawn/reinforced/hull,
-/turf/simulated/floor/plating,
-/area/command/gunnery/ob/airlock)
+/obj/machinery/door/airlock/munitions,
+/turf/simulated/floor/tiled/dark,
+/area/command/gunnery/missiles)
 "bG" = (
 /obj/effect/catwalk_plated,
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -6440,17 +6447,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/holocontrol)
-"mz" = (
-/obj/effect/wallframe_spawn/reinforced,
-/obj/machinery/door/firedoor/autoset,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable/green,
-/turf/simulated/floor/plating,
-/area/command/gunnery/ob)
 "mA" = (
 /turf/simulated/wall/prepainted,
 /area/command/gunnery/ob)
@@ -8348,7 +8344,7 @@
 	},
 /obj/machinery/door/firedoor/autoset,
 /turf/simulated/floor/plating,
-/area/command/gunnery/ob)
+/area/command/gunnery/missiles)
 "qb" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -10057,9 +10053,6 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters_boh/cabin_main)
 "sI" = (
-/obj/machinery/door/airlock/glass/civilian{
-	name = "Gym"
-	},
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
 	d1 = 1;
@@ -10069,8 +10062,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/munitions,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/crew_quarters/gym)
+/area/command/gunnery/missiles/storage)
 "sJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11015,17 +11009,6 @@
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled/monotile,
 /area/hallway/primary/thirddeck/fore)
-"uG" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/munitions{
-	name = "Missile Pod"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/command/gunnery/missiles)
 "uH" = (
 /obj/machinery/disposal,
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -15332,15 +15315,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/thirddeck/aftport)
-"CV" = (
-/obj/machinery/door/firedoor{
-	dir = 4
-	},
-/obj/machinery/door/airlock/munitions{
-	name = "Weaponry Mount Storage"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/command/gunnery/missiles/storage)
 "CX" = (
 /obj/structure/curtain/open/bed,
 /obj/effect/floor_decal/techfloor{
@@ -15898,18 +15872,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/thirddeck/port)
-"Ey" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/munitions{
-	name = "Missile Pod"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/command/gunnery/missiles)
 "Ez" = (
 /turf/simulated/wall/prepainted,
 /area/maintenance/thirddeck/port)
@@ -17294,17 +17256,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/command/disperser)
-"Iv" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 5;
-	icon_state = "warning"
-	},
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/munitions{
-	name = "Weaponry Mount Storage"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/command/gunnery/missiles/storage)
 "Iw" = (
 /obj/effect/floor_decal/industrial/hatch/red,
 /obj/structure/ship_munition/disperser_charge/explosive,
@@ -17350,9 +17301,20 @@
 /turf/simulated/floor/plating,
 /area/command/disperser)
 "IE" = (
-/obj/random_multi/single_item/punitelly,
-/turf/simulated/floor/plating,
-/area/maintenance/thirddeck/starboard)
+/obj/machinery/conveyor/ammobelt{
+	dir = 10;
+	id = "ammobelt1";
+	name = "Loading Belt 2"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/command/gunnery/missiles)
+"II" = (
+/obj/machinery/door/airlock/munitions,
+/obj/machinery/door/firedoor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/command/gunnery/missiles/storage)
 "IJ" = (
 /obj/random_multi/single_item/punitelly,
 /obj/structure/railing/mapped{
@@ -18123,18 +18085,6 @@
 /obj/random/obstruction,
 /turf/simulated/floor/plating,
 /area/maintenance/thirddeck/foreport)
-"Ke" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/firedoor/autoset,
-/obj/machinery/door/airlock/munitions{
-	name = "Missile Belt Access"
-	},
-/turf/simulated/floor/plating,
-/area/command/gunnery/missiles)
 "Kf" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 8
@@ -19050,6 +19000,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/primary/thirddeck/center)
+"MB" = (
+/obj/machinery/door/airlock/munitions,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/dark,
+/area/command/gunnery/missiles)
 "MD" = (
 /obj/structure/sign/directions/science{
 	dir = 1;
@@ -20878,6 +20834,16 @@
 	},
 /turf/simulated/floor/reinforced/hydrogen,
 /area/thruster/d3port)
+"Sz" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/munitions,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/dark,
+/area/command/gunnery/missiles)
 "SC" = (
 /obj/structure/railing/mapped{
 	dir = 8;
@@ -21806,21 +21772,6 @@
 	},
 /turf/simulated/wall/r_wall/hull,
 /area/maintenance/thirddeck/port)
-"Vs" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/munitions{
-	name = "Weaponry Mount Storage"
-	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/command/gunnery/missiles/storage)
 "Vv" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -22106,9 +22057,21 @@
 /obj/structure/stairs/west,
 /turf/simulated/floor/plating,
 /area/engineering/hardstorage)
+"Wa" = (
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/steel_grid,
+/area/command/gunnery/missiles/storage)
 "Wb" = (
-/turf/simulated/wall/prepainted,
-/area/crew_quarters/gym)
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5;
+	icon_state = "warning"
+	},
+/obj/machinery/door/airlock/munitions,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/dark,
+/area/command/gunnery/missiles/storage)
 "Wd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -22266,15 +22229,6 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/thruster/d3port)
-"Wz" = (
-/obj/machinery/mass_driver{
-	dir = 8;
-	icon_state = "mass_driver";
-	id_tag = "missile2";
-	name = "missile launcher 2"
-	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/command/gunnery/missiles/inside)
 "WB" = (
 /turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/gym)
@@ -42939,7 +42893,7 @@ aa
 aa
 ae
 ad
-Wz
+af
 aG
 nr
 ad
@@ -43972,12 +43926,12 @@ Rf
 PG
 xF
 SU
-VF
-hx
-Vc
-hx
-WB
-Zb
+Hk
+Hw
+Hw
+Hw
+II
+Hw
 rf
 XP
 ov
@@ -44165,12 +44119,12 @@ ms
 mI
 mA
 rs
-cl
-cl
-da
+MI
+MB
+OV
 Wb
-Rf
-Sf
+Oo
+Oo
 QV
 Pa
 XK
@@ -44179,7 +44133,7 @@ VJ
 pp
 VJ
 ZY
-Vs
+sI
 Qs
 sw
 RC
@@ -44358,10 +44312,10 @@ oK
 aF
 ph
 ah
-VZ
+bh
 bG
-bI
-dR
+bG
+bh
 lP
 mt
 ou
@@ -44560,10 +44514,10 @@ pt
 pu
 pv
 ai
-bF
+Sz
 bH
 dc
-uG
+bF
 lS
 mu
 pQ
@@ -44968,13 +44922,13 @@ ag
 ag
 ag
 ag
-aE
-aE
+ag
+ag
 qa
-mA
-cl
-cl
-cl
+lO
+lO
+lO
+lO
 fM
 sZ
 sZ
