@@ -12,8 +12,8 @@
 	status = ORGAN_ROBOTIC
 	vital = 1
 	origin_tech = list(TECH_BIO = 4, TECH_MATERIAL = 4, TECH_MAGNET = 2, TECH_DATA = 3)
-	relative_size = 35//Important with how it now functions.
-	max_damage = 25//As with above.
+	relative_size = 25//Important with how it now functions.
+	max_damage = 40//As with above.
 	var/broken = 0
 
 	var/ownerckey
