@@ -211,4 +211,4 @@
 
 /obj/item/inducer/notswappable/attackby(mob/user)
 	to_chat(user, "<span class='notice'>You cannot open this type of inducer!</span>")
-	return ..()
+	return
