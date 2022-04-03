@@ -202,3 +202,13 @@
 
 /obj/item/inducer/borg/get_cell()
 	return loc ? loc.get_cell() : null
+
+/obj/item/inducer/notswappable
+	name = "inducer"
+	desc = "A tool for inductively charging internal power cells, this one has an internal, irreplaceable battery. You're gonna have to get a heavy duty recharger to charge this."
+	icon_state = "inducer-sci"
+	item_state = "inducer-sci"
+
+/obj/item/inducer/notswappable/attackby(mob/user)
+	to_chat(user, "<span class='notice'>You cannot open this type of inducer!</span>")
+	return ..()
