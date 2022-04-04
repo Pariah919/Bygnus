@@ -15,10 +15,9 @@
 	)
 	can_infect = 1
 	blood_level = 1
-	min_duration = 70
-	max_duration = 90
+	min_duration = 20
+	max_duration = 25
 	shock_level = 40
-	delicate = 1
 	surgery_candidate_flags = SURGERY_NO_CRYSTAL | SURGERY_NO_ROBOTIC | SURGERY_NO_STUMP | SURGERY_NEEDS_RETRACTED
 
 /decl/surgery_step/fix_tendon/assess_bodypart(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -58,10 +57,9 @@
 	)
 	can_infect = 1
 	blood_level = 1
-	min_duration = 70
-	max_duration = 90
+	min_duration = 25
+	max_duration = 20
 	shock_level = 40
-	delicate = 1
 	strict_access_requirement = FALSE
 	surgery_candidate_flags = SURGERY_NO_CRYSTAL | SURGERY_NO_ROBOTIC | SURGERY_NO_STUMP | SURGERY_NEEDS_RETRACTED
 
@@ -105,15 +103,15 @@
 	)
 	can_infect = 0
 	blood_level = 0
-	min_duration = 120
-	max_duration = 180
+	min_duration = 30
+	max_duration = 40
 	surgery_candidate_flags = 0
 
 /decl/surgery_step/hardsuit/assess_bodypart(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	return TRUE
 
 /decl/surgery_step/hardsuit/get_skill_reqs(mob/living/user, mob/living/carbon/human/target, obj/item/tool)
-	return list(SKILL_EVA = SKILL_BASIC) 
+	return list(SKILL_EVA = SKILL_BASIC)
 
 /decl/surgery_step/hardsuit/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!istype(target))
@@ -160,8 +158,8 @@
 	)
 	can_infect = 0
 	blood_level = 0
-	min_duration = 50
-	max_duration = 60
+	min_duration = 20
+	max_duration = 25
 
 /decl/surgery_step/sterilize/assess_bodypart(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = ..()
@@ -169,7 +167,7 @@
 		return affected
 
 /decl/surgery_step/sterilize/get_skill_reqs(mob/living/user, mob/living/carbon/human/target, obj/item/tool)
-	return list(SKILL_MEDICAL = SKILL_BASIC) 
+	return list(SKILL_MEDICAL = SKILL_BASIC)
 
 /decl/surgery_step/sterilize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
