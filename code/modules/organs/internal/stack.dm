@@ -12,8 +12,8 @@
 	status = ORGAN_ROBOTIC
 	vital = 1
 	origin_tech = list(TECH_BIO = 4, TECH_MATERIAL = 4, TECH_MAGNET = 2, TECH_DATA = 3)
-	relative_size = 35//Important with how it now functions.
-	max_damage = 25//As with above.
+	relative_size = 25//Important with how it now functions.
+	max_damage = 40//As with above.
 	var/broken = 0
 
 	var/ownerckey
@@ -25,12 +25,13 @@
 	var/list/skilldecay = list(SKILL_WEAPONS = -3, SKILL_COMBAT = -3, SKILL_HAULING = -2) //Skills that will suffer from relacing (Combat relevant skills as of the implementation of this PR)
 	var/buff_type = /datum/skill_buff/lace
 	var/relacetime
+	var/skilllosstime
 
-	var/list/skillloss = list(SKILL_BUREAUCRACY = -5, SKILL_FINANCE = -5, SKILL_EVA = -5,
-	SKILL_MECH = -1, SKILL_PILOT = -5, SKILL_HAULING = -5, SKILL_COMPUTER = -5, SKILL_BOTANY = -5,
-	SKILL_COMBAT = -5, SKILL_WEAPONS = -5, SKILL_FORENSICS = -5, SKILL_CONSTRUCTION = -5, SKILL_ELECTRICAL = -5,
-	SKILL_ATMOS = -5, SKILL_ENGINES = -5, SKILL_DEVICES = -5, SKILL_SCIENCE = -5, SKILL_MEDICAL = -5,
-	SKILL_ANATOMY = -5, SKILL_VIROLOGY = -1, SKILL_CHEMISTRY = -5)
+	var/list/skillloss = list(SKILL_BUREAUCRACY = -2, SKILL_FINANCE = -2, SKILL_EVA = -2,
+	SKILL_MECH = -1, SKILL_PILOT = -2, SKILL_HAULING = -2, SKILL_COMPUTER = -2, SKILL_BOTANY = -2,
+	SKILL_COMBAT = -5, SKILL_WEAPONS = -5, SKILL_FORENSICS = -2, SKILL_CONSTRUCTION = -2, SKILL_ELECTRICAL = -2,
+	SKILL_ATMOS = -2, SKILL_ENGINES = -2, SKILL_DEVICES = -2, SKILL_SCIENCE = -2, SKILL_MEDICAL = -2,
+	SKILL_ANATOMY = -2, SKILL_VIROLOGY = -1, SKILL_CHEMISTRY = -2)
 
 /datum/skill_buff/lace
 	limit = 1
@@ -118,14 +119,17 @@
 	sleep(5 SECONDS)
 	to_chat(owner, "<span class = 'notice' font size='10'><B>Am I awake...?</B></span>")
 	sleep(5 SECONDS)
-	to_chat(owner, "<span class = 'notice' font size='10'><B>Who am I...?</B></span>")
+	to_chat(owner, "<span class = 'notice' font size='10'><B>Where am I...?</B></span>")
 	sleep(5 SECONDS)
 	to_chat(owner, "<span class = 'notice' font size='10'><B>Is this the void...?</B></span>")
 	sleep(1 SECONDS)
-	alert(owner, "You have lost your lace. By way of violent neuron rearrangement, you're practically a husk. \
-	You're not aware of who you are, where you are or what you were, not to mention the world appears entirely foreign. \
-	This extends to any previous skills, which have been lost. \
-	With the destruction of your lace, so too did your previous self depart.", "Loss of Reality")
+	playsound(owner, 'sound/effects/lacefail_survival.ogg', 70, 0)
+	to_chat(owner, "<font size = 4><span class = 'danger'><b>You feel an indescribable, otherworldly agony strike your mind like a searing hot iron. Fragmented memories, \
+	sensations and feelings flood you like tidal waves of damned, tormented cries from a mind not your own. Nightmare. Nightmare. Nightmare. \
+	A broken consciousness fires itself into your brain, before all goes silent. You feel dazed, and in pain.</font></span></b>")
+	alert(owner, "You have lost your lace. By way of violent neuron rearrangement, your mind has been preserved - but in a fragmented state. \
+	Your memories and thoughts feel disorganized and wispy. It may be a long time before you're able to regain what was lost. \
+	Much of your previous skillset has been forgotten, for the time.", "Lace Critical Failure")
 
 /obj/item/organ/internal/stack/Process()
 	..()
@@ -148,10 +152,15 @@
 			owner.emote("scream")
 			owner.seizure()
 			owner.hallucination(500, 500)//Very much intended like this.
-			owner.adjustBrainLoss(35)//Enough to white screen. Not enough to kill. Leaves lingering damage.
-			owner.buff_skill(skillloss, buff_type)//Removal of skills. In theory.
+			owner.adjustBrainLoss(15)
+			owner.buff_skill(skillloss, 30 MINUTES, buff_type)//Removal of skills. In theory.
+			
 
 			smash()//Display the messages.
 			Destroy()//'Kill' the organ.
+			skilllosstime = world.time
+			if(world.time >= skilllosstime + 30 MINUTES)
+				to_chat(owner, SPAN_NOTICE("The faint trickle of knowledge into your cerebrum ceases, and you feel whole again."))
+			return 1
 
 		else return ..()//why are you like this
