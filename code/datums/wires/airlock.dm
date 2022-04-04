@@ -188,3 +188,8 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 		if(AIRLOCK_WIRE_LIGHT)
 			A.lights = !A.lights
 			A.update_icon()
+
+/obj/machinery/door/airlock/nopass
+	name = "airlock"
+	desc = "Seems to have some sort of hi-tech air blocker on it."
+	atmos_canpass = CANPASS_NEVER
