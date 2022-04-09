@@ -77,7 +77,7 @@
 	..()
 	icon_state = "mpistolen"
 	if(ammo_magazine)
-		overlays += image(icon, "mag")
+		icon_state = "mpistolen"
 
 	if(!ammo_magazine || !LAZYLEN(ammo_magazine.stored_ammo))
 		icon_state = "mpistolen-empty"
@@ -172,13 +172,13 @@
 
 /obj/item/weapon/gun/projectile/automatic/sec_smg
 	name = "MA-Sword"
-	desc = "A modernised design based off of the older NanoTrasen made WT-550. This incorporates proper automatic fire, alongside better handling. \
-	Unlike the Pariah, its newer cousin, this does not have nearly the same rate of fire."
+	desc = "A modernised and classic SMG design, unmatched by time. Has a sluggish ROF for modern standards, but is quite accurate."
 	icon = 'icons/obj/guns/sec_smg.dmi'
-	icon_state = "smg"
-	item_state = "wt550"
+	icon_state = "sec_smg"
+	item_state = "sec_smg"
 	safety_icon = "safety"
 	w_class = ITEM_SIZE_NORMAL
+	wielded_item_state = "sec_smg-wielded"
 	caliber = CALIBER_PISTOL_SMALL
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
@@ -199,11 +199,9 @@
 /obj/item/weapon/gun/projectile/automatic/sec_smg/on_update_icon()
 	..()
 	if(ammo_magazine)
-		overlays += image(icon, "mag-[round(ammo_magazine.stored_ammo.len,5)]")
-	if(ammo_magazine && LAZYLEN(ammo_magazine.stored_ammo))
-		overlays += image(icon, "ammo-ok")
+		icon_state = "sec_smg"
 	else
-		overlays += image(icon, "ammo-bad")
+		icon_state = "sec_smg-e"
 
 /obj/item/weapon/gun/projectile/automatic/bullpup_rifle
 	name = "Hephaestus Z9 Bulldog"

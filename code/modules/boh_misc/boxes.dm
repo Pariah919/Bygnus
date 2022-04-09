@@ -86,7 +86,7 @@
 
 /obj/item/gunbox/primary/attack_self(mob/living/user)
 	var/list/options = list()
-	options["Ballistic - SMG"] = list(/obj/item/weapon/gun/projectile/automatic/sec_smg/less_lethal,/obj/item/weapon/storage/box/ammo/smg_frang)
+	options["Ballistic - SMG"] = list(/obj/item/weapon/gun/projectile/automatic/less_lethal,/obj/item/weapon/storage/box/ammo/smg_frang)
 	options["Ballistic - Beanbag Shotgun"] = list(/obj/item/weapon/gun/projectile/shotgun/pump/beanbag,/obj/item/weapon/storage/box/ammo/shotgunammo/birdshot/full)
 	options["Stun - Stun Rifle"] = list(/obj/item/weapon/gun/energy/stunrevolver/rifle)
 	var/choice = input(user,"What type of equipment?") as null|anything in options

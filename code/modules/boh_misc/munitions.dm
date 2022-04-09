@@ -244,6 +244,8 @@
 
 //Magazine
 /obj/item/ammo_magazine/smg_top/frangible
+	name = "top mounted magazine"
+	icon_state = "smg_top"
 	labels = list("frangible")
 	caliber = CALIBER_PISTOL_FRANGIBLE
 	ammo_type = /obj/item/ammo_casing/pistol/small/frangible

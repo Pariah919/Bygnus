@@ -125,8 +125,8 @@
 	initial_ammo = 0
 
 /obj/item/ammo_magazine/smg_top
-	name = "top mounted magazine"
-	icon_state = "smg_top"
+	name = "small smg magazine"
+	icon_state = "sec_smg"
 	mag_type = MAGAZINE
 	ammo_type = /obj/item/ammo_casing/pistol/small
 	matter = list(MATERIAL_STEEL = 1200)

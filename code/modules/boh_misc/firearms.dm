@@ -318,23 +318,33 @@
 // SMG Primary
 /////////
 
-/obj/item/weapon/gun/projectile/automatic/sec_smg/less_lethal
-	name = "MA-Pariah"
-	desc = "A modernised design based off of the older MA-Sword, featuring a pressure-based safety. \
-	This safety assures the weapon can only handle specialised low pressure cartridges being chambered, alongside a special magazine feed. \
-	The new magazine feed permits the weapon to chamber cartridges at an incredibly fast rate."
+/obj/item/weapon/gun/projectile/automatic/less_lethal
+	name = "SNC-Pariah"
+	desc = "A modernised design for the future, the MA-Pariah is a top feeding submachinegun from SNC armories, it can only load low-pressure frangiables, however."
 	icon = 'icons/boh/items/smg.dmi'
 	icon_state = "smg"
+	item_state = "wt550"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
+	slot_flags = SLOT_BELT
 	magazine_type = /obj/item/ammo_magazine/smg_top/frangible
 	allowed_magazines = /obj/item/ammo_magazine/smg_top/frangible
 	caliber = CALIBER_PISTOL_FRANGIBLE
+	accuracy_power = 7
+	one_hand_penalty = 3
+	safety_icon = "safety"
 
 	firemodes = list(
 		list(mode_name="semi auto",  automatic = FALSE, burst=1, fire_delay=null,    move_delay=null, one_hand_penalty=3, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts",  automatic = FALSE, burst=3, fire_delay=null, move_delay=4,    one_hand_penalty=4, burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
 		list(mode_name="automatic",  automatic = TRUE, burst=1, fire_delay = 2, move_delay=4,    one_hand_penalty=5, burst_accuracy=list(0,-1,-1,-1,-2), dispersion=list(0.6, 0.6, 1.0, 1.0, 1.2)),
 		)
+
+/obj/item/weapon/gun/projectile/automatic/less_lethal/on_update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "smg-[round(ammo_magazine.stored_ammo.len,4)]"
+	else
+		icon_state = "smg"
 
 /////////
 // Energy "Primary"
