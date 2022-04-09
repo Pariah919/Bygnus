@@ -22,16 +22,9 @@
 	                    SKILL_FORENSICS   = SKILL_MAX)
 	skill_points = 16
 	outfit_type = /decl/hierarchy/outfit/job/torch/crew/security/maa
-	allowed_branches = list(
-		/datum/mil_branch/fleet,
-		/datum/mil_branch/marine_corps
-	)
-	allowed_ranks = list(
-		/datum/mil_rank/fleet/e2,
-		/datum/mil_rank/fleet/e3,
-		/datum/mil_rank/marine_corps/e2,
-		/datum/mil_rank/marine_corps/e3
-	)
+	allowed_branches = list(/datum/mil_branch/fleet)
+	allowed_ranks = list(/datum/mil_rank/fleet/e1)
+
 	access = list(access_security, access_brig, access_maint_tunnels,
 						access_external_airlocks, access_emergency_storage,
 			            access_eva, access_sec_doors, access_solgov_crew)
@@ -42,11 +35,8 @@
 	return "You're a new trainee aboard the [GLOB.using_map.full_name]. Everyone is your senior, and as such, you'd best listen to them."
 
 /datum/job/squad_lead
-	allowed_branches = list(/datum/mil_branch/marine_corps)
-	allowed_ranks = list(
-		/datum/mil_rank/marine_corps/e6,
-		/datum/mil_rank/marine_corps/e7
-	)
+	allowed_branches = list(/datum/mil_branch/fleet)
+	allowed_ranks = list(/datum/mil_rank/fleet/o1)
 
 /datum/job/squad_lead
 	title = "Squad Lead"
@@ -106,12 +96,8 @@
 						SKILL_CONSTRUCTION = SKILL_MAX,
 						SKILL_ELECTRICAL   = SKILL_MAX)
 
-	allowed_branches = list(/datum/mil_branch/marine_corps)
-	allowed_ranks = list(
-		/datum/mil_rank/marine_corps/e3,
-		/datum/mil_rank/marine_corps/e4,
-		/datum/mil_rank/marine_corps/e5
-		)
+	allowed_branches = list(/datum/mil_branch/fleet,)
+	allowed_ranks = list(/datum/mil_rank/fleet/e3)
 	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
 			            access_aquila, access_eva, access_inftech)
 	alt_titles = list(
@@ -151,18 +137,8 @@
 					SKILL_WEAPONS      = SKILL_MAX,
 					SKILL_CHEMISTRY    = SKILL_MAX)
 
-	allowed_branches = list(
-		/datum/mil_branch/fleet,
-		/datum/mil_branch/marine_corps
-	)
-	allowed_ranks = list(
-		/datum/mil_rank/fleet/e3,
-		/datum/mil_rank/fleet/e4,
-		/datum/mil_rank/fleet/e5,
-		/datum/mil_rank/marine_corps/e3,
-		/datum/mil_rank/marine_corps/e4,
-		/datum/mil_rank/marine_corps/e5
-		)
+	allowed_branches = list(/datum/mil_branch/fleet)
+	allowed_ranks = list(/datum/mil_rank/fleet/e3)
 	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
 			            access_aquila, access_eva, access_infmed)
 
@@ -197,12 +173,9 @@
 						SKILL_EVA		  = SKILL_MAX)
 
 	software_on_spawn = list(/datum/computer_file/program/deck_management)
-	allowed_branches = list(/datum/mil_branch/marine_corps)
+	allowed_branches = list(/datum/mil_branch/fleet)
 	allowed_ranks = list(
-		/datum/mil_rank/marine_corps/e1,
-		/datum/mil_rank/marine_corps/e2,
-		/datum/mil_rank/marine_corps/e3,
-		/datum/mil_rank/marine_corps/e4
+		/datum/mil_rank/fleet/e2,
 	)
 	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
 			            access_aquila, access_eva)
