@@ -18,6 +18,17 @@
 	mag_insert_sound = 'sound/weapons/guns/interaction/smg_magin.ogg'
 	mag_remove_sound = 'sound/weapons/guns/interaction/smg_magout.ogg'
 
+// Please for the love of whatever is up there, use this format for your list!
+	attachable_allowed = list(
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/holosight,
+	)
+
+// This is how you declare a offset.
+/obj/item/weapon/gun/projectile/automatic/fullauto/set_gun_attachment_offsets()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 13, "rail_y" = 18, "under_x" = 23, "under_y" = 21, "stock_x" = 24, "stock_y" = 13)
+
 	//machine pistol, easier to one-hand with
 	firemodes = list(
 		list(mode_name="semi auto", burst=1, fire_delay=null, move_delay=null, one_hand_penalty=0, burst_accuracy=null, dispersion=null),
