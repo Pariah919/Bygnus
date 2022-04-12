@@ -7,7 +7,7 @@
 		/datum/mil_branch/fleet
 	)
 	allowed_ranks = list(
-		/datum/mil_rank/fleet/o5
+		/datum/mil_rank/fleet/o6
 	)
 
 /datum/job/hop
@@ -15,7 +15,7 @@
 		/datum/mil_branch/fleet,
 	)
 	allowed_ranks = list(
-		/datum/mil_rank/fleet/o4,
+		/datum/mil_rank/fleet/o5,
 	)
 
 /datum/job/rd
@@ -23,8 +23,8 @@
 		/datum/mil_branch/fleet
 	)
 	allowed_ranks = list(
-		/datum/mil_rank/fleet/o3,
-		/datum/mil_rank/fleet/o4
+		/datum/mil_rank/fleet/o2,
+		/datum/mil_rank/fleet/o3
 	)
 
 /datum/job/cmo
@@ -50,8 +50,8 @@
 		/datum/mil_branch/fleet,
 	)
 	allowed_ranks = list(
-		/datum/mil_rank/fleet/o2,
 		/datum/mil_rank/fleet/o3,
+		/datum/mil_rank/fleet/o4,
 	)
 
 /datum/job/sea

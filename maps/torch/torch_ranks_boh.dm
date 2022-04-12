@@ -73,8 +73,8 @@
 	)
 
 /datum/mil_branch/fleet
-	name = "Cygnus Expeditonary Corps"
-	name_short = "CEC"
+	name = "Cygnus Scout Corps"
+	name_short = "CSC"
 	email_domain = "dagon.sgf.mil"
 
 	rank_types = list(
@@ -117,21 +117,21 @@
  */
 /datum/mil_rank/fleet/e1
 	name = "Crewman Apprentice"
-	name_short = "CA"
+	name_short = "CRA"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 1
 	pow_cat = 1
 
 /datum/mil_rank/fleet/e2
 	name = "Crewman"
-	name_short = "CM"
+	name_short = "CR"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e2, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 2
 	pow_cat = 1
 
 /datum/mil_rank/fleet/e3
 	name = "Senior Crewman"
-	name_short = "SCM"
+	name_short = "SCR"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/enlisted/e3, /obj/item/clothing/accessory/solgov/specialty/enlisted)
 	sort_order = 3
 	pow_cat = 1
@@ -153,6 +153,14 @@
 	cit_rank = 4
 
 /datum/mil_rank/fleet/o3
+	name = "Senior Lieutenant"
+	name_short = "SLT"
+	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o2, /obj/item/clothing/accessory/solgov/specialty/officer)
+	sort_order = 17
+	pow_cat = 3
+	cit_rank = 4
+
+/datum/mil_rank/fleet/o4
 	name = "Lieutenant Commander"
 	name_short = "LTCR"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o3, /obj/item/clothing/accessory/solgov/specialty/officer)
@@ -160,7 +168,7 @@
 	pow_cat = 3
 	cit_rank = 4
 
-/datum/mil_rank/fleet/o4
+/datum/mil_rank/fleet/o5
 	name = "Commander"
 	name_short = "CMDR"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o4, /obj/item/clothing/accessory/solgov/specialty/officer)
@@ -168,7 +176,7 @@
 	pow_cat = 4
 	cit_rank = 4
 
-/datum/mil_rank/fleet/o5
+/datum/mil_rank/fleet/o6
 	name = "Captain"
 	name_short = "CAPT"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o5, /obj/item/clothing/accessory/solgov/specialty/officer)
@@ -176,7 +184,7 @@
 	pow_cat = 4
 	cit_rank = 4
 
-/datum/mil_rank/fleet/o6
+/datum/mil_rank/fleet/o7
 	name = "Commodore"
 	name_short = "CDRE"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/officer/o6, /obj/item/clothing/accessory/solgov/specialty/officer)
@@ -184,7 +192,7 @@
 	pow_cat = 4
 	cit_rank = 5
 
-/datum/mil_rank/fleet/o7
+/datum/mil_rank/fleet/o8
 	name = "Admiral"
 	name_short = "ADM"
 	accessory = list(/obj/item/clothing/accessory/solgov/rank/fleet/flag, /obj/item/clothing/accessory/solgov/specialty/officer)
