@@ -89,9 +89,6 @@
 		/datum/mil_rank/fleet/o6,
 		/datum/mil_rank/fleet/o7,
 		/datum/mil_rank/fleet/o8,
-		/datum/mil_rank/fleet/o9,
-		/datum/mil_rank/fleet/o10,
-		/datum/mil_rank/fleet/o10_alt
 	)
 
 	spawn_rank_types = list(
