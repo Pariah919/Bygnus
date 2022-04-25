@@ -1,4 +1,4 @@
-/////////
+ /////////
 // Cadet
 /////////
 /datum/job/seccadet
@@ -98,7 +98,7 @@
 
 	allowed_branches = list(/datum/mil_branch/fleet,)
 	allowed_ranks = list(/datum/mil_rank/fleet/e3)
-	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
+	access = list(access_maint_tunnels, access_explorer, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
 			            access_aquila, access_eva, access_inftech)
 	alt_titles = list(
 		"Combat Engineer")
@@ -132,7 +132,7 @@
 
 	allowed_branches = list(/datum/mil_branch/fleet)
 	allowed_ranks = list(/datum/mil_rank/fleet/e3)
-	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
+	access = list(access_maint_tunnels, access_explorer, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
 			            access_aquila, access_eva, access_infmed)
 
 /datum/job/combat_medic/is_position_available()
@@ -169,7 +169,7 @@
 	allowed_ranks = list(
 		/datum/mil_rank/fleet/e2,
 	)
-	access = list(access_maint_tunnels, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
+	access = list(access_maint_tunnels, access_explorer, access_solgov_crew, access_expedition_shuttle, access_expedition_shuttle_helm, access_guppy, access_hangar, access_guppy_helm, access_infantry,
 			            access_aquila, access_eva)
 
 /datum/job/grunt/get_description_blurb()
